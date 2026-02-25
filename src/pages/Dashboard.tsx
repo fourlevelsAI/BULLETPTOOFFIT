@@ -56,7 +56,7 @@ const Dashboard = () => {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-muted-foreground text-sm">Good afternoon</p>
-          <h1 className="text-2xl font-bold text-foreground">FitTrack Pro</h1>
+          <h1 className="text-2xl font-bold text-foreground">BULLETPROOFFIT</h1>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 glass-card px-3 py-1.5 text-sm">
