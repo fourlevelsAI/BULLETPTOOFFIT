@@ -46,20 +46,20 @@ const LandingPage = () => {
     <div className="min-h-screen bg-[#080808] text-[#E8E8E8] overflow-x-hidden">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[rgba(255,255,255,0.08)]" style={{ background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <ULogo size={32} />
-            <span className="font-display text-sm font-bold tracking-wider text-white">BULLETPROOFFIT</span>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <ULogo size={28} />
+            <span className="font-display text-xs sm:text-sm font-bold tracking-wider text-white truncate">BULLETPROOFFIT</span>
           </div>
-          <div className="flex items-center gap-3">
-            <button onClick={() => navigate("/pricing")} className="text-sm text-[#C0C0C0] hover:text-white transition-colors font-body">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <button onClick={() => navigate("/pricing")} className="text-xs sm:text-sm text-[#C0C0C0] hover:text-white transition-colors font-body hidden sm:block">
               Pricing
             </button>
-            <button onClick={() => navigate("/auth")} className="text-sm text-[#C0C0C0] hover:text-white transition-colors font-body">
+            <button onClick={() => navigate("/auth")} className="text-xs sm:text-sm text-[#C0C0C0] hover:text-white transition-colors font-body hidden sm:block">
               Log In
             </button>
             <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
-              className="bg-[#E8E8E8] text-[#080808] px-5 py-2 rounded-[4px] text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
+              className="bg-[#E8E8E8] text-[#080808] px-4 sm:px-5 py-2 rounded-[4px] text-xs sm:text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
               Start Free
             </motion.button>
           </div>
