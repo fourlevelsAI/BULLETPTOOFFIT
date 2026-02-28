@@ -104,20 +104,21 @@ const ProfilePage = () => {
         </motion.button>
       )}
 
-      {/* Stats */}
+      {/* Stats — clickable */}
       <motion.div variants={fadeUp} className="grid grid-cols-3 gap-3">
         {[
-          { label: "Goal", value: profile?.calorie_goal || 2000, unit: "cal", icon: Target },
-          { label: "Protein", value: profile?.protein_goal || 150, unit: "g", icon: Flame },
-          { label: "Weight", value: profile?.weight || "—", unit: "kg", icon: TrendingUp },
+          { label: "Goal", value: profile?.calorie_goal || 2000, unit: "cal", icon: Target, route: "/profile/goals" },
+          { label: "Protein", value: profile?.protein_goal || 150, unit: "g", icon: Flame, route: "/profile/goals" },
+          { label: "Weight", value: profile?.weight || "—", unit: "kg", icon: TrendingUp, route: "/progress" },
         ].map((stat) => {
           const Icon = stat.icon;
           return (
-            <div key={stat.label} className="bracket-card text-center">
+            <motion.button key={stat.label} whileTap={{ scale: 0.97 }} onClick={() => navigate(stat.route)}
+              className="bracket-card text-center cursor-pointer hover:bg-accent transition-colors">
               <Icon className="w-4 h-4 text-foreground mx-auto mb-1" />
               <span className="text-lg font-bold text-foreground font-mono block">{stat.value}</span>
               <span className="text-[10px] text-muted-foreground font-body">{stat.label} ({stat.unit})</span>
-            </div>
+            </motion.button>
           );
         })}
       </motion.div>
@@ -148,12 +149,12 @@ const ProfilePage = () => {
       {/* Menu */}
       <motion.div variants={fadeUp} className="bracket-card !p-0 overflow-hidden divide-y divide-border">
         {[
-          { icon: Target, label: "Goals & Targets" },
-          { icon: Bell, label: "Notifications" },
-          { icon: Shield, label: "Privacy & Data" },
-          { icon: HelpCircle, label: "Help & Support" },
-        ].map(({ icon: Icon, label }) => (
-          <button key={label} className="w-full flex items-center gap-3 p-4 hover:bg-accent transition-colors">
+          { icon: Target, label: "Goals & Targets", action: () => navigate("/profile/goals") },
+          { icon: Bell, label: "Notifications", action: () => toast.info("Notifications settings coming soon") },
+          { icon: Shield, label: "Privacy & Data", action: () => toast.info("Privacy settings coming soon") },
+          { icon: HelpCircle, label: "Help & Support", action: () => toast.info("Help & support coming soon") },
+        ].map(({ icon: Icon, label, action }) => (
+          <button key={label} onClick={action} className="w-full flex items-center gap-3 p-4 hover:bg-accent transition-colors">
             <Icon className="w-5 h-5 text-muted-foreground" />
             <span className="text-sm font-medium text-foreground font-body flex-1 text-left">{label}</span>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
