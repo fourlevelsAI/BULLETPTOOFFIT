@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Dumbbell,
-  Search,
-  Plus,
-  Clock,
-  Flame,
-  ChevronRight,
-  Zap,
-  Heart,
-  Target,
-} from "lucide-react";
+import { Dumbbell, Search, Plus, Clock, Flame, X } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 const categories = ["All", "Strength", "Cardio", "Flexibility", "HIIT"];
 
@@ -27,15 +20,13 @@ const exercises = [
   { name: "Lat Pulldown", muscle: "Back, Biceps", type: "Strength", met: 5.0 },
 ];
 
-const workoutPlans = [
-  { name: "Push Day", exercises: 6, duration: "45 min", difficulty: "Intermediate" },
-  { name: "Full Body Beginner", exercises: 8, duration: "30 min", difficulty: "Beginner" },
-  { name: "HIIT Blast", exercises: 10, duration: "20 min", difficulty: "Advanced" },
-];
-
 const WorkoutPage = () => {
+  const { user } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [logging, setLogging] = useState<string | null>(null);
+  const [duration, setDuration] = useState(30);
+  const [saving, setSaving] = useState(false);
 
   const filteredExercises = exercises.filter((ex) => {
     const matchesCategory = selectedCategory === "All" || ex.type === selectedCategory;
@@ -43,80 +34,51 @@ const WorkoutPage = () => {
     return matchesCategory && matchesSearch;
   });
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5"
-    >
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">Workout</h1>
-          <p className="text-sm text-muted-foreground mt-1">Log exercises and track progress</p>
-        </div>
-        <button className="gradient-lime px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-semibold text-primary-foreground">
-          <Plus className="w-4 h-4" /> Start
-        </button>
-      </div>
+  const logWorkout = async (ex: typeof exercises[0]) => {
+    if (!user) return;
+    setSaving(true);
+    const caloriesBurned = Math.round(ex.met * 3.5 * 70 / 200 * duration);
+    const today = new Date().toISOString().split("T")[0];
+    const { error } = await supabase.from("workout_sessions").insert({
+      user_id: user.id,
+      name: ex.name,
+      workout_type: ex.type,
+      duration_minutes: duration,
+      calories_burned: caloriesBurned,
+      logged_at: today,
+    });
+    setSaving(false);
+    if (error) {
+      toast.error("Failed to log workout");
+    } else {
+      toast.success(`${ex.name} logged — ${caloriesBurned} cal burned`);
+      setLogging(null);
+      setDuration(30);
+    }
+  };
 
-      {/* AI Plans */}
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5">
       <div>
-        <h2 className="text-sm font-semibold text-foreground mb-3">Workout Plans</h2>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide">
-          {workoutPlans.map((plan) => (
-            <motion.button
-              key={plan.name}
-              whileHover={{ scale: 1.02 }}
-              className="glass-card-hover p-4 min-w-[180px] text-left flex-shrink-0"
-            >
-              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                <Zap className="w-4 h-4 text-primary" />
-              </div>
-              <h3 className="text-sm font-semibold text-foreground">{plan.name}</h3>
-              <div className="flex items-center gap-2 mt-1.5">
-                <span className="text-xs text-muted-foreground">{plan.exercises} exercises</span>
-                <span className="text-xs text-muted-foreground">·</span>
-                <span className="text-xs text-muted-foreground">{plan.duration}</span>
-              </div>
-              <span className={`text-xs mt-2 inline-block px-2 py-0.5 rounded-full ${
-                plan.difficulty === "Beginner"
-                  ? "bg-success/10 text-success"
-                  : plan.difficulty === "Intermediate"
-                  ? "bg-warning/10 text-warning"
-                  : "bg-destructive/10 text-destructive"
-              }`}>
-                {plan.difficulty}
-              </span>
-            </motion.button>
-          ))}
-        </div>
+        <p className="section-label mb-1">Code 03: Training</p>
+        <h1 className="text-2xl font-bold text-foreground">Workout</h1>
+        <p className="text-sm text-muted-foreground mt-1 font-body">Log exercises and track progress</p>
       </div>
 
       {/* Search */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-        <input
-          type="text"
-          placeholder="Search exercises..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 bg-card border border-glass-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-        />
+        <input type="text" placeholder="Search exercises..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body" />
       </div>
 
-      {/* Category Filter */}
+      {/* Category */}
       <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-              selectedCategory === cat
-                ? "gradient-lime text-primary-foreground"
-                : "glass-card text-muted-foreground"
-            }`}
-          >
+          <button key={cat} onClick={() => setSelectedCategory(cat)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all font-body ${
+              selectedCategory === cat ? "bg-foreground text-background" : "border border-white/10 text-muted-foreground"
+            }`}>
             {cat}
           </button>
         ))}
@@ -125,28 +87,44 @@ const WorkoutPage = () => {
       {/* Exercise List */}
       <div className="space-y-2">
         {filteredExercises.map((ex) => (
-          <motion.button
-            key={ex.name}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="w-full glass-card-hover p-4 flex items-center justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Dumbbell className="w-5 h-5 text-primary" />
+          <div key={ex.name}>
+            <button onClick={() => setLogging(logging === ex.name ? null : ex.name)}
+              className="w-full glass-card-hover p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
+                  <Dumbbell className="w-5 h-5 text-foreground" />
+                </div>
+                <div className="text-left">
+                  <span className="text-sm font-medium text-foreground font-body">{ex.name}</span>
+                  <p className="text-xs text-muted-foreground mt-0.5 font-body">{ex.muscle}</p>
+                </div>
               </div>
-              <div className="text-left">
-                <span className="text-sm font-medium text-foreground">{ex.name}</span>
-                <p className="text-xs text-muted-foreground mt-0.5">{ex.muscle}</p>
+              <div className="flex items-center gap-2">
+                <span className="text-xs px-2 py-0.5 rounded border border-white/10 text-muted-foreground font-body">{ex.type}</span>
+                <Plus className="w-4 h-4 text-foreground" />
               </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
-                {ex.type}
-              </span>
-              <Plus className="w-4 h-4 text-primary" />
-            </div>
-          </motion.button>
+            </button>
+            {logging === ex.name && (
+              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} className="glass-card p-4 mt-1 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground font-body">Duration (min)</span>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => setDuration(Math.max(5, duration - 5))} className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-muted-foreground text-xs">−</button>
+                    <span className="text-sm font-semibold text-foreground font-body w-8 text-center">{duration}</span>
+                    <button onClick={() => setDuration(duration + 5)} className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-muted-foreground text-xs">+</button>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-xs text-muted-foreground font-body">
+                  <span>Est. calories burned</span>
+                  <span className="text-foreground font-semibold">{Math.round(ex.met * 3.5 * 70 / 200 * duration)} cal</span>
+                </div>
+                <button onClick={() => logWorkout(ex)} disabled={saving}
+                  className="w-full bg-foreground text-background py-2.5 rounded-md text-sm font-semibold disabled:opacity-50 font-body">
+                  {saving ? "Saving..." : "Log Workout"}
+                </button>
+              </motion.div>
+            )}
+          </div>
         ))}
       </div>
     </motion.div>

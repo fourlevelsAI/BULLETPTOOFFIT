@@ -1,25 +1,43 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, Eye, EyeOff, ArrowRight, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+const logoImg = "/logo.png";
+
+type AuthView = "login" | "signup" | "forgot";
 
 const AuthPage = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [view, setView] = useState<AuthView>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const { signUp, signIn } = useAuth();
-  const navigate = useNavigate();
+  const { signUp, signIn, resetPassword } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
-    if (isSignUp) {
+    if (view === "forgot") {
+      const { error } = await resetPassword(email);
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("Password reset email sent. Check your inbox.");
+        setView("login");
+      }
+      setSubmitting(false);
+      return;
+    }
+
+    if (view === "signup") {
+      if (password.length < 6) {
+        toast.error("Password must be at least 6 characters");
+        setSubmitting(false);
+        return;
+      }
       const { error } = await signUp(email, password, displayName);
       if (error) {
         toast.error(error.message);
@@ -44,20 +62,18 @@ const AuthPage = () => {
       >
         {/* Logo */}
         <div className="text-center space-y-3">
-          <div className="inline-block">
-            <h1 className="text-5xl font-black text-foreground tracking-tight font-heading leading-none">
-              BF<sup className="text-sm align-super ml-0.5">®</sup>
-            </h1>
-          </div>
-          <p className="code-label">Code 01: Access</p>
-          <p className="text-muted-foreground text-sm font-body">
-            {isSignUp ? "Create your account" : "Welcome back"}
+          <img src={logoImg} alt="BULLETPROOFFIT" className="w-12 h-auto mx-auto invert" />
+          <h1 className="text-3xl font-black text-foreground tracking-tight font-heading">
+            BULLETPROOFFIT
+          </h1>
+          <p className="code-label">
+            {view === "forgot" ? "Password Recovery" : view === "signup" ? "Create Account" : "Welcome Back"}
           </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {isSignUp && (
+          {view === "signup" && (
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
@@ -82,50 +98,79 @@ const AuthPage = () => {
             />
           </div>
 
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={6}
-              className="w-full pl-10 pr-10 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body"
-            />
+          {view !== "forgot" && (
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                className="w-full pl-10 pr-10 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4 text-muted-foreground" />
+                ) : (
+                  <Eye className="w-4 h-4 text-muted-foreground" />
+                )}
+              </button>
+            </div>
+          )}
+
+          {view === "login" && (
             <button
               type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2"
+              onClick={() => setView("forgot")}
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors font-body"
             >
-              {showPassword ? (
-                <EyeOff className="w-4 h-4 text-muted-foreground" />
-              ) : (
-                <Eye className="w-4 h-4 text-muted-foreground" />
-              )}
+              Forgot password?
             </button>
-          </div>
+          )}
 
           <button
             type="submit"
             disabled={submitting}
             className="w-full bg-foreground text-background py-3.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 disabled:opacity-50 transition-opacity font-body"
           >
-            {submitting ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+            {submitting
+              ? "Please wait..."
+              : view === "forgot"
+              ? "Send Reset Email"
+              : view === "signup"
+              ? "Create Account"
+              : "Sign In"}
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
         {/* Toggle */}
-        <p className="text-center text-sm text-muted-foreground font-body">
-          {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-          <button
-            onClick={() => setIsSignUp(!isSignUp)}
-            className="text-foreground font-medium hover:underline"
-          >
-            {isSignUp ? "Sign in" : "Sign up"}
-          </button>
-        </p>
+        <div className="text-center space-y-2">
+          {view === "forgot" ? (
+            <button
+              onClick={() => setView("login")}
+              className="text-sm text-muted-foreground hover:text-foreground font-body flex items-center gap-1 mx-auto"
+            >
+              <ArrowLeft className="w-3 h-3" /> Back to sign in
+            </button>
+          ) : (
+            <p className="text-sm text-muted-foreground font-body">
+              {view === "signup" ? "Already have an account?" : "Don't have an account?"}{" "}
+              <button
+                onClick={() => setView(view === "signup" ? "login" : "signup")}
+                className="text-foreground font-medium hover:underline"
+              >
+                {view === "signup" ? "Sign in" : "Sign up"}
+              </button>
+            </p>
+          )}
+        </div>
       </motion.div>
     </div>
   );

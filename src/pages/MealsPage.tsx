@@ -1,19 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Search,
-  Scan,
-  Camera,
-  Mic,
-  Plus,
-  ChevronRight,
-  X,
-  Clock,
-} from "lucide-react";
+import { Search, Plus, X, Clock, Check, ChevronDown } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
 
-const recentFoods = [
+const foodDatabase = [
   { name: "Oatmeal", calories: 150, serving: "1 cup (240g)", protein: 5, carbs: 27, fat: 3 },
   { name: "Banana", calories: 105, serving: "1 medium", protein: 1, carbs: 27, fat: 0 },
   { name: "Grilled Chicken Breast", calories: 165, serving: "100g", protein: 31, carbs: 0, fat: 4 },
@@ -22,126 +16,140 @@ const recentFoods = [
   { name: "Almond Butter", calories: 98, serving: "1 tbsp", protein: 3, carbs: 3, fat: 9 },
   { name: "Mixed Berries", calories: 70, serving: "1 cup", protein: 1, carbs: 17, fat: 0 },
   { name: "Quinoa", calories: 222, serving: "1 cup cooked", protein: 8, carbs: 39, fat: 4 },
-];
-
-const searchResults = [
   { name: "Avocado Toast", calories: 280, serving: "1 slice", protein: 7, carbs: 26, fat: 18 },
   { name: "Protein Shake", calories: 200, serving: "1 scoop + water", protein: 25, carbs: 8, fat: 3 },
   { name: "Salmon Fillet", calories: 208, serving: "100g", protein: 20, carbs: 0, fat: 13 },
+  { name: "Eggs (2 large)", calories: 143, serving: "2 large", protein: 13, carbs: 1, fat: 10 },
+  { name: "Sweet Potato", calories: 103, serving: "1 medium", protein: 2, carbs: 24, fat: 0 },
+  { name: "Broccoli", calories: 55, serving: "1 cup", protein: 4, carbs: 11, fat: 1 },
+  { name: "Whole Wheat Bread", calories: 69, serving: "1 slice", protein: 4, carbs: 12, fat: 1 },
+  { name: "Turkey Breast", calories: 135, serving: "100g", protein: 30, carbs: 0, fat: 1 },
+  { name: "Cottage Cheese", calories: 206, serving: "1 cup", protein: 28, carbs: 6, fat: 9 },
+  { name: "Apple", calories: 95, serving: "1 medium", protein: 0, carbs: 25, fat: 0 },
+  { name: "Peanut Butter", calories: 94, serving: "1 tbsp", protein: 4, carbs: 3, fat: 8 },
+  { name: "Rice Cakes", calories: 35, serving: "1 cake", protein: 1, carbs: 7, fat: 0 },
 ];
 
 const MealsPage = () => {
+  const { user } = useAuth();
   const [selectedMeal, setSelectedMeal] = useState("Lunch");
   const [searchQuery, setSearchQuery] = useState("");
-  const [showSearch, setShowSearch] = useState(false);
+  const [saving, setSaving] = useState<string | null>(null);
+  const [servings, setServings] = useState<Record<string, number>>({});
 
-  const displayFoods = searchQuery.length > 0 ? searchResults : recentFoods;
+  const filteredFoods = searchQuery.length > 0
+    ? foodDatabase.filter((f) => f.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : foodDatabase.slice(0, 10);
+
+  const getServings = (name: string) => servings[name] || 1;
+
+  const addFood = async (food: typeof foodDatabase[0]) => {
+    if (!user) return;
+    setSaving(food.name);
+    const mult = getServings(food.name);
+    const today = new Date().toISOString().split("T")[0];
+    const { error } = await supabase.from("food_logs").insert({
+      user_id: user.id,
+      food_name: food.name,
+      calories: Math.round(food.calories * mult),
+      protein: Math.round(food.protein * mult),
+      carbs: Math.round(food.carbs * mult),
+      fat: Math.round(food.fat * mult),
+      meal_type: selectedMeal,
+      serving_size: `${mult}x ${food.serving}`,
+      logged_at: today,
+    });
+    setSaving(null);
+    if (error) {
+      toast.error("Failed to log food");
+    } else {
+      toast.success(`${food.name} added to ${selectedMeal}`);
+      setServings((prev) => ({ ...prev, [food.name]: 1 }));
+    }
+  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5"
-    >
-      {/* Header */}
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5">
       <div>
+        <p className="section-label mb-1">Code 02: Nutrition</p>
         <h1 className="text-2xl font-bold text-foreground">Log Meal</h1>
-        <p className="text-sm text-muted-foreground mt-1">Track what you eat today</p>
+        <p className="text-sm text-muted-foreground mt-1 font-body">Track what you eat today</p>
       </div>
 
-      {/* Meal Type Selector */}
+      {/* Meal Type */}
       <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {mealTypes.map((type) => (
-          <button
-            key={type}
-            onClick={() => setSelectedMeal(type)}
-            className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-              selectedMeal === type
-                ? "gradient-lime text-primary-foreground"
-                : "glass-card text-muted-foreground hover:text-foreground"
-            }`}
-          >
+          <button key={type} onClick={() => setSelectedMeal(type)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all font-body ${
+              selectedMeal === type ? "bg-foreground text-background" : "border border-white/10 text-muted-foreground hover:text-foreground"
+            }`}>
             {type}
           </button>
         ))}
       </div>
 
-      {/* Search Bar */}
+      {/* Search */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-        <input
-          type="text"
-          placeholder="Search foods..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onFocus={() => setShowSearch(true)}
-          className="w-full pl-10 pr-10 py-3 bg-card border border-glass-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-        />
+        <input type="text" placeholder="Search foods..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full pl-10 pr-10 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body" />
         {searchQuery && (
-          <button
-            onClick={() => setSearchQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2"
-          >
+          <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2">
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
         )}
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid grid-cols-3 gap-3">
-        {[
-          { icon: Scan, label: "Scan Barcode" },
-          { icon: Camera, label: "Photo AI" },
-          { icon: Mic, label: "Voice Log" },
-        ].map(({ icon: Icon, label }) => (
-          <button key={label} className="glass-card-hover flex flex-col items-center gap-2 py-4">
-            <Icon className="w-5 h-5 text-primary" />
-            <span className="text-xs text-muted-foreground">{label}</span>
-          </button>
-        ))}
       </div>
 
       {/* Food List */}
       <div>
         <div className="flex items-center gap-2 mb-3">
           <Clock className="w-4 h-4 text-muted-foreground" />
-          <h2 className="text-sm font-semibold text-foreground">
-            {searchQuery ? "Search Results" : "Recent Foods"}
-          </h2>
+          <h2 className="section-label">{searchQuery ? "Search Results" : "Popular Foods"}</h2>
         </div>
-        <div className="space-y-2">
-          {displayFoods.map((food) => (
-            <motion.button
-              key={food.name}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="w-full glass-card-hover p-4 flex items-center justify-between"
-            >
-              <div className="text-left flex-1">
-                <span className="text-sm font-medium text-foreground">{food.name}</span>
-                <div className="flex items-center gap-3 mt-1">
-                  <span className="text-xs text-muted-foreground">{food.serving}</span>
-                  <div className="flex items-center gap-2 text-xs">
-                    <span className="text-protein">P:{food.protein}g</span>
-                    <span className="text-carbs">C:{food.carbs}g</span>
-                    <span className="text-fat">F:{food.fat}g</span>
+        {filteredFoods.length === 0 ? (
+          <div className="glass-card p-8 text-center">
+            <p className="text-muted-foreground text-sm font-body">No foods found for "{searchQuery}"</p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {filteredFoods.map((food) => {
+              const mult = getServings(food.name);
+              return (
+                <div key={food.name} className="glass-card p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1 text-left">
+                      <span className="text-sm font-medium text-foreground font-body">{food.name}</span>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="text-xs text-muted-foreground font-body">{food.serving}</span>
+                        <div className="flex items-center gap-2 text-xs font-body">
+                          <span className="text-muted-foreground">P:{Math.round(food.protein * mult)}g</span>
+                          <span className="text-muted-foreground">C:{Math.round(food.carbs * mult)}g</span>
+                          <span className="text-muted-foreground">F:{Math.round(food.fat * mult)}g</span>
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-sm font-semibold text-foreground font-body mr-3">{Math.round(food.calories * mult)}</span>
+                  </div>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setServings((p) => ({ ...p, [food.name]: Math.max(0.5, (p[food.name] || 1) - 0.5) }))}
+                        className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-muted-foreground hover:text-foreground text-xs font-body">−</button>
+                      <span className="text-sm font-medium text-foreground font-body w-8 text-center">{mult}</span>
+                      <button onClick={() => setServings((p) => ({ ...p, [food.name]: (p[food.name] || 1) + 0.5 }))}
+                        className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-muted-foreground hover:text-foreground text-xs font-body">+</button>
+                      <span className="text-xs text-muted-foreground font-body">servings</span>
+                    </div>
+                    <button onClick={() => addFood(food)} disabled={saving === food.name}
+                      className="bg-foreground text-background px-4 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1 disabled:opacity-50 font-body">
+                      {saving === food.name ? "..." : <><Plus className="w-3 h-3" /> Add</>}
+                    </button>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-calories">{food.calories}</span>
-                <Plus className="w-4 h-4 text-primary" />
-              </div>
-            </motion.button>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
-
-      {/* Custom Entry */}
-      <button className="w-full glass-card-hover p-4 flex items-center justify-center gap-2">
-        <Plus className="w-4 h-4 text-primary" />
-        <span className="text-sm text-primary font-medium">Create Custom Food</span>
-      </button>
     </motion.div>
   );
 };

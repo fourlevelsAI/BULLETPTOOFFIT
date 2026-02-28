@@ -13,6 +13,7 @@ import ProgressPage from "./pages/ProgressPage";
 import ProfilePage from "./pages/ProfilePage";
 import OnboardingPage from "./pages/OnboardingPage";
 import AuthPage from "./pages/AuthPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,8 +24,9 @@ const AppRoutes = () => {
 
   if (authLoading || profileLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-3">
         <div className="w-8 h-8 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
+        <p className="text-xs text-muted-foreground font-body">Loading...</p>
       </div>
     );
   }
@@ -33,6 +35,7 @@ const AppRoutes = () => {
     return (
       <Routes>
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<Navigate to="/auth" replace />} />
       </Routes>
     );
@@ -58,6 +61,7 @@ const AppRoutes = () => {
       </Route>
       <Route path="/auth" element={<Navigate to="/" replace />} />
       <Route path="/onboarding" element={<Navigate to="/" replace />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
