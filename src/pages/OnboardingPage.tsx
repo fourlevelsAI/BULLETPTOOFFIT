@@ -151,7 +151,7 @@ const OnboardingPage = () => {
         <p className="code-label mb-4">Code 0{step + 1}: {stepLabels[step]}</p>
         <div className="flex gap-2">
           {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-            <div key={i} className={`h-0.5 flex-1 rounded-full transition-colors duration-300 ${i <= step ? "bg-foreground" : "bg-white/10"}`} />
+            <div key={i} className={`h-0.5 flex-1 rounded-full transition-colors duration-300 ${i <= step ? "bg-foreground" : "bg-muted"}`} />
           ))}
         </div>
       </div>
@@ -166,7 +166,7 @@ const OnboardingPage = () => {
                 {goals.map(({ value, label, icon: Icon, desc }) => (
                   <button key={value} onClick={() => update({ goal: value })}
                     className={`w-full glass-card-hover p-5 flex items-center gap-4 text-left transition-all ${state.goal === value ? "border-foreground ring-1 ring-foreground" : ""}`}>
-                    <div className={`w-12 h-12 rounded-md flex items-center justify-center border ${state.goal === value ? "bg-foreground border-foreground" : "bg-white/5 border-white/10"}`}>
+                    <div className={`w-12 h-12 rounded-md flex items-center justify-center border ${state.goal === value ? "bg-foreground border-foreground" : "bg-muted border-border"}`}>
                       <Icon className={`w-6 h-6 ${state.goal === value ? "text-background" : "text-muted-foreground"}`} />
                     </div>
                     <div className="flex-1">
@@ -235,7 +235,7 @@ const OnboardingPage = () => {
               <div className="flex flex-wrap gap-2">
                 {dietaryOptions.map((d) => (
                   <button key={d} onClick={() => toggleDiet(d)}
-                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all font-body ${state.dietaryPreferences.includes(d) ? "bg-foreground text-background" : "border border-white/10 text-muted-foreground hover:text-foreground"}`}>
+                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all font-body ${state.dietaryPreferences.includes(d) ? "bg-foreground text-background" : "border border-border text-muted-foreground hover:text-foreground"}`}>
                     {d}
                   </button>
                 ))}
@@ -266,7 +266,7 @@ const OnboardingPage = () => {
 
       <div className="px-6 pb-8 max-w-lg mx-auto w-full flex gap-3">
         {step > 0 && (
-          <button onClick={back} className="border border-white/10 px-5 py-3.5 rounded-lg flex items-center gap-1 text-muted-foreground text-sm font-medium font-body hover:text-foreground transition-colors">
+          <button onClick={back} className="border border-border px-5 py-3.5 rounded-lg flex items-center gap-1 text-muted-foreground text-sm font-medium font-body hover:text-foreground transition-colors">
             <ChevronLeft className="w-4 h-4" /> Back
           </button>
         )}

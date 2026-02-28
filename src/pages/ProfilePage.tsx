@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { useSubscription } from "@/hooks/useSubscription";
 import { toast } from "sonner";
-import ThemeToggle from "@/components/ThemeToggle";
+// ThemeToggle removed — app routes forced dark
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -41,9 +41,8 @@ const ProfilePage = () => {
 
   return (
     <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-6">
-      <motion.div variants={fadeUp} className="flex items-center justify-between">
+      <motion.div variants={fadeUp}>
         <p className="code-label">SYS:05 Profile</p>
-        <ThemeToggle />
       </motion.div>
 
       {/* Profile Header */}
