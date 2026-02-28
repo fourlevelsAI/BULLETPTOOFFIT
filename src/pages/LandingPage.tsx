@@ -276,7 +276,7 @@ const LandingPage = () => {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-3 gap-6">
             {features.map((f) => (
               <motion.div key={f.step} variants={fadeUp}
-                whileHover={{ y: -6, scale: 1.02 }}
+                whileHover={{ y: -6, scale: 1.02, boxShadow: '0 20px 60px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.15)' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-8 space-y-4 cursor-pointer">
@@ -310,7 +310,7 @@ const LandingPage = () => {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {tools.map((t, i) => (
               <motion.div key={t.label} variants={scaleIn}
-                whileHover={{ y: -6, scale: 1.03 }}
+                whileHover={{ y: -6, scale: 1.03, boxShadow: '0 20px 60px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.15)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-6 flex flex-col items-center gap-3 text-center cursor-pointer">
@@ -340,7 +340,7 @@ const LandingPage = () => {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-2 gap-4">
             {testimonials.map((t) => (
               <motion.div key={t.name} variants={fadeUp}
-                whileHover={{ y: -6, scale: 1.02 }}
+                whileHover={{ y: -6, scale: 1.02, boxShadow: '0 20px 60px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.15)' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-6 cursor-pointer">
