@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Smartphone, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Smartphone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ULogo from "@/components/ULogo";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -70,88 +70,72 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
-        {/* Grid background */}
+      {/* ═══ SECTION 1: Hero — Light ═══ */}
+      <section className="pt-32 pb-20 px-6 relative overflow-hidden bg-background">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(13,13,13,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(13,13,13,0.04) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(to right, hsl(var(--foreground) / 0.04) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground) / 0.04) 1px, transparent 1px)`,
             backgroundSize: '40px 40px',
           }}
         />
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-          >
+          <motion.div variants={stagger} initial="hidden" animate="show">
             <motion.div variants={fadeUp}>
-              <p className="code-label mb-4">The #1 Fitness Tracking App</p>
+              <p className="text-xs font-bold tracking-[0.15em] uppercase text-foreground font-body mb-4">The #1 Fitness Tracking App</p>
             </motion.div>
             <motion.h1
               variants={fadeUp}
-              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-heading leading-[0.88] tracking-[-0.03em]"
+              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-heading leading-[0.88] tracking-[-0.03em] text-foreground"
             >
               NUTRITION
               <br />
               TRACKING FOR
               <br />
-              <span style={{ color: '#888888' }}>REAL LIFE</span>
+              <span className="text-muted-foreground">REAL LIFE</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-lg text-muted-foreground font-body mt-6 max-w-md">
+            <motion.p variants={fadeUp} className="text-lg font-body mt-6 max-w-md text-foreground/80">
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
               <motion.button
                 whileTap={{ scale: 0.97 }}
                 onClick={() => navigate("/auth")}
-                className="bg-foreground text-background px-8 py-4 rounded-lg text-sm font-bold font-body flex items-center gap-2 hover:opacity-90 transition-opacity"
+                className="bg-foreground text-background px-8 py-4 rounded-lg text-sm font-bold font-body flex items-center gap-2 hover:bg-background hover:text-foreground hover:ring-2 hover:ring-foreground transition-all"
               >
                 START TODAY <ArrowRight className="w-4 h-4" />
               </motion.button>
-              <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="flex items-center gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-foreground text-foreground" />
                   ))}
                 </div>
-                <span className="text-xs font-body">4.8 Rating</span>
+                <span className="text-xs font-body font-semibold text-foreground">4.8 Rating</span>
               </div>
             </motion.div>
 
-            {/* App Store Badges */}
             <motion.div variants={fadeUp} className="flex items-center gap-3 mt-8">
-              <motion.a
-                whileTap={{ scale: 0.97 }}
-                href="https://apps.apple.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 border border-border rounded-lg px-4 py-2.5 hover:bg-accent transition-colors"
-              >
+              <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 border-2 border-foreground rounded-lg px-4 py-2.5 hover:bg-foreground hover:text-background transition-all">
                 <Apple className="w-5 h-5" />
                 <div className="text-left">
-                  <p className="text-[10px] text-muted-foreground font-body leading-none">Download on the</p>
+                  <p className="text-[10px] font-body leading-none opacity-70">Download on the</p>
                   <p className="text-sm font-semibold font-body leading-tight">App Store</p>
                 </div>
               </motion.a>
-              <motion.a
-                whileTap={{ scale: 0.97 }}
-                href="https://play.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 border border-border rounded-lg px-4 py-2.5 hover:bg-accent transition-colors"
-              >
+              <motion.a whileTap={{ scale: 0.97 }} href="https://play.google.com" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 border-2 border-foreground rounded-lg px-4 py-2.5 hover:bg-foreground hover:text-background transition-all">
                 <Smartphone className="w-5 h-5" />
                 <div className="text-left">
-                  <p className="text-[10px] text-muted-foreground font-body leading-none">Get it on</p>
+                  <p className="text-[10px] font-body leading-none opacity-70">Get it on</p>
                   <p className="text-sm font-semibold font-body leading-tight">Google Play</p>
                 </div>
               </motion.a>
             </motion.div>
           </motion.div>
 
-          {/* Phone Mockup — Photorealistic iPhone 16 Pro Black Titanium */}
+          {/* ═══ iPhone 16 Pro — Cleaned Up ═══ */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -159,34 +143,28 @@ const LandingPage = () => {
             className="hidden lg:flex justify-center"
             style={{ perspective: '1200px' }}
           >
-            <div
-              className="relative iphone-float"
-              style={{
-                transform: 'rotate(-2deg) rotateY(8deg)',
-              }}
-            >
+            <div className="relative iphone-float">
               {/* Ground reflection */}
               <div
-                className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[80%] h-[60px] pointer-events-none"
+                className="absolute -bottom-14 left-1/2 -translate-x-1/2 w-[80%] h-[50px] pointer-events-none"
                 style={{
                   background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, transparent 70%)',
                   filter: 'blur(12px)',
                 }}
               />
 
-              {/* Phone body */}
+              {/* Phone body — 300×620, correct iPhone 16 Pro proportions */}
               <div
-                className="w-[320px] h-[660px] relative"
+                className="w-[300px] h-[620px] relative"
                 style={{
                   background: 'linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 30%, #0d0d0d 50%, #1a1a1a 70%, #2a2a2a 100%)',
                   borderRadius: '54px',
                   boxShadow: `
-                    0 0 0 1px rgba(255,255,255,0.15),
+                    0 0 0 1px rgba(255,255,255,0.12),
                     0 0 0 3px #3a3732,
-                    0 0 0 4px rgba(255,255,255,0.08),
-                    0 40px 80px rgba(0,0,0,0.6),
-                    0 20px 40px rgba(0,0,0,0.4),
-                    0 0 120px rgba(0,0,0,0.3)
+                    0 0 0 4px rgba(255,255,255,0.06),
+                    0 40px 80px rgba(0,0,0,0.5),
+                    0 20px 40px rgba(0,0,0,0.35)
                   `,
                 }}
               >
@@ -199,33 +177,30 @@ const LandingPage = () => {
                   }}
                 />
 
-                {/* Side buttons */}
-                {/* Volume up */}
-                <div className="absolute left-[-4px] top-[140px] w-[4px] h-[36px] rounded-l-[2px]"
-                  style={{ background: 'linear-gradient(90deg, #2a2a2a, #3a3732)' }} />
-                {/* Volume down */}
-                <div className="absolute left-[-4px] top-[188px] w-[4px] h-[36px] rounded-l-[2px]"
-                  style={{ background: 'linear-gradient(90deg, #2a2a2a, #3a3732)' }} />
-                {/* Power */}
-                <div className="absolute right-[-4px] top-[160px] w-[4px] h-[72px] rounded-r-[2px]"
-                  style={{ background: 'linear-gradient(270deg, #2a2a2a, #3a3732)' }} />
+                {/* Side buttons — subtle, 3px wide */}
+                <div className="absolute left-[-3px] top-[140px] w-[3px] h-[32px] rounded-l-[2px]"
+                  style={{ background: '#2a2a2a' }} />
+                <div className="absolute left-[-3px] top-[182px] w-[3px] h-[32px] rounded-l-[2px]"
+                  style={{ background: '#2a2a2a' }} />
+                <div className="absolute right-[-3px] top-[155px] w-[3px] h-[64px] rounded-r-[2px]"
+                  style={{ background: '#2a2a2a' }} />
 
                 {/* Screen */}
                 <div
                   className="absolute overflow-hidden"
                   style={{
-                    top: '8px', left: '8px', right: '8px', bottom: '8px',
-                    borderRadius: '46px',
+                    top: '10px', left: '10px', right: '10px', bottom: '10px',
+                    borderRadius: '44px',
                     background: '#000',
                     boxShadow: 'inset 0 0 60px rgba(255,255,255,0.03)',
                   }}
                 >
-                  {/* Screen content area */}
                   <div className="w-full h-full bg-card relative overflow-hidden">
-                    {/* Dynamic Island */}
+                    {/* Dynamic Island — centered, no overlaps */}
                     <div
-                      className="absolute top-[14px] left-1/2 -translate-x-1/2 z-20"
+                      className="absolute left-1/2 -translate-x-1/2 z-20"
                       style={{
+                        top: '12px',
                         width: '120px', height: '34px',
                         background: '#000',
                         borderRadius: '20px',
@@ -233,65 +208,69 @@ const LandingPage = () => {
                       }}
                     />
 
-                    {/* Status bar */}
-                    <div className="absolute top-[14px] left-0 right-0 z-10 flex items-center justify-between px-8 pt-1.5">
-                      <span className="text-[11px] font-semibold text-foreground font-body">9:41</span>
-                      <div className="flex items-center gap-1">
-                        <div className="flex gap-[2px]">
-                          {[1,2,3,4].map(i => (
-                            <div key={i} className="w-[3px] rounded-sm bg-foreground" style={{ height: `${6 + i * 2}px` }} />
+                    {/* Status bar — 54px height, no overlaps */}
+                    <div className="absolute top-0 left-0 right-0 h-[54px] z-10 flex items-start px-6 pt-[16px]">
+                      {/* Time — left, clear of Dynamic Island */}
+                      <span className="text-[15px] font-semibold text-foreground font-body leading-none">9:41</span>
+                      <div className="flex-1" />
+                      {/* Right indicators — small, no overlap */}
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex gap-[2px] items-end">
+                          {[4, 6, 8, 11].map((h, i) => (
+                            <div key={i} className="w-[3px] rounded-sm bg-foreground" style={{ height: `${h}px` }} />
                           ))}
                         </div>
-                        <svg width="15" height="11" viewBox="0 0 14 10" className="fill-foreground ml-0.5">
+                        <svg width="14" height="10" viewBox="0 0 14 10" className="fill-foreground">
                           <path d="M1 3.5C3.5 1 6 0 7 0s3.5 1 6 3.5L7 10 1 3.5z" />
                         </svg>
-                        <div className="w-[24px] h-[11px] rounded-[2.5px] border border-foreground/50 ml-0.5 relative overflow-hidden">
-                          <div className="absolute inset-[1.5px] right-[5px] bg-foreground rounded-[1px]" />
-                          <div className="absolute right-[-2px] top-1/2 -translate-y-1/2 w-[2px] h-[5px] bg-foreground/50 rounded-r-sm" />
+                        <div className="w-[22px] h-[10px] rounded-[2px] border border-foreground/50 relative overflow-hidden">
+                          <div className="absolute inset-[1.5px] right-[4px] bg-foreground rounded-[1px]" />
+                          <div className="absolute right-[-2px] top-1/2 -translate-y-1/2 w-[1.5px] h-[4px] bg-foreground/50 rounded-r-sm" />
                         </div>
                       </div>
                     </div>
 
-                    {/* App content with Dynamic Island padding */}
-                    <div className="p-5 pt-[58px] space-y-4">
+                    {/* App content — starts below 54px status bar */}
+                    <div className="p-4 pt-[54px] space-y-3">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-[10px] text-muted-foreground font-mono">SYS:01 DASHBOARD</p>
-                          <p className="text-base font-bold font-heading">HEY, ATHLETE</p>
+                          <p className="text-[9px] text-muted-foreground font-mono tracking-wider">SYS:01 DASHBOARD</p>
+                          <p className="text-sm font-bold font-heading">HEY, ATHLETE</p>
                         </div>
-                        <div className="flex items-center gap-1 text-xs border border-border rounded px-2 py-1">
-                          <Flame className="w-3 h-3" /> 7
+                        <div className="flex items-center gap-1 text-[10px] border border-border rounded px-1.5 py-0.5">
+                          <Flame className="w-2.5 h-2.5" /> 7
                         </div>
                       </div>
 
-                      <div className="bracket-card">
-                        <div className="flex items-center gap-4">
-                          <div className="w-[68px] h-[68px] rounded-full border-[3px] border-foreground flex items-center justify-center relative">
+                      {/* Calorie ring card */}
+                      <div className="rounded-lg bg-card border border-border p-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-[60px] h-[60px] rounded-full border-[3px] border-foreground flex items-center justify-center relative shrink-0">
                             <div className="absolute inset-0 rounded-full border-[3px] border-muted" />
                             <div className="text-center">
-                              <p className="text-sm font-bold font-mono">1,247</p>
-                              <p className="text-[9px] text-muted-foreground">left</p>
+                              <p className="text-[12px] font-bold font-mono leading-tight">1,247</p>
+                              <p className="text-[8px] text-muted-foreground">left</p>
                             </div>
                           </div>
-                          <div className="flex-1 space-y-2">
-                            <div className="flex justify-between text-[11px] font-body">
+                          <div className="flex-1 space-y-1.5 min-w-0">
+                            <div className="flex justify-between text-[10px] font-body">
                               <span className="text-muted-foreground">Eaten</span>
-                              <span className="font-mono">753 cal</span>
+                              <span className="font-mono font-medium">753 cal</span>
                             </div>
-                            <div className="flex justify-between text-[11px] font-body">
+                            <div className="flex justify-between text-[10px] font-body">
                               <span className="text-muted-foreground">Goal</span>
-                              <span className="font-mono">2,000 cal</span>
+                              <span className="font-mono font-medium">2,000 cal</span>
                             </div>
                           </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-2 mt-3">
+                        <div className="grid grid-cols-3 gap-2 mt-2">
                           {["P", "C", "F"].map((m, i) => (
                             <div key={m}>
-                              <div className="flex justify-between text-[10px] text-muted-foreground font-body">
+                              <div className="flex justify-between text-[9px] text-muted-foreground font-body">
                                 <span>{m}</span>
                                 <span className="font-mono">{[42, 85, 22][i]}g</span>
                               </div>
-                              <div className="h-1.5 bg-muted rounded-full mt-0.5">
+                              <div className="h-1 bg-muted rounded-full mt-0.5">
                                 <motion.div
                                   initial={{ width: 0 }}
                                   animate={{ width: `${[28, 34, 33][i]}%` }}
@@ -304,17 +283,18 @@ const LandingPage = () => {
                         </div>
                       </div>
 
+                      {/* Meals */}
                       <div>
-                        <p className="text-[10px] text-muted-foreground font-body tracking-widest uppercase mb-2">Today's Meals</p>
+                        <p className="text-[9px] text-muted-foreground font-body tracking-widest uppercase mb-1.5">Today's Meals</p>
                         {["Breakfast", "Lunch", "Dinner"].map((meal) => (
-                          <div key={meal} className="bracket-card mb-2 flex items-center justify-between !p-3">
-                            <div>
-                              <p className="text-[11px] font-medium font-body">{meal}</p>
-                              <p className="text-[9px] text-muted-foreground font-body">
+                          <div key={meal} className="rounded-lg bg-card border border-border mb-1.5 flex items-center justify-between p-2.5">
+                            <div className="min-w-0">
+                              <p className="text-[10px] font-medium font-body">{meal}</p>
+                              <p className="text-[8px] text-muted-foreground font-body truncate">
                                 {meal === "Dinner" ? "Not logged yet" : "Oatmeal, eggs…"}
                               </p>
                             </div>
-                            <p className="text-[11px] font-semibold font-mono">
+                            <p className="text-[10px] font-semibold font-mono shrink-0 ml-2">
                               {meal === "Dinner" ? "—" : "430 cal"}
                             </p>
                           </div>
@@ -323,17 +303,17 @@ const LandingPage = () => {
                     </div>
 
                     {/* Home indicator */}
-                    <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2">
-                      <div className="w-[110px] h-[5px] rounded-full bg-foreground/20" />
+                    <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2">
+                      <div className="w-[100px] h-[4px] rounded-full bg-foreground/20" />
                     </div>
                   </div>
 
-                  {/* Screen glare overlay */}
+                  {/* Screen glare */}
                   <div
                     className="absolute inset-0 pointer-events-none z-10"
                     style={{
                       background: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 40%)',
-                      borderRadius: '46px',
+                      borderRadius: '44px',
                     }}
                   />
                 </div>
@@ -343,13 +323,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Decorative grid line */}
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="h-px bg-border" />
-      </div>
-
-      {/* How It Works */}
-      <section className="py-20 px-6">
+      {/* ═══ SECTION 2: How It Works — DARK ═══ */}
+      <section className="py-20 px-6 bg-[#0D0D0D] text-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
@@ -358,8 +333,8 @@ const LandingPage = () => {
             variants={stagger}
             className="text-center mb-16"
           >
-            <motion.p variants={fadeUp} className="code-label mb-3">How It Works</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading">
+            <motion.p variants={fadeUp} className="text-xs font-bold tracking-[0.15em] uppercase text-white/60 font-body mb-3">How It Works</motion.p>
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading text-white">
               HIT YOUR GOALS IN 1-2-3
             </motion.h2>
           </motion.div>
@@ -376,26 +351,25 @@ const LandingPage = () => {
                 key={f.step}
                 variants={fadeUp}
                 whileHover={{ y: -2 }}
-                className="bracket-card !p-8 space-y-4"
+                className="relative p-8 space-y-4 rounded-lg border-[1.5px] border-white/20 bg-white/5"
+                style={{ boxShadow: '4px 4px 0px rgba(255,255,255,0.15)' }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl font-black font-heading text-muted-foreground/30">{f.step}</span>
-                  <div className="w-10 h-10 rounded-lg bg-accent border border-border flex items-center justify-center">
-                    <f.icon className="w-5 h-5" />
+                  <span className="text-3xl font-black font-heading text-white/20">{f.step}</span>
+                  <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
+                    <f.icon className="w-5 h-5 text-[#0D0D0D]" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold font-heading">{f.title}</h3>
-                <p className="text-sm text-muted-foreground font-body">{f.desc}</p>
+                <h3 className="text-xl font-bold font-heading text-white">{f.title}</h3>
+                <p className="text-sm text-white/70 font-body">{f.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6"><div className="h-px bg-border" /></div>
-
-      {/* Tools */}
-      <section className="py-20 px-6">
+      {/* ═══ SECTION 3: Logging Tools — Light ═══ */}
+      <section className="py-20 px-6 bg-[#FAFAFA] dark:bg-background">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
@@ -404,11 +378,11 @@ const LandingPage = () => {
             variants={stagger}
             className="text-center mb-12"
           >
-            <motion.p variants={fadeUp} className="code-label mb-3">Logging Tools</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading">
+            <motion.p variants={fadeUp} className="text-xs font-bold tracking-[0.15em] uppercase text-foreground/60 font-body mb-3">Logging Tools</motion.p>
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading text-foreground">
               LOG FASTER THAN EVER
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-muted-foreground font-body mt-4 max-w-md mx-auto">
+            <motion.p variants={fadeUp} className="font-body mt-4 max-w-md mx-auto text-foreground/70">
               Barcode scan, AI photo recognition, voice logging, and smart search — all built in.
             </motion.p>
           </motion.div>
@@ -426,22 +400,21 @@ const LandingPage = () => {
                 variants={scaleIn}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="bracket-card !p-6 flex flex-col items-center gap-3 text-center cursor-pointer"
+                className="relative p-6 flex flex-col items-center gap-3 text-center cursor-pointer rounded-lg bg-card border-[1.5px] border-foreground"
+                style={{ boxShadow: '4px 4px 0px hsl(var(--foreground))' }}
               >
-                <div className="w-14 h-14 rounded-xl bg-accent border border-border flex items-center justify-center">
-                  <t.icon className="w-6 h-6" />
+                <div className="w-14 h-14 rounded-xl bg-foreground flex items-center justify-center">
+                  <t.icon className="w-6 h-6 text-background" />
                 </div>
-                <span className="text-sm font-semibold font-body">{t.label}</span>
+                <span className="text-sm font-extrabold font-body text-foreground">{t.label}</span>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6"><div className="h-px bg-border" /></div>
-
-      {/* Testimonials */}
-      <section className="py-20 px-6">
+      {/* ═══ SECTION 4: Testimonials — DARK ═══ */}
+      <section className="py-20 px-6 bg-[#0D0D0D] text-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
@@ -452,10 +425,10 @@ const LandingPage = () => {
           >
             <motion.div variants={fadeUp} className="flex justify-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-foreground text-foreground" />
+                <Star key={i} className="w-5 h-5 fill-white text-white" />
               ))}
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading">
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading text-white">
               REAL RESULTS
             </motion.h2>
           </motion.div>
@@ -472,20 +445,19 @@ const LandingPage = () => {
                 key={t.name}
                 variants={fadeUp}
                 whileHover={{ y: -2 }}
-                className="bracket-card !p-6"
+                className="p-6 rounded-lg border-[1.5px] border-white/20 bg-white/5"
+                style={{ boxShadow: '4px 4px 0px rgba(255,255,255,0.1)' }}
               >
-                <p className="text-sm text-muted-foreground font-body italic mb-3">"{t.text}"</p>
-                <p className="text-xs font-semibold font-body">{t.name}</p>
+                <p className="text-sm text-white/80 font-body italic mb-3">"{t.text}"</p>
+                <p className="text-xs font-bold font-body text-white">{t.name}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6"><div className="h-px bg-border" /></div>
-
-      {/* CTA */}
-      <section className="py-20 px-6">
+      {/* ═══ SECTION 5: CTA — DARK ═══ */}
+      <section className="py-20 px-6 bg-[#0D0D0D] text-white">
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -496,36 +468,36 @@ const LandingPage = () => {
           <motion.div variants={fadeUp}>
             <ULogo size={80} animated className="mx-auto" />
           </motion.div>
-          <motion.p variants={fadeUp} className="code-label tracking-[0.3em]">BULLETPROOFFIT</motion.p>
-          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading">
+          <motion.p variants={fadeUp} className="text-xs font-bold tracking-[0.3em] uppercase text-white/60 font-body">BULLETPROOFFIT</motion.p>
+          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-heading text-white">
             START TODAY
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-muted-foreground font-body">
+          <motion.p variants={fadeUp} className="text-white/70 font-body">
             Join thousands tracking their nutrition and building healthier habits — for free.
           </motion.p>
           <motion.div variants={fadeUp}>
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={() => navigate("/auth")}
-              className="bg-foreground text-background px-10 py-4 rounded-lg text-sm font-bold font-body inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+              className="bg-white text-[#0D0D0D] px-10 py-4 rounded-lg text-sm font-bold font-body inline-flex items-center gap-2 hover:bg-transparent hover:text-white hover:ring-2 hover:ring-white transition-all"
             >
               CREATE FREE ACCOUNT <ArrowRight className="w-4 h-4" />
             </motion.button>
           </motion.div>
           <motion.div variants={fadeUp} className="flex justify-center items-center gap-3 pt-4">
             <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-border rounded-lg px-4 py-2.5 hover:bg-accent transition-colors">
+              className="flex items-center gap-2 border-2 border-white/30 rounded-lg px-4 py-2.5 hover:bg-white hover:text-[#0D0D0D] transition-all text-white">
               <Apple className="w-5 h-5" />
               <div className="text-left">
-                <p className="text-[10px] text-muted-foreground font-body leading-none">Download on the</p>
+                <p className="text-[10px] font-body leading-none opacity-60">Download on the</p>
                 <p className="text-sm font-semibold font-body leading-tight">App Store</p>
               </div>
             </a>
             <a href="https://play.google.com" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-border rounded-lg px-4 py-2.5 hover:bg-accent transition-colors">
+              className="flex items-center gap-2 border-2 border-white/30 rounded-lg px-4 py-2.5 hover:bg-white hover:text-[#0D0D0D] transition-all text-white">
               <Smartphone className="w-5 h-5" />
               <div className="text-left">
-                <p className="text-[10px] text-muted-foreground font-body leading-none">Get it on</p>
+                <p className="text-[10px] font-body leading-none opacity-60">Get it on</p>
                 <p className="text-sm font-semibold font-body leading-tight">Google Play</p>
               </div>
             </a>
@@ -533,17 +505,17 @@ const LandingPage = () => {
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-border">
+      {/* ═══ Footer — #000 ═══ */}
+      <footer className="py-8 px-6 bg-black text-white">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <ULogo size={24} />
-            <span className="text-xs text-muted-foreground font-body">© 2026 BULLETPROOFFIT. All rights reserved.</span>
+            <span className="text-xs text-white/50 font-body">© 2026 BULLETPROOFFIT. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground font-body transition-colors">Privacy</a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground font-body transition-colors">Terms</a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground font-body transition-colors">Contact</a>
+            <a href="#" className="text-xs text-white/50 hover:text-white font-body transition-colors">Privacy</a>
+            <a href="#" className="text-xs text-white/50 hover:text-white font-body transition-colors">Terms</a>
+            <a href="#" className="text-xs text-white/50 hover:text-white font-body transition-colors">Contact</a>
           </div>
         </div>
       </footer>
