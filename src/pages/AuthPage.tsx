@@ -61,11 +61,8 @@ const AuthPage = () => {
         className="w-full max-w-sm space-y-8"
       >
         {/* Logo */}
-        <div className="text-center space-y-3">
-          <img src={logoImg} alt="BULLETPROOFFIT" className="w-12 h-auto mx-auto invert" />
-          <h1 className="text-3xl font-black text-foreground tracking-tight font-heading">
-            BULLETPROOFFIT
-          </h1>
+        <div className="text-center space-y-4">
+          <img src={logoImg} alt="BULLETPROOFFIT" className="w-24 h-auto mx-auto invert" />
           <p className="code-label">
             {view === "forgot" ? "Password Recovery" : view === "signup" ? "Create Account" : "Welcome Back"}
           </p>
