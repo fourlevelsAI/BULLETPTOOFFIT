@@ -276,16 +276,18 @@ const LandingPage = () => {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-3 gap-6">
             {features.map((f) => (
               <motion.div key={f.step} variants={fadeUp}
-                whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(0,0,0,0.8), 0 0 0 1px rgba(192,192,192,0.15)' }}
-                className="terminal-card !p-8 space-y-4">
+                whileHover={{ y: -6, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-8 space-y-4 cursor-pointer">
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl font-black font-display text-[#2A2A2A]">{f.step}</span>
-                  <div className="w-10 h-10 rounded-[4px] bg-[#E8E8E8] flex items-center justify-center">
-                    <f.icon className="w-5 h-5 text-[#080808]" />
+                  <span className="text-3xl font-black font-display text-[#C0C0C0]">{f.step}</span>
+                  <div className="w-10 h-10 rounded-[4px] bg-[#080808] flex items-center justify-center">
+                    <f.icon className="w-5 h-5 text-[#E8E8E8]" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold font-heading text-[#E8E8E8]">{f.title}</h3>
-                <p className="text-sm text-[#808080] font-body">{f.desc}</p>
+                <h3 className="text-xl font-bold font-heading text-[#111111]">{f.title}</h3>
+                <p className="text-sm text-[#555555] font-body">{f.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -308,14 +310,15 @@ const LandingPage = () => {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {tools.map((t, i) => (
               <motion.div key={t.label} variants={scaleIn}
-                whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(0,0,0,0.8), 0 0 0 1px rgba(192,192,192,0.2)' }}
+                whileHover={{ y: -6, scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="terminal-card !p-6 flex flex-col items-center gap-3 text-center cursor-pointer">
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-6 flex flex-col items-center gap-3 text-center cursor-pointer">
                 <motion.div animate={{ y: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 3, delay: i * 0.3 }}
-                  className="w-14 h-14 rounded-[4px] bg-[#E8E8E8] flex items-center justify-center">
-                  <t.icon className="w-6 h-6 text-[#080808]" />
+                  className="w-14 h-14 rounded-[4px] bg-[#080808] flex items-center justify-center">
+                  <t.icon className="w-6 h-6 text-[#E8E8E8]" />
                 </motion.div>
-                <span className="text-sm font-bold font-body text-[#E8E8E8]">{t.label}</span>
+                <span className="text-sm font-bold font-body text-[#111111]">{t.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -337,10 +340,12 @@ const LandingPage = () => {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-2 gap-4">
             {testimonials.map((t) => (
               <motion.div key={t.name} variants={fadeUp}
-                whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(0,0,0,0.8), 0 0 0 1px rgba(192,192,192,0.12)' }}
-                className="terminal-card !p-6">
-                <p className="text-sm text-[#A0A0A0] font-body italic mb-3">"{t.text}"</p>
-                <p className="text-xs font-bold font-body text-[#E8E8E8]">{t.name}</p>
+                whileHover={{ y: -6, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-6 cursor-pointer">
+                <p className="text-sm text-[#444444] font-body italic mb-3">"{t.text}"</p>
+                <p className="text-xs font-bold font-body text-[#111111]">{t.name}</p>
               </motion.div>
             ))}
           </motion.div>
