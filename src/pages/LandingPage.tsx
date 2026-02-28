@@ -151,116 +151,191 @@ const LandingPage = () => {
             </motion.div>
           </motion.div>
 
-          {/* Phone Mockup — Clean iPhone style like MFP */}
+          {/* Phone Mockup — Photorealistic iPhone 16 Pro Black Titanium */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="hidden lg:flex justify-center"
+            style={{ perspective: '1200px' }}
           >
-            <div className="relative w-[290px]">
-              {/* Phone frame — thick dark rounded bezel */}
+            <div
+              className="relative iphone-float"
+              style={{
+                transform: 'rotate(-2deg) rotateY(8deg)',
+              }}
+            >
+              {/* Ground reflection */}
               <div
-                className="w-full aspect-[9/19.5] rounded-[3.2rem] p-[10px] relative"
+                className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-[80%] h-[60px] pointer-events-none"
                 style={{
-                  background: '#1a1a1a',
-                  boxShadow: '0 40px 80px -20px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06)',
+                  background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, transparent 70%)',
+                  filter: 'blur(12px)',
+                }}
+              />
+
+              {/* Phone body */}
+              <div
+                className="w-[320px] h-[660px] relative"
+                style={{
+                  background: 'linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 30%, #0d0d0d 50%, #1a1a1a 70%, #2a2a2a 100%)',
+                  borderRadius: '54px',
+                  boxShadow: `
+                    0 0 0 1px rgba(255,255,255,0.15),
+                    0 0 0 3px #3a3732,
+                    0 0 0 4px rgba(255,255,255,0.08),
+                    0 40px 80px rgba(0,0,0,0.6),
+                    0 20px 40px rgba(0,0,0,0.4),
+                    0 0 120px rgba(0,0,0,0.3)
+                  `,
                 }}
               >
+                {/* Titanium band texture */}
+                <div
+                  className="absolute inset-[2px] pointer-events-none"
+                  style={{
+                    borderRadius: '52px',
+                    background: 'linear-gradient(135deg, #4a4540 0%, #2d2a26 25%, #1a1816 50%, #2d2a26 75%, #4a4540 100%)',
+                  }}
+                />
+
+                {/* Side buttons */}
+                {/* Volume up */}
+                <div className="absolute left-[-4px] top-[140px] w-[4px] h-[36px] rounded-l-[2px]"
+                  style={{ background: 'linear-gradient(90deg, #2a2a2a, #3a3732)' }} />
+                {/* Volume down */}
+                <div className="absolute left-[-4px] top-[188px] w-[4px] h-[36px] rounded-l-[2px]"
+                  style={{ background: 'linear-gradient(90deg, #2a2a2a, #3a3732)' }} />
+                {/* Power */}
+                <div className="absolute right-[-4px] top-[160px] w-[4px] h-[72px] rounded-r-[2px]"
+                  style={{ background: 'linear-gradient(270deg, #2a2a2a, #3a3732)' }} />
+
                 {/* Screen */}
-                <div className="w-full h-full rounded-[2.4rem] overflow-hidden bg-card relative">
-                  {/* Dynamic Island */}
-                  <div className="absolute top-[8px] left-1/2 -translate-x-1/2 w-[90px] h-[26px] bg-black rounded-full z-20" />
+                <div
+                  className="absolute overflow-hidden"
+                  style={{
+                    top: '8px', left: '8px', right: '8px', bottom: '8px',
+                    borderRadius: '46px',
+                    background: '#000',
+                    boxShadow: 'inset 0 0 60px rgba(255,255,255,0.03)',
+                  }}
+                >
+                  {/* Screen content area */}
+                  <div className="w-full h-full bg-card relative overflow-hidden">
+                    {/* Dynamic Island */}
+                    <div
+                      className="absolute top-[14px] left-1/2 -translate-x-1/2 z-20"
+                      style={{
+                        width: '120px', height: '34px',
+                        background: '#000',
+                        borderRadius: '20px',
+                        boxShadow: '0 0 0 1px rgba(255,255,255,0.05)',
+                      }}
+                    />
 
-                  {/* Status bar */}
-                  <div className="absolute top-[8px] left-0 right-0 z-10 flex items-center justify-between px-7 pt-1">
-                    <span className="text-[10px] font-semibold text-foreground font-body">9:41</span>
-                    <div className="flex items-center gap-1">
-                      <div className="flex gap-[2px]">
-                        {[1,2,3,4].map(i => (
-                          <div key={i} className="w-[3px] rounded-sm bg-foreground" style={{ height: `${6 + i * 2}px` }} />
-                        ))}
-                      </div>
-                      <svg width="14" height="10" viewBox="0 0 14 10" className="fill-foreground ml-0.5">
-                        <path d="M1 3.5C3.5 1 6 0 7 0s3.5 1 6 3.5L7 10 1 3.5z" />
-                      </svg>
-                      <div className="w-[22px] h-[10px] rounded-[2px] border border-foreground/50 ml-0.5 relative overflow-hidden">
-                        <div className="absolute inset-[1px] right-[4px] bg-foreground rounded-[1px]" />
-                        <div className="absolute right-[-2px] top-1/2 -translate-y-1/2 w-[2px] h-[4px] bg-foreground/50 rounded-r-sm" />
+                    {/* Status bar */}
+                    <div className="absolute top-[14px] left-0 right-0 z-10 flex items-center justify-between px-8 pt-1.5">
+                      <span className="text-[11px] font-semibold text-foreground font-body">9:41</span>
+                      <div className="flex items-center gap-1">
+                        <div className="flex gap-[2px]">
+                          {[1,2,3,4].map(i => (
+                            <div key={i} className="w-[3px] rounded-sm bg-foreground" style={{ height: `${6 + i * 2}px` }} />
+                          ))}
+                        </div>
+                        <svg width="15" height="11" viewBox="0 0 14 10" className="fill-foreground ml-0.5">
+                          <path d="M1 3.5C3.5 1 6 0 7 0s3.5 1 6 3.5L7 10 1 3.5z" />
+                        </svg>
+                        <div className="w-[24px] h-[11px] rounded-[2.5px] border border-foreground/50 ml-0.5 relative overflow-hidden">
+                          <div className="absolute inset-[1.5px] right-[5px] bg-foreground rounded-[1px]" />
+                          <div className="absolute right-[-2px] top-1/2 -translate-y-1/2 w-[2px] h-[5px] bg-foreground/50 rounded-r-sm" />
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* App content */}
-                  <div className="p-4 pt-14 space-y-4">
-                    <div className="flex items-center justify-between">
+                    {/* App content with Dynamic Island padding */}
+                    <div className="p-5 pt-[58px] space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-[10px] text-muted-foreground font-mono">SYS:01 DASHBOARD</p>
+                          <p className="text-base font-bold font-heading">HEY, ATHLETE</p>
+                        </div>
+                        <div className="flex items-center gap-1 text-xs border border-border rounded px-2 py-1">
+                          <Flame className="w-3 h-3" /> 7
+                        </div>
+                      </div>
+
+                      <div className="bracket-card">
+                        <div className="flex items-center gap-4">
+                          <div className="w-[68px] h-[68px] rounded-full border-[3px] border-foreground flex items-center justify-center relative">
+                            <div className="absolute inset-0 rounded-full border-[3px] border-muted" />
+                            <div className="text-center">
+                              <p className="text-sm font-bold font-mono">1,247</p>
+                              <p className="text-[9px] text-muted-foreground">left</p>
+                            </div>
+                          </div>
+                          <div className="flex-1 space-y-2">
+                            <div className="flex justify-between text-[11px] font-body">
+                              <span className="text-muted-foreground">Eaten</span>
+                              <span className="font-mono">753 cal</span>
+                            </div>
+                            <div className="flex justify-between text-[11px] font-body">
+                              <span className="text-muted-foreground">Goal</span>
+                              <span className="font-mono">2,000 cal</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 mt-3">
+                          {["P", "C", "F"].map((m, i) => (
+                            <div key={m}>
+                              <div className="flex justify-between text-[10px] text-muted-foreground font-body">
+                                <span>{m}</span>
+                                <span className="font-mono">{[42, 85, 22][i]}g</span>
+                              </div>
+                              <div className="h-1.5 bg-muted rounded-full mt-0.5">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${[28, 34, 33][i]}%` }}
+                                  transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
+                                  className="h-full bg-foreground rounded-full"
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
                       <div>
-                        <p className="text-[10px] text-muted-foreground font-mono">SYS:01 DASHBOARD</p>
-                        <p className="text-sm font-bold font-heading">HEY, ATHLETE</p>
-                      </div>
-                      <div className="flex items-center gap-1 text-xs border border-border rounded px-2 py-1">
-                        <Flame className="w-3 h-3" /> 7
-                      </div>
-                    </div>
-
-                    <div className="bracket-card">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-full border-[3px] border-foreground flex items-center justify-center relative">
-                          <div className="absolute inset-0 rounded-full border-[3px] border-muted" />
-                          <div className="text-center">
-                            <p className="text-xs font-bold font-mono">1,247</p>
-                            <p className="text-[8px] text-muted-foreground">left</p>
-                          </div>
-                        </div>
-                        <div className="flex-1 space-y-1.5">
-                          <div className="flex justify-between text-[10px] font-body">
-                            <span className="text-muted-foreground">Eaten</span>
-                            <span className="font-mono">753 cal</span>
-                          </div>
-                          <div className="flex justify-between text-[10px] font-body">
-                            <span className="text-muted-foreground">Goal</span>
-                            <span className="font-mono">2,000 cal</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-3 gap-2 mt-3">
-                        {["P", "C", "F"].map((m, i) => (
-                          <div key={m}>
-                            <div className="flex justify-between text-[9px] text-muted-foreground font-body">
-                              <span>{m}</span>
-                              <span className="font-mono">{[42, 85, 22][i]}g</span>
+                        <p className="text-[10px] text-muted-foreground font-body tracking-widest uppercase mb-2">Today's Meals</p>
+                        {["Breakfast", "Lunch", "Dinner"].map((meal) => (
+                          <div key={meal} className="bracket-card mb-2 flex items-center justify-between !p-3">
+                            <div>
+                              <p className="text-[11px] font-medium font-body">{meal}</p>
+                              <p className="text-[9px] text-muted-foreground font-body">
+                                {meal === "Dinner" ? "Not logged yet" : "Oatmeal, eggs…"}
+                              </p>
                             </div>
-                            <div className="h-1 bg-muted rounded-full mt-0.5">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: `${[28, 34, 33][i]}%` }}
-                                transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
-                                className="h-full bg-foreground rounded-full"
-                              />
-                            </div>
+                            <p className="text-[11px] font-semibold font-mono">
+                              {meal === "Dinner" ? "—" : "430 cal"}
+                            </p>
                           </div>
                         ))}
                       </div>
-                    </div>
-
-                    <div>
-                      <p className="text-[9px] text-muted-foreground font-body tracking-widest uppercase mb-2">Today's Meals</p>
-                      {["Breakfast", "Lunch"].map((meal) => (
-                        <div key={meal} className="bracket-card mb-1.5 flex items-center justify-between !p-2.5">
-                          <div>
-                            <p className="text-[10px] font-medium font-body">{meal}</p>
-                            <p className="text-[8px] text-muted-foreground font-body">Oatmeal, eggs…</p>
-                          </div>
-                          <p className="text-[10px] font-semibold font-mono">430 cal</p>
-                        </div>
-                      ))}
                     </div>
 
                     {/* Home indicator */}
-                    <div className="flex justify-center pt-2">
-                      <div className="w-[100px] h-[4px] rounded-full bg-foreground/20" />
+                    <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2">
+                      <div className="w-[110px] h-[5px] rounded-full bg-foreground/20" />
                     </div>
                   </div>
+
+                  {/* Screen glare overlay */}
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 40%)',
+                      borderRadius: '46px',
+                    }}
+                  />
                 </div>
               </div>
             </div>
