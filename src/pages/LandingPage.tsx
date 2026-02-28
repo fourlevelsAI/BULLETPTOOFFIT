@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Smartphone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ULogo from "@/components/ULogo";
-import ThemeToggle from "@/components/ThemeToggle";
+// ThemeToggle removed from landing nav
 
 const stagger = {
   hidden: {},
@@ -45,18 +45,17 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-[#080808] text-[#E8E8E8] overflow-x-hidden">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/90 backdrop-blur-xl border-b border-[rgba(192,192,192,0.08)]">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[rgba(255,255,255,0.08)]" style={{ background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <ULogo size={32} />
-            <span className="font-display text-sm font-bold tracking-wider">BULLETPROOFFIT</span>
+            <span className="font-display text-sm font-bold tracking-wider text-white">BULLETPROOFFIT</span>
           </div>
           <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <button onClick={() => navigate("/pricing")} className="text-sm text-[#808080] hover:text-[#E8E8E8] transition-colors font-body">
+            <button onClick={() => navigate("/pricing")} className="text-sm text-[#C0C0C0] hover:text-white transition-colors font-body">
               Pricing
             </button>
-            <button onClick={() => navigate("/auth")} className="text-sm text-[#808080] hover:text-[#E8E8E8] transition-colors font-body">
+            <button onClick={() => navigate("/auth")} className="text-sm text-[#C0C0C0] hover:text-white transition-colors font-body">
               Log In
             </button>
             <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
@@ -78,17 +77,19 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <motion.div variants={stagger} initial="hidden" animate="show">
             <motion.div variants={fadeUp}>
-              <p className="code-label mb-4 text-[#606060]">SYS:00 — INIT SEQUENCE</p>
+              <p className="mb-4 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#808080' }}>SYS:00 — INIT SEQUENCE</p>
             </motion.div>
             <motion.h1 variants={fadeUp}
-              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-display leading-[0.88] tracking-[-0.02em]">
-              <span className="chrome-text">NUTRITION</span>
+              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-display leading-[0.88] tracking-[-0.02em]"
+              style={{ textShadow: '0 0 40px rgba(255,255,255,0.1)' }}>
+              <span className="text-white font-black" style={{ opacity: 1 }}>NUTRITION</span>
               <br />
-              <span className="chrome-text">TRACKING</span>
+              <span className="text-white font-black" style={{ opacity: 1 }}>TRACKING</span>
               <br />
-              <span className="text-[#606060]">FOR REAL LIFE</span>
+              <span className="text-white" style={{ opacity: 1 }}>FOR REAL</span>{" "}
+              <span style={{ background: 'linear-gradient(135deg, #FFFFFF, #A0A0A0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>LIFE</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-base font-body mt-6 max-w-md text-[#A0A0A0]">
+            <motion.p variants={fadeUp} className="font-body mt-6 max-w-md" style={{ color: '#C0C0C0', fontSize: '1.1rem', lineHeight: 1.7 }}>
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
@@ -149,7 +150,7 @@ const LandingPage = () => {
                   top: '10px', left: '10px', right: '10px', bottom: '10px',
                   borderRadius: '44px', background: '#000',
                 }}>
-                  <div className="w-full h-full bg-[#080808] relative overflow-hidden">
+                  <div className="w-full h-full relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
                     {/* Dynamic Island */}
                     <div className="absolute left-1/2 -translate-x-1/2 z-20" style={{
                       top: '12px', width: '120px', height: '34px', background: '#000', borderRadius: '20px',

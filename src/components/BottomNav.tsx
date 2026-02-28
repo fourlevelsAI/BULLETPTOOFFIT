@@ -33,13 +33,13 @@ const BottomNav = () => {
                 />
               )}
               <motion.div whileTap={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-                <Icon className={`w-5 h-5 transition-colors relative z-10 ${isActive ? "text-[#E8E8E8]" : "text-[#404040]"}`} />
+                <Icon className={`w-5 h-5 transition-colors relative z-10 ${isActive ? "text-white" : "text-[#606060]"}`} />
               </motion.div>
               {isActive && (
                 <motion.span
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-[10px] font-medium font-body relative z-10 text-[#A0A0A0]"
+                  className="text-[10px] font-medium font-body relative z-10 text-white"
                 >
                   {label}
                 </motion.span>
