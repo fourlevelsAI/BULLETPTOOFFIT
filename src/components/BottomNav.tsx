@@ -14,7 +14,7 @@ const BottomNav = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 glass-card border-t border-glass-border rounded-none">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-t border-white/10">
       <div className="flex items-center justify-around h-16 max-w-lg mx-auto px-2">
         {navItems.map(({ to, icon: Icon, label }) => {
           const isActive = location.pathname === to;
@@ -27,18 +27,18 @@ const BottomNav = () => {
               {isActive && (
                 <motion.div
                   layoutId="bottomnav-indicator"
-                  className="absolute -top-0.5 w-8 h-0.5 rounded-full gradient-lime"
+                  className="absolute -top-0.5 w-8 h-0.5 rounded-full bg-foreground"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
               <Icon
                 className={`w-5 h-5 transition-colors ${
-                  isActive ? "text-primary" : "text-muted-foreground"
+                  isActive ? "text-foreground" : "text-muted-foreground"
                 }`}
               />
               <span
-                className={`text-[10px] font-medium transition-colors ${
-                  isActive ? "text-primary" : "text-muted-foreground"
+                className={`text-[10px] font-medium transition-colors font-body ${
+                  isActive ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
                 {label}

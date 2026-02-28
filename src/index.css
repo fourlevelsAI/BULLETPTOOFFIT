@@ -4,57 +4,57 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 96%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
 
-    --card: 222 41% 10%;
-    --card-foreground: 210 40% 96%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222 41% 10%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 84 81% 44%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 222 30% 16%;
-    --secondary-foreground: 210 40% 90%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 85%;
 
-    --muted: 222 30% 14%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 54%;
 
-    --accent: 84 60% 35%;
-    --accent-foreground: 210 40% 96%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 95%;
 
     --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 84 81% 44%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 0 0% 100%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 222 41% 8%;
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 84 81% 44%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 30% 14%;
-    --sidebar-accent-foreground: 210 40% 90%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 84 81% 44%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-border: 0 0% 100% / 0.1;
+    --sidebar-ring: 0 0% 100%;
 
-    /* Custom fitness tokens */
-    --calories: 24 95% 53%;
-    --protein: 199 89% 48%;
-    --carbs: 45 93% 47%;
-    --fat: 340 82% 52%;
+    /* Macro tokens — monochrome */
+    --calories: 0 0% 100%;
+    --protein: 0 0% 80%;
+    --carbs: 0 0% 65%;
+    --fat: 0 0% 50%;
 
-    --glass: 222 41% 10% / 0.6;
-    --glass-border: 222 30% 22%;
-    --glass-hover: 222 41% 12%;
+    --glass: 0 0% 10% / 0.6;
+    --glass-border: 0 0% 100% / 0.1;
+    --glass-hover: 0 0% 14%;
 
-    --success: 142 71% 45%;
-    --warning: 45 93% 47%;
+    --success: 0 0% 85%;
+    --warning: 0 0% 70%;
   }
 }
 
@@ -65,32 +65,33 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-glass-border rounded-xl;
+    @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-lg;
   }
 
   .glass-card-hover {
     @apply glass-card hover:bg-glass-hover transition-colors duration-200;
   }
 
-  .gradient-lime {
-    background: linear-gradient(135deg, hsl(84 81% 44%), hsl(84 60% 35%));
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    @apply text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground;
   }
 
-  .gradient-calories {
-    background: linear-gradient(135deg, hsl(24 95% 53%), hsl(16 85% 45%));
-  }
-
-  .text-gradient-lime {
-    background: linear-gradient(135deg, hsl(84 81% 50%), hsl(84 60% 40%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .code-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    @apply text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground;
   }
 
   .scrollbar-hide {
