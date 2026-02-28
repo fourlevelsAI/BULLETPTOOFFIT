@@ -39,7 +39,7 @@ export function useProfile() {
       .from("profiles")
       .select("*")
       .eq("user_id", user.id)
-      .single();
+      .maybeSingle();
 
     if (!error && data) {
       setProfile(data as unknown as Profile);
@@ -52,7 +52,7 @@ export function useProfile() {
   }, [user]);
 
   const updateProfile = async (updates: Partial<Profile>) => {
-    if (!user) return;
+    if (!user) return { error: new Error("Not authenticated") };
     const { error } = await supabase
       .from("profiles")
       .update(updates as any)
