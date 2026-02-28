@@ -157,7 +157,7 @@ const AriaOverlay = ({ open, onClose, context, onFoodLogged, onWorkoutLogged }: 
       if (data.type === "log_food" && data.action?.foods) {
         const { user } = (await supabase.auth.getUser()).data;
         if (user) {
-          const mealType = data.action.meal_type || "Snack";
+          const mealType = (data.action.meal_type || "snack").toLowerCase();
           const today = new Date().toISOString().split("T")[0];
           for (const food of data.action.foods) {
             await supabase.from("food_logs").insert({

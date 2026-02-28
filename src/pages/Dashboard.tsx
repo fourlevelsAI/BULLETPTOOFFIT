@@ -181,7 +181,7 @@ const Dashboard = () => {
   // --- Confirm detected foods ---
   const handleConfirmFoods = async (foods: DetectedFood[]) => {
     if (!user) return;
-    const mealType = getDefaultMeal();
+    const mealType = getDefaultMeal().toLowerCase();
     for (const food of foods) {
       const qty = food.quantity || 1;
       await supabase.from("food_logs").insert({
@@ -219,7 +219,7 @@ const Dashboard = () => {
       carbs: pendingFood.carbs,
       fat: pendingFood.fat,
       serving_size: pendingFood.serving,
-      meal_type: mealType,
+      meal_type: mealType.toLowerCase(),
       logged_at: today,
     });
     toast.success(`Added ${pendingFood.name} to ${mealType}`);

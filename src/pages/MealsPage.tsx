@@ -118,7 +118,7 @@ const MealsPage = () => {
       user_id: user.id, food_name: food.name,
       calories: Math.round(food.calories * mult), protein: Math.round(food.protein * mult),
       carbs: Math.round(food.carbs * mult), fat: Math.round(food.fat * mult),
-      meal_type: selectedMeal, serving_size: `${mult}x ${food.serving}`, logged_at: today,
+      meal_type: selectedMeal.toLowerCase(), serving_size: `${mult}x ${food.serving}`, logged_at: today,
     });
     setSaving(null);
     if (error) toast.error("Failed to log food");
@@ -217,7 +217,7 @@ const MealsPage = () => {
         user_id: user.id, food_name: food.name,
         calories: Math.round(food.calories * q), protein: Math.round(food.protein_g * q),
         carbs: Math.round(food.carbs_g * q), fat: Math.round(food.fat_g * q),
-        meal_type: selectedMeal, serving_size: `${q}x ${food.serving_size}`, logged_at: today,
+        meal_type: selectedMeal.toLowerCase(), serving_size: `${q}x ${food.serving_size}`, logged_at: today,
       });
     }
     toast.success(`${foods.length} item${foods.length > 1 ? "s" : ""} added to ${selectedMeal}`);
@@ -368,9 +368,9 @@ const MealsPage = () => {
                         <div className="flex items-center gap-2 mt-1.5">
                           <span className="text-xs text-muted-foreground font-body">{food.serving}</span>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(120,30%,12%)] text-[hsl(120,100%,65%)]">P:{Math.round(food.protein * mult)}g</span>
-                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(50,30%,12%)] text-[hsl(50,100%,65%)]">C:{Math.round(food.carbs * mult)}g</span>
-                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(0,30%,12%)] text-[hsl(0,100%,65%)]">F:{Math.round(food.fat * mult)}g</span>
+                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(120,30%,12%)] text-[hsl(120,100%,65%)]">Protein: {Math.round(food.protein * mult)}g</span>
+                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(50,30%,12%)] text-[hsl(50,100%,65%)]">Carbs: {Math.round(food.carbs * mult)}g</span>
+                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(0,30%,12%)] text-[hsl(0,100%,65%)]">Fat: {Math.round(food.fat * mult)}g</span>
                           </div>
                         </div>
                       </div>
