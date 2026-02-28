@@ -268,7 +268,7 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-16">
             <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:01 — PROTOCOL</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display chrome-text">
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               HIT YOUR GOALS
             </motion.h2>
           </motion.div>
@@ -299,7 +299,7 @@ const LandingPage = () => {
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
             <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:02 — TOOLS</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display chrome-text">
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               LOG FASTER
             </motion.h2>
             <motion.p variants={fadeUp} className="font-body mt-4 max-w-md mx-auto text-[#808080]">
@@ -332,7 +332,7 @@ const LandingPage = () => {
             <motion.div variants={fadeUp} className="flex justify-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-[#C0C0C0] text-[#C0C0C0]" />)}
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display chrome-text">
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               REAL RESULTS
             </motion.h2>
           </motion.div>
@@ -359,7 +359,7 @@ const LandingPage = () => {
             <ULogo size={80} animated className="mx-auto" />
           </motion.div>
           <motion.p variants={fadeUp} className="code-label text-[#606060] tracking-[0.3em]">BULLETPROOFFIT</motion.p>
-          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display chrome-text">
+          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
             START TODAY
           </motion.h2>
           <motion.p variants={fadeUp} className="text-[#808080] font-body">
