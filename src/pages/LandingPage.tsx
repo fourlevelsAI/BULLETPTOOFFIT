@@ -48,7 +48,7 @@ const LandingPage = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={logoImg} alt="BULLETPROOFFIT" className="w-8 h-auto invert" />
+            <img src={logoImg} alt="BULLETPROOFFIT" className="w-8 h-auto" />
             <span className="font-heading text-lg font-bold tracking-tight">BULLETPROOFFIT</span>
           </div>
           <div className="flex items-center gap-4">
@@ -337,7 +337,7 @@ const LandingPage = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center space-y-6"
         >
-          <img src={logoImg} alt="BULLETPROOFFIT" className="w-16 h-auto mx-auto invert" />
+          <img src={logoImg} alt="BULLETPROOFFIT" className="w-16 h-auto mx-auto" />
           <h2 className="text-4xl md:text-5xl font-black font-heading tracking-tight">
             START TODAY
           </h2>
@@ -383,7 +383,7 @@ const LandingPage = () => {
       <footer className="py-8 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <img src={logoImg} alt="BULLETPROOFFIT" className="w-6 h-auto invert" />
+            <img src={logoImg} alt="BULLETPROOFFIT" className="w-6 h-auto" />
             <span className="text-xs text-muted-foreground font-body">© 2026 BULLETPROOFFIT. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
