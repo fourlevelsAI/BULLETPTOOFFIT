@@ -13,6 +13,7 @@ import ProgressPage from "./pages/ProgressPage";
 import ProfilePage from "./pages/ProfilePage";
 import OnboardingPage from "./pages/OnboardingPage";
 import AuthPage from "./pages/AuthPage";
+import LandingPage from "./pages/LandingPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import NotFound from "./pages/NotFound";
 
@@ -34,9 +35,10 @@ const AppRoutes = () => {
   if (!user) {
     return (
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="*" element={<Navigate to="/auth" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
   }
