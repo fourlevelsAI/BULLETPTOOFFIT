@@ -53,7 +53,7 @@ const AuthPage = () => {
 
       <motion.div variants={stagger} initial="hidden" animate="show" className="w-full max-w-sm space-y-8 relative z-10">
         <motion.div variants={fadeUp} className="text-center space-y-4">
-          <ULogo size={80} animated className="mx-auto" />
+          <ULogo size={56} className="mx-auto text-white" />
           <p className="font-display text-sm font-bold tracking-[0.3em] text-foreground">BULLETPROOFFIT</p>
           <p className="code-label mt-2">
             {view === "forgot" ? "SYS: PASSWORD RECOVERY" : view === "signup" ? "SYS: CREATE ACCOUNT" : "SYS: AUTHENTICATE"}

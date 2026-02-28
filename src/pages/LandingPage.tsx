@@ -48,7 +48,7 @@ const LandingPage = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[rgba(255,255,255,0.08)]" style={{ background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <ULogo size={28} />
+            <ULogo size={32} className="text-white" />
             <span className="font-display text-xs sm:text-sm font-bold tracking-wider text-white truncate">BULLETPROOFFIT</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -356,7 +356,7 @@ const LandingPage = () => {
       <section className="py-20 px-6 bg-[#080808]">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="max-w-2xl mx-auto text-center space-y-6">
           <motion.div variants={fadeUp}>
-            <ULogo size={80} animated className="mx-auto" />
+            <ULogo size={64} className="mx-auto text-white" />
           </motion.div>
           <motion.p variants={fadeUp} className="code-label text-[#606060] tracking-[0.3em]">BULLETPROOFFIT</motion.p>
           <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
@@ -386,7 +386,7 @@ const LandingPage = () => {
       <footer className="py-8 px-6 bg-black border-t border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <ULogo size={24} />
+            <ULogo size={24} className="text-[#606060]" />
             <span className="text-xs text-[#606060] font-body">© 2026 BULLETPROOFFIT. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">
