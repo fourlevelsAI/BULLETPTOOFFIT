@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
+        display: ["'Orbitron'", "'Barlow Condensed'", "sans-serif"],
         heading: ["'Barlow Condensed'", "'Bebas Neue'", "sans-serif"],
         body: ["'DM Sans'", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],

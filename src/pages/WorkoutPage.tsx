@@ -58,7 +58,7 @@ const WorkoutPage = () => {
     <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5">
       <motion.div variants={fadeUp}>
         <p className="code-label mb-1">SYS:03 Training</p>
-        <h1 className="text-2xl font-bold text-foreground">Workout</h1>
+        <h1 className="text-2xl font-bold font-display text-foreground tracking-wide">WORKOUT</h1>
         <p className="text-sm text-muted-foreground mt-1 font-body">Log exercises and track progress</p>
       </motion.div>
 

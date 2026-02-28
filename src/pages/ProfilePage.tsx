@@ -43,7 +43,7 @@ const ProfilePage = () => {
       </motion.div>
 
       {/* Profile Header */}
-      <motion.div variants={fadeUp} className="bracket-card !p-6 flex items-center gap-4">
+      <motion.div variants={fadeUp} className="terminal-card !p-6 flex items-center gap-4">
         <div className="w-16 h-16 rounded-md bg-foreground flex items-center justify-center">
           <span className="text-2xl font-black text-background font-heading">
             {(profile?.display_name || user?.email || "U")[0].toUpperCase()}
