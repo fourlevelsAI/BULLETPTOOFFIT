@@ -71,8 +71,16 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+        {/* Grid background */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(13,13,13,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(13,13,13,0.04) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+          }}
+        />
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -83,13 +91,13 @@ const LandingPage = () => {
             </motion.div>
             <motion.h1
               variants={fadeUp}
-              className="text-5xl md:text-7xl font-black font-heading leading-[0.9]"
+              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-heading leading-[0.88] tracking-[-0.03em]"
             >
               NUTRITION
               <br />
               TRACKING FOR
               <br />
-              <span className="text-muted-foreground">REAL LIFE</span>
+              <span style={{ color: '#888888' }}>REAL LIFE</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="text-lg text-muted-foreground font-body mt-6 max-w-md">
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
@@ -145,13 +153,20 @@ const LandingPage = () => {
 
           {/* Phone Mockup */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, rotate: 0 }}
+            animate={{ opacity: 1, scale: 1, rotate: -2 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="hidden lg:flex justify-center"
           >
-            <div className="relative w-[280px]">
-              <div className="w-full aspect-[9/19] rounded-[2.5rem] border-2 border-border bg-card overflow-hidden shadow-2xl">
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              className="relative w-[280px]"
+            >
+              <div className="w-full aspect-[9/19] rounded-[2.5rem] border-2 border-border bg-card overflow-hidden"
+                style={{ boxShadow: '0 25px 60px -12px rgba(0,0,0,0.35)' }}>
+                {/* Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[28px] bg-background rounded-b-2xl z-10" />
                 <div className="p-4 pt-10 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -218,7 +233,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="absolute -inset-8 bg-foreground/5 rounded-[3rem] blur-3xl -z-10" />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
