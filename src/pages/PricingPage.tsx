@@ -128,7 +128,7 @@ const PricingPage = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border" style={{ background: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <button onClick={() => navigate("/")} className="flex items-center gap-3">
-            <ULogo size={32} />
+            <ULogo size={32} className="text-white" />
             <span className="font-display text-sm font-bold tracking-wider">BULLETPROOFFIT</span>
           </button>
           <div className="flex items-center gap-3">
@@ -398,7 +398,7 @@ const PricingPage = () => {
       <footer className="py-8 px-6 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <ULogo size={24} />
+            <ULogo size={24} className="text-[#606060]" />
             <span className="text-xs text-muted-foreground font-body">© 2026 BULLETPROOFFIT</span>
           </div>
           <div className="flex items-center gap-6">
