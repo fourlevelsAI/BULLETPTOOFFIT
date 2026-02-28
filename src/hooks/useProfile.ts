@@ -21,6 +21,15 @@ export interface Profile {
   unit_system: string;
   onboarding_completed: boolean;
   is_pro: boolean;
+  subscription_tier: string;
+  subscription_end: string | null;
+  stripe_customer_id: string | null;
+  referral_code: string | null;
+  referred_by: string | null;
+  referral_count: number;
+  free_months_earned: number;
+  is_founding_member: boolean;
+  is_lifetime: boolean;
 }
 
 export function useProfile() {

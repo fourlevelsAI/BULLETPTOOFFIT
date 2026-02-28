@@ -53,6 +53,9 @@ const LandingPage = () => {
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
+            <button onClick={() => navigate("/pricing")} className="text-sm text-[#808080] hover:text-[#E8E8E8] transition-colors font-body">
+              Pricing
+            </button>
             <button onClick={() => navigate("/auth")} className="text-sm text-[#808080] hover:text-[#E8E8E8] transition-colors font-body">
               Log In
             </button>

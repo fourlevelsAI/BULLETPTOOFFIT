@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_counters: {
+        Row: {
+          count: number
+          id: string
+          max_count: number
+          updated_at: string
+        }
+        Insert: {
+          count?: number
+          id: string
+          max_count?: number
+          updated_at?: string
+        }
+        Update: {
+          count?: number
+          id?: string
+          max_count?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       body_measurements: {
         Row: {
           arms: number | null
@@ -151,13 +172,22 @@ export type Database = {
           dietary_preferences: string[] | null
           display_name: string | null
           fat_goal: number | null
+          free_months_earned: number | null
           goal: string | null
           height: number | null
           id: string
+          is_founding_member: boolean | null
+          is_lifetime: boolean | null
           is_pro: boolean | null
           onboarding_completed: boolean | null
           protein_goal: number | null
+          referral_code: string | null
+          referral_count: number | null
+          referred_by: string | null
           sex: string | null
+          stripe_customer_id: string | null
+          subscription_end: string | null
+          subscription_tier: string | null
           unit_system: string | null
           updated_at: string
           user_id: string
@@ -173,13 +203,22 @@ export type Database = {
           dietary_preferences?: string[] | null
           display_name?: string | null
           fat_goal?: number | null
+          free_months_earned?: number | null
           goal?: string | null
           height?: number | null
           id?: string
+          is_founding_member?: boolean | null
+          is_lifetime?: boolean | null
           is_pro?: boolean | null
           onboarding_completed?: boolean | null
           protein_goal?: number | null
+          referral_code?: string | null
+          referral_count?: number | null
+          referred_by?: string | null
           sex?: string | null
+          stripe_customer_id?: string | null
+          subscription_end?: string | null
+          subscription_tier?: string | null
           unit_system?: string | null
           updated_at?: string
           user_id: string
@@ -195,13 +234,22 @@ export type Database = {
           dietary_preferences?: string[] | null
           display_name?: string | null
           fat_goal?: number | null
+          free_months_earned?: number | null
           goal?: string | null
           height?: number | null
           id?: string
+          is_founding_member?: boolean | null
+          is_lifetime?: boolean | null
           is_pro?: boolean | null
           onboarding_completed?: boolean | null
           protein_goal?: number | null
+          referral_code?: string | null
+          referral_count?: number | null
+          referred_by?: string | null
           sex?: string | null
+          stripe_customer_id?: string | null
+          subscription_end?: string | null
+          subscription_tier?: string | null
           unit_system?: string | null
           updated_at?: string
           user_id?: string
