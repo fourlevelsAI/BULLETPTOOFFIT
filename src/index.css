@@ -3,54 +3,109 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+  /* LIGHT MODE (default) */
+  :root,
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 20%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 54%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 42%;
 
-    --accent: 0 0% 18%;
-    --accent-foreground: 0 0% 95%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 100% / 0.1;
-    --input: 0 0% 100% / 0.1;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 5%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 96%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 0% 5%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 92%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 0 0% 5%;
+
+    --calories: 0 0% 5%;
+    --protein: 0 0% 20%;
+    --carbs: 0 0% 35%;
+    --fat: 0 0% 50%;
+
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 0% / 0.08;
+    --glass-hover: 0 0% 94%;
+
+    --success: 0 0% 20%;
+    --warning: 0 0% 35%;
+  }
+
+  /* DARK MODE */
+  .dark {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 96%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 0 0% 96%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 53%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 96%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
     --ring: 0 0% 100%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 8%;
+    --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 85%;
     --sidebar-primary: 0 0% 100%;
     --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent: 0 0% 12%;
     --sidebar-accent-foreground: 0 0% 85%;
-    --sidebar-border: 0 0% 100% / 0.1;
+    --sidebar-border: 0 0% 100% / 0.08;
     --sidebar-ring: 0 0% 100%;
 
-    /* Macro tokens — monochrome */
     --calories: 0 0% 100%;
     --protein: 0 0% 80%;
     --carbs: 0 0% 65%;
     --fat: 0 0% 50%;
 
-    --glass: 0 0% 10% / 0.6;
-    --glass-border: 0 0% 100% / 0.1;
+    --glass: 0 0% 7% / 0.6;
+    --glass-border: 0 0% 100% / 0.08;
     --glass-hover: 0 0% 14%;
 
     --success: 0 0% 85%;
@@ -61,37 +116,101 @@
 @layer base {
   * {
     @apply border-border;
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Barlow Condensed', 'Bebas Neue', sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 30%);
+    border-radius: 2px;
+  }
+  .light ::-webkit-scrollbar-thumb,
+  :root ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 70%);
+    border-radius: 2px;
+  }
+
+  /* Selection colors */
+  .dark ::selection {
+    background: hsl(0 0% 100%);
+    color: hsl(0 0% 0%);
+  }
+  .light ::selection,
+  :root ::selection {
+    background: hsl(0 0% 5%);
+    color: hsl(0 0% 100%);
+  }
+
+  /* Focus rings */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-lg;
+    @apply bg-card/60 backdrop-blur-xl border border-border rounded-lg;
   }
 
   .glass-card-hover {
-    @apply glass-card hover:bg-glass-hover transition-colors duration-200;
+    @apply glass-card hover:bg-accent transition-colors duration-200;
   }
 
   .section-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     @apply text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground;
   }
 
   .code-label {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'JetBrains Mono', 'Barlow Condensed', monospace;
     @apply text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground;
+  }
+
+  .font-mono-stat {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Corner bracket decoration */
+  .bracket-card {
+    @apply relative bg-card rounded-lg p-4;
+  }
+  .bracket-card::before,
+  .bracket-card::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-color: hsl(var(--foreground) / 0.3);
+  }
+  .bracket-card::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .bracket-card::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
   }
 
   .scrollbar-hide {
@@ -100,5 +219,21 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Shimmer skeleton */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 25%,
+      hsl(var(--accent)) 50%,
+      hsl(var(--muted)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
   }
 }

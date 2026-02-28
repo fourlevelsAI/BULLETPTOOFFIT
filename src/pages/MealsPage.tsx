@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Plus, X, Clock, Check, ChevronDown } from "lucide-react";
+import { Search, Plus, X, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+};
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
 
@@ -49,65 +55,56 @@ const MealsPage = () => {
     const mult = getServings(food.name);
     const today = new Date().toISOString().split("T")[0];
     const { error } = await supabase.from("food_logs").insert({
-      user_id: user.id,
-      food_name: food.name,
-      calories: Math.round(food.calories * mult),
-      protein: Math.round(food.protein * mult),
-      carbs: Math.round(food.carbs * mult),
-      fat: Math.round(food.fat * mult),
-      meal_type: selectedMeal,
-      serving_size: `${mult}x ${food.serving}`,
-      logged_at: today,
+      user_id: user.id, food_name: food.name,
+      calories: Math.round(food.calories * mult), protein: Math.round(food.protein * mult),
+      carbs: Math.round(food.carbs * mult), fat: Math.round(food.fat * mult),
+      meal_type: selectedMeal, serving_size: `${mult}x ${food.serving}`, logged_at: today,
     });
     setSaving(null);
-    if (error) {
-      toast.error("Failed to log food");
-    } else {
-      toast.success(`${food.name} added to ${selectedMeal}`);
-      setServings((prev) => ({ ...prev, [food.name]: 1 }));
-    }
+    if (error) { toast.error("Failed to log food"); }
+    else { toast.success(`${food.name} added to ${selectedMeal}`); setServings((prev) => ({ ...prev, [food.name]: 1 })); }
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5">
-      <div>
-        <p className="section-label mb-1">Code 02: Nutrition</p>
+    <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-5">
+      <motion.div variants={fadeUp}>
+        <p className="code-label mb-1">SYS:02 Nutrition</p>
         <h1 className="text-2xl font-bold text-foreground">Log Meal</h1>
         <p className="text-sm text-muted-foreground mt-1 font-body">Track what you eat today</p>
-      </div>
+      </motion.div>
 
       {/* Meal Type */}
-      <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+      <motion.div variants={fadeUp} className="flex gap-2 overflow-x-auto scrollbar-hide">
         {mealTypes.map((type) => (
-          <button key={type} onClick={() => setSelectedMeal(type)}
+          <motion.button key={type} whileTap={{ scale: 0.97 }} onClick={() => setSelectedMeal(type)}
             className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all font-body ${
-              selectedMeal === type ? "bg-foreground text-background" : "border border-white/10 text-muted-foreground hover:text-foreground"
+              selectedMeal === type ? "bg-foreground text-background" : "border border-border text-muted-foreground hover:text-foreground"
             }`}>
             {type}
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       {/* Search */}
-      <div className="relative">
+      <motion.div variants={fadeUp} className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input type="text" placeholder="Search foods..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-10 pr-10 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body" />
+          className="w-full pl-10 pr-10 py-3 bg-card border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring font-body" />
         {searchQuery && (
           <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2">
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
         )}
-      </div>
+      </motion.div>
 
       {/* Food List */}
-      <div>
+      <motion.div variants={fadeUp}>
         <div className="flex items-center gap-2 mb-3">
           <Clock className="w-4 h-4 text-muted-foreground" />
           <h2 className="section-label">{searchQuery ? "Search Results" : "Popular Foods"}</h2>
         </div>
         {filteredFoods.length === 0 ? (
-          <div className="glass-card p-8 text-center">
+          <div className="bracket-card !p-8 text-center">
             <p className="text-muted-foreground text-sm font-body">No foods found for "{searchQuery}"</p>
           </div>
         ) : (
@@ -115,41 +112,41 @@ const MealsPage = () => {
             {filteredFoods.map((food) => {
               const mult = getServings(food.name);
               return (
-                <div key={food.name} className="glass-card p-4">
+                <motion.div key={food.name} whileHover={{ y: -2 }} className="bracket-card">
                   <div className="flex items-center justify-between">
                     <div className="flex-1 text-left">
                       <span className="text-sm font-medium text-foreground font-body">{food.name}</span>
                       <div className="flex items-center gap-3 mt-1">
                         <span className="text-xs text-muted-foreground font-body">{food.serving}</span>
-                        <div className="flex items-center gap-2 text-xs font-body">
+                        <div className="flex items-center gap-2 text-xs font-mono">
                           <span className="text-muted-foreground">P:{Math.round(food.protein * mult)}g</span>
                           <span className="text-muted-foreground">C:{Math.round(food.carbs * mult)}g</span>
                           <span className="text-muted-foreground">F:{Math.round(food.fat * mult)}g</span>
                         </div>
                       </div>
                     </div>
-                    <span className="text-sm font-semibold text-foreground font-body mr-3">{Math.round(food.calories * mult)}</span>
+                    <span className="text-sm font-semibold text-foreground font-mono mr-3">{Math.round(food.calories * mult)}</span>
                   </div>
-                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/5">
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
                     <div className="flex items-center gap-2">
                       <button onClick={() => setServings((p) => ({ ...p, [food.name]: Math.max(0.5, (p[food.name] || 1) - 0.5) }))}
-                        className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-muted-foreground hover:text-foreground text-xs font-body">−</button>
-                      <span className="text-sm font-medium text-foreground font-body w-8 text-center">{mult}</span>
+                        className="w-7 h-7 rounded border border-border flex items-center justify-center text-muted-foreground hover:text-foreground text-xs font-body active:scale-95">−</button>
+                      <span className="text-sm font-medium text-foreground font-mono w-8 text-center">{mult}</span>
                       <button onClick={() => setServings((p) => ({ ...p, [food.name]: (p[food.name] || 1) + 0.5 }))}
-                        className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-muted-foreground hover:text-foreground text-xs font-body">+</button>
+                        className="w-7 h-7 rounded border border-border flex items-center justify-center text-muted-foreground hover:text-foreground text-xs font-body active:scale-95">+</button>
                       <span className="text-xs text-muted-foreground font-body">servings</span>
                     </div>
-                    <button onClick={() => addFood(food)} disabled={saving === food.name}
+                    <motion.button whileTap={{ scale: 0.97 }} onClick={() => addFood(food)} disabled={saving === food.name}
                       className="bg-foreground text-background px-4 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1 disabled:opacity-50 font-body">
                       {saving === food.name ? "..." : <><Plus className="w-3 h-3" /> Add</>}
-                    </button>
+                    </motion.button>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         )}
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
