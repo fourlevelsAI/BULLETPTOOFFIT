@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { User, Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Target, Flame, TrendingUp, Save } from "lucide-react";
+import { User, Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Target, Flame, TrendingUp, Save, Crown, Diamond, CreditCard } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
+import { useSubscription } from "@/hooks/useSubscription";
 import { toast } from "sonner";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -14,7 +16,9 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 const ProfilePage = () => {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const { profile, updateProfile } = useProfile();
+  const { tier, isPro, openPortal } = useSubscription();
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(profile?.display_name || "");
   const [age, setAge] = useState(profile?.age?.toString() || "");
@@ -52,7 +56,13 @@ const ProfilePage = () => {
         <div className="flex-1">
           <h1 className="text-lg font-bold text-foreground font-body">{profile?.display_name || user?.email?.split("@")[0] || "User"}</h1>
           <p className="text-sm text-muted-foreground font-body capitalize">{goalLabel} · {profile?.age || "—"} years old</p>
-          <p className="text-xs text-muted-foreground mt-1 font-body">{profile?.is_pro ? "Pro Plan" : "Free Plan"}</p>
+          <p className="text-xs text-muted-foreground mt-1 font-body flex items-center gap-1.5">
+            {tier === "elite" && <><Diamond className="w-3 h-3" /> ELITE</>}
+            {tier === "pro" && <><Crown className="w-3 h-3" /> PRO</>}
+            {tier === "lifetime" && <><Diamond className="w-3 h-3" /> LIFETIME</>}
+            {tier === "free" && "Free Plan"}
+            {profile?.is_founding_member && <span className="text-[10px] chrome-text font-bold ml-1">FOUNDING MEMBER</span>}
+          </p>
         </div>
       </motion.div>
 
@@ -113,14 +123,26 @@ const ProfilePage = () => {
         })}
       </motion.div>
 
-      {/* Pro Upgrade */}
-      {!profile?.is_pro && (
-        <motion.div variants={fadeUp} whileHover={{ y: -2 }} className="bracket-card border-foreground/20">
+      {/* Subscription Management */}
+      {isPro ? (
+        <motion.button variants={fadeUp} whileTap={{ scale: 0.97 }} whileHover={{ y: -2 }}
+          onClick={openPortal}
+          className="w-full bracket-card flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <CreditCard className="w-5 h-5 text-muted-foreground" />
+            <span className="text-sm font-medium text-foreground font-body">Manage Subscription</span>
+          </div>
+          <ChevronRight className="w-4 h-4 text-muted-foreground" />
+        </motion.button>
+      ) : (
+        <motion.div variants={fadeUp} whileHover={{ y: -2 }}
+          onClick={() => navigate("/pricing")}
+          className="bracket-card border-foreground/20 cursor-pointer">
           <h3 className="text-sm font-bold text-foreground font-body">Upgrade to Pro</h3>
           <p className="text-xs text-muted-foreground mt-1 font-body">
             Unlock AI nutrition coaching, smart meal plans, and advanced analytics
           </p>
-          <span className="text-xs font-semibold text-foreground mt-2 inline-block font-body">$6.99/month →</span>
+          <span className="text-xs font-semibold text-foreground mt-2 inline-block font-body">$9.99/month →</span>
         </motion.div>
       )}
 
