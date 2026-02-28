@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Zap, Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -43,12 +43,14 @@ const AuthPage = () => {
         className="w-full max-w-sm space-y-8"
       >
         {/* Logo */}
-        <div className="text-center space-y-2">
-          <div className="w-16 h-16 mx-auto rounded-2xl gradient-lime flex items-center justify-center mb-4">
-            <Zap className="w-8 h-8 text-primary-foreground" />
+        <div className="text-center space-y-3">
+          <div className="inline-block">
+            <h1 className="text-5xl font-black text-foreground tracking-tight font-heading leading-none">
+              BF<sup className="text-sm align-super ml-0.5">®</sup>
+            </h1>
           </div>
-          <h1 className="text-3xl font-bold text-foreground tracking-tight">BULLETPROOFFIT</h1>
-          <p className="text-muted-foreground text-sm">
+          <p className="code-label">Code 01: Access</p>
+          <p className="text-muted-foreground text-sm font-body">
             {isSignUp ? "Create your account" : "Welcome back"}
           </p>
         </div>
@@ -63,7 +65,7 @@ const AuthPage = () => {
                 placeholder="Display name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-card border border-glass-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body"
               />
             </div>
           )}
@@ -76,7 +78,7 @@ const AuthPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full pl-10 pr-4 py-3 bg-card border border-glass-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="w-full pl-10 pr-4 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body"
             />
           </div>
 
@@ -89,7 +91,7 @@ const AuthPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
-              className="w-full pl-10 pr-10 py-3 bg-card border border-glass-border rounded-xl text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="w-full pl-10 pr-10 py-3 bg-card border border-white/10 rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-body"
             />
             <button
               type="button"
@@ -107,7 +109,7 @@ const AuthPage = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full gradient-lime text-primary-foreground py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 disabled:opacity-50 transition-opacity"
+            className="w-full bg-foreground text-background py-3.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 disabled:opacity-50 transition-opacity font-body"
           >
             {submitting ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
             <ArrowRight className="w-4 h-4" />
@@ -115,11 +117,11 @@ const AuthPage = () => {
         </form>
 
         {/* Toggle */}
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-sm text-muted-foreground font-body">
           {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
           <button
             onClick={() => setIsSignUp(!isSignUp)}
-            className="text-primary font-medium hover:underline"
+            className="text-foreground font-medium hover:underline"
           >
             {isSignUp ? "Sign in" : "Sign up"}
           </button>

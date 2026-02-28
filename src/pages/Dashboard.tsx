@@ -4,7 +4,6 @@ import "react-circular-progressbar/dist/styles.css";
 import {
   Flame,
   Droplets,
-  Zap,
   Plus,
   ChevronRight,
   Scan,
@@ -13,7 +12,6 @@ import {
   Search,
   Dumbbell,
   Clock,
-  TrendingUp,
 } from "lucide-react";
 
 const caloriesConsumed = 1420;
@@ -22,9 +20,9 @@ const caloriesRemaining = caloriesGoal - caloriesConsumed;
 const caloriePercent = Math.round((caloriesConsumed / caloriesGoal) * 100);
 
 const macros = [
-  { label: "Protein", current: 82, goal: 150, color: "bg-protein", unit: "g" },
-  { label: "Carbs", current: 145, goal: 250, color: "bg-carbs", unit: "g" },
-  { label: "Fat", current: 48, goal: 73, color: "bg-fat", unit: "g" },
+  { label: "P", current: 82, goal: 150, unit: "g" },
+  { label: "C", current: 145, goal: 250, unit: "g" },
+  { label: "F", current: 48, goal: 73, unit: "g" },
 ];
 
 const meals = [
@@ -34,10 +32,10 @@ const meals = [
 ];
 
 const quickActions = [
-  { icon: Search, label: "Search", color: "text-primary" },
-  { icon: Scan, label: "Scan", color: "text-primary" },
-  { icon: Camera, label: "Photo AI", color: "text-primary" },
-  { icon: Mic, label: "Voice", color: "text-primary" },
+  { icon: Search, label: "Search" },
+  { icon: Scan, label: "Scan" },
+  { icon: Camera, label: "Photo AI" },
+  { icon: Mic, label: "Voice" },
 ];
 
 const recentWorkouts = [
@@ -55,14 +53,16 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-muted-foreground text-sm">Good afternoon</p>
-          <h1 className="text-2xl font-bold text-foreground">BULLETPROOFFIT</h1>
+          <p className="section-label mb-1">Code 01: Dashboard</p>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">
+            BF<sup className="text-[8px] align-super ml-0.5">®</sup>
+          </h1>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 glass-card px-3 py-1.5 text-sm">
-            <Flame className="w-4 h-4 text-calories" />
-            <span className="text-calories font-semibold">12</span>
-            <span className="text-muted-foreground">day streak</span>
+          <div className="flex items-center gap-1.5 border border-white/10 rounded-md px-3 py-1.5 text-sm">
+            <Flame className="w-4 h-4 text-foreground" />
+            <span className="text-foreground font-semibold font-body">12</span>
+            <span className="text-muted-foreground font-body">day streak</span>
           </div>
         </div>
       </div>
@@ -79,29 +79,29 @@ const Dashboard = () => {
             <CircularProgressbar
               value={caloriePercent}
               styles={buildStyles({
-                pathColor: "hsl(84, 81%, 44%)",
-                trailColor: "hsl(222, 30%, 18%)",
+                pathColor: "hsl(0, 0%, 100%)",
+                trailColor: "hsl(0, 0%, 20%)",
                 textSize: "0px",
               })}
               strokeWidth={8}
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-bold text-foreground">{caloriesRemaining}</span>
-              <span className="text-xs text-muted-foreground">remaining</span>
+              <span className="text-2xl font-bold text-foreground font-heading">{caloriesRemaining}</span>
+              <span className="text-xs text-muted-foreground font-body">remaining</span>
             </div>
           </div>
           <div className="flex-1 space-y-3">
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-sm font-body">
               <span className="text-muted-foreground">Eaten</span>
               <span className="text-foreground font-semibold">{caloriesConsumed} cal</span>
             </div>
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-sm font-body">
               <span className="text-muted-foreground">Goal</span>
               <span className="text-foreground font-semibold">{caloriesGoal} cal</span>
             </div>
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-sm font-body">
               <span className="text-muted-foreground">Burned</span>
-              <span className="text-success font-semibold">320 cal</span>
+              <span className="text-foreground font-semibold">320 cal</span>
             </div>
           </div>
         </div>
@@ -111,14 +111,14 @@ const Dashboard = () => {
           {macros.map((macro) => (
             <div key={macro.label} className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">{macro.label}</span>
-                <span className="text-xs text-foreground font-medium">
+                <span className="text-xs text-muted-foreground font-body">{macro.label}</span>
+                <span className="text-xs text-foreground font-medium font-body">
                   {macro.current}/{macro.goal}{macro.unit}
                 </span>
               </div>
-              <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+              <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
                 <div
-                  className={`h-full ${macro.color} rounded-full transition-all duration-500`}
+                  className="h-full bg-foreground rounded-full transition-all duration-500"
                   style={{ width: `${Math.min((macro.current / macro.goal) * 100, 100)}%` }}
                 />
               </div>
@@ -134,18 +134,18 @@ const Dashboard = () => {
         transition={{ delay: 0.2 }}
       >
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-foreground">Quick Log</h2>
+          <h2 className="section-label">Quick Log</h2>
         </div>
         <div className="grid grid-cols-4 gap-3">
-          {quickActions.map(({ icon: Icon, label, color }) => (
+          {quickActions.map(({ icon: Icon, label }) => (
             <button
               key={label}
               className="glass-card-hover flex flex-col items-center gap-2 py-4"
             >
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <Icon className={`w-5 h-5 ${color}`} />
+              <div className="w-10 h-10 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
+                <Icon className="w-5 h-5 text-foreground" />
               </div>
-              <span className="text-xs text-muted-foreground">{label}</span>
+              <span className="text-xs text-muted-foreground font-body">{label}</span>
             </button>
           ))}
         </div>
@@ -158,9 +158,9 @@ const Dashboard = () => {
         transition={{ delay: 0.3 }}
       >
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-foreground">Today's Meals</h2>
-          <button className="flex items-center gap-1 text-primary text-xs font-medium">
-            <Plus className="w-3.5 h-3.5" /> Add Meal
+          <h2 className="section-label">Today's Meals</h2>
+          <button className="flex items-center gap-1 text-foreground text-xs font-medium font-body border border-white/10 rounded-md px-2.5 py-1">
+            <Plus className="w-3.5 h-3.5" /> Add
           </button>
         </div>
         <div className="space-y-2">
@@ -171,13 +171,13 @@ const Dashboard = () => {
             >
               <div className="text-left">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-foreground">{meal.name}</span>
-                  <span className="text-xs text-muted-foreground">{meal.time}</span>
+                  <span className="text-sm font-medium text-foreground font-body">{meal.name}</span>
+                  <span className="text-xs text-muted-foreground font-body">{meal.time}</span>
                 </div>
-                <p className="text-xs text-muted-foreground mt-0.5">{meal.items}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 font-body">{meal.items}</p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-calories">{meal.calories} cal</span>
+                <span className="text-sm font-semibold text-foreground font-body">{meal.calories} cal</span>
                 <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </div>
             </button>
@@ -192,29 +192,29 @@ const Dashboard = () => {
         transition={{ delay: 0.4 }}
       >
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-foreground">Recent Workouts</h2>
-          <button className="flex items-center gap-1 text-primary text-xs font-medium">
-            <Plus className="w-3.5 h-3.5" /> Log Workout
+          <h2 className="section-label">Recent Workouts</h2>
+          <button className="flex items-center gap-1 text-foreground text-xs font-medium font-body border border-white/10 rounded-md px-2.5 py-1">
+            <Plus className="w-3.5 h-3.5" /> Log
           </button>
         </div>
         <div className="space-y-2">
           {recentWorkouts.map((workout) => (
             <div key={workout.name} className="glass-card p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Dumbbell className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
+                  <Dumbbell className="w-5 h-5 text-foreground" />
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-foreground">{workout.name}</span>
+                  <span className="text-sm font-medium text-foreground font-body">{workout.name}</span>
                   <div className="flex items-center gap-2 mt-0.5">
                     <Clock className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-xs text-muted-foreground">{workout.duration}</span>
-                    <Flame className="w-3 h-3 text-calories" />
-                    <span className="text-xs text-muted-foreground">{workout.calories} cal</span>
+                    <span className="text-xs text-muted-foreground font-body">{workout.duration}</span>
+                    <Flame className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground font-body">{workout.calories} cal</span>
                   </div>
                 </div>
               </div>
-              <span className="text-xs text-muted-foreground">{workout.date}</span>
+              <span className="text-xs text-muted-foreground font-body">{workout.date}</span>
             </div>
           ))}
         </div>
@@ -229,12 +229,12 @@ const Dashboard = () => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-protein/10 flex items-center justify-center">
-              <Droplets className="w-5 h-5 text-protein" />
+            <div className="w-10 h-10 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
+              <Droplets className="w-5 h-5 text-foreground" />
             </div>
             <div>
-              <span className="text-sm font-medium text-foreground">Water Intake</span>
-              <p className="text-xs text-muted-foreground">5 of 8 glasses</p>
+              <span className="text-sm font-medium text-foreground font-body">Water Intake</span>
+              <p className="text-xs text-muted-foreground font-body">5 of 8 glasses</p>
             </div>
           </div>
           <div className="flex gap-1">
@@ -242,7 +242,7 @@ const Dashboard = () => {
               <div
                 key={i}
                 className={`w-2.5 h-6 rounded-full ${
-                  i < 5 ? "bg-protein" : "bg-muted"
+                  i < 5 ? "bg-foreground" : "bg-white/10"
                 }`}
               />
             ))}
