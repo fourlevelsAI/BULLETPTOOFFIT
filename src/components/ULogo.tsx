@@ -7,14 +7,15 @@ interface ULogoProps {
 const ULogo = ({ size = 32, animated: _animated = false, className = "" }: ULogoProps) => {
   return (
     <svg
-      viewBox="0 0 100 120"
+      viewBox="0 0 100 140"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={{ height: size, width: "auto", display: "inline-block", verticalAlign: "middle" }}
       aria-label="BULLETPROOFFIT"
     >
-      <path d="M0,0 L0,85 Q0,110 25,110 Q50,110 50,85 L50,85 Q50,110 75,110 Q100,110 100,85 L100,0 L78,0 L78,82 Q78,88 72,88 Q66,88 66,82 L66,0 L34,0 L34,82 Q34,88 28,88 Q22,88 22,82 L22,0 Z" />
+      {/* U shape: two legs, rounded bottom, thin center gap */}
+      <path d="M8,0 L8,90 C8,120 50,140 50,140 C50,140 92,120 92,90 L92,0 L56,0 L56,90 C56,104 50,108 50,108 C50,108 44,104 44,90 L44,0 Z" />
     </svg>
   );
 };
