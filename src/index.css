@@ -246,3 +246,13 @@
     animation: shimmer 1.5s infinite;
   }
 }
+
+/* iPhone float animation */
+@keyframes iphone-float {
+  0%, 100% { transform: rotate(-2deg) rotateY(8deg) translateY(0); }
+  50% { transform: rotate(-2deg) rotateY(8deg) translateY(-12px); }
+}
+
+.iphone-float {
+  animation: iphone-float 4s ease-in-out infinite;
+}
