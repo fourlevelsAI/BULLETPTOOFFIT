@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import {
-  Flame, Droplets, Plus, ChevronRight, Scan, Camera, Mic, Search, Dumbbell, Clock,
+  Flame, Droplets, Plus, Minus, ChevronRight, Scan, Camera, Mic, Search, Dumbbell, Clock,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -112,6 +112,13 @@ const Dashboard = () => {
     if (!user) return;
     const { data } = await supabase.from("water_logs").insert({ user_id: user.id, amount_ml: 250, logged_at: today }).select().single();
     if (data) setWaterLogs((prev) => [...prev, data as WaterLog]);
+  };
+
+  const removeWater = async () => {
+    if (!user || waterLogs.length === 0) return;
+    const lastLog = waterLogs[waterLogs.length - 1];
+    const { error } = await supabase.from("water_logs").delete().eq("id", lastLog.id);
+    if (!error) setWaterLogs((prev) => prev.slice(0, -1));
   };
 
   if (loading) {
@@ -311,22 +318,31 @@ const Dashboard = () => {
       <motion.div variants={fadeUp} className="terminal-card !p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <motion.button whileTap={{ scale: 0.97 }} onClick={addWater}
-              className="w-10 h-10 rounded-[4px] bg-accent border border-border flex items-center justify-center hover:bg-muted transition-colors">
+            <div className="w-10 h-10 rounded-[4px] bg-accent border border-border flex items-center justify-center">
               <Droplets className="w-5 h-5 text-foreground" />
-            </motion.button>
+            </div>
             <div>
               <span className="text-sm font-medium text-foreground font-body">Water Intake</span>
-              <p className="text-xs text-muted-foreground font-body">{waterGlasses} of 8 glasses · Tap to add</p>
+              <p className="text-xs text-muted-foreground font-body">{waterGlasses} of 8 glasses</p>
             </div>
           </div>
-          <div className="flex gap-1">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <motion.div key={i} initial={{ scale: 0 }} animate={{ scale: 1 }}
-                transition={{ delay: 0.5 + i * 0.05, type: "spring", stiffness: 400, damping: 17 }}
-                className={`w-2.5 h-6 rounded-full ${i < waterGlasses ? "chrome-bar" : "bg-muted"}`} />
-            ))}
+          <div className="flex items-center gap-2">
+            <motion.button whileTap={{ scale: 0.9 }} onClick={removeWater}
+              className="w-8 h-8 rounded-md border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+              <Minus className="w-4 h-4" />
+            </motion.button>
+            <motion.button whileTap={{ scale: 0.9 }} onClick={addWater}
+              className="w-8 h-8 rounded-md bg-foreground text-background flex items-center justify-center">
+              <Plus className="w-4 h-4" />
+            </motion.button>
           </div>
+        </div>
+        <div className="flex gap-1 mt-3">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <motion.div key={i} initial={{ scale: 0 }} animate={{ scale: 1 }}
+              transition={{ delay: 0.5 + i * 0.05, type: "spring", stiffness: 400, damping: 17 }}
+              className={`flex-1 h-2 rounded-full ${i < waterGlasses ? "chrome-bar" : "bg-muted"}`} />
+          ))}
         </div>
       </motion.div>
     </motion.div>
