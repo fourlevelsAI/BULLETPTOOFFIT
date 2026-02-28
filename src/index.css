@@ -244,7 +244,7 @@
 
   /* Chrome gradient text */
   .chrome-text {
-    background: linear-gradient(135deg, #C0C0C0, #808080, #E8E8E8, #808080, #C0C0C0);
+    background: linear-gradient(135deg, #FFFFFF, #C0C0C0, #FFFFFF, #C0C0C0, #FFFFFF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
