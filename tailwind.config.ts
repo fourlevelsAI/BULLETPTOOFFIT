@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["'Barlow Condensed'", "sans-serif"],
-        body: ["'Inter'", "sans-serif"],
+        heading: ["'Barlow Condensed'", "'Bebas Neue'", "sans-serif"],
+        body: ["'DM Sans'", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
