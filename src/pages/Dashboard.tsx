@@ -101,9 +101,9 @@ const Dashboard = () => {
   const animatedRemaining = useCountUp(caloriesRemaining);
 
   const macros = [
-    { label: "PROTEIN", short: "P", current: Math.round(totals.protein), goal: proteinGoal, unit: "g" },
-    { label: "CARBS", short: "C", current: Math.round(totals.carbs), goal: carbsGoal, unit: "g" },
-    { label: "FAT", short: "F", current: Math.round(totals.fat), goal: fatGoal, unit: "g" },
+    { label: "PROTEIN", current: Math.round(totals.protein), goal: proteinGoal, unit: "g", color: "text-[hsl(120,100%,65%)]" },
+    { label: "CARBS", current: Math.round(totals.carbs), goal: carbsGoal, unit: "g", color: "text-[hsl(50,100%,65%)]" },
+    { label: "FAT", current: Math.round(totals.fat), goal: fatGoal, unit: "g", color: "text-[hsl(0,100%,65%)]" },
   ];
 
   const mealsByType = useMemo(() => {
@@ -278,7 +278,7 @@ const Dashboard = () => {
         </motion.div>
 
         {/* Calorie Ring + Stats */}
-        <motion.div variants={fadeUp} className="terminal-card !p-6">
+        <motion.div variants={fadeUp} className="terminal-card !p-6 cursor-pointer" onClick={() => navigate("/meals")}>
           <div className="flex items-center gap-6">
             <div className="w-32 h-32 relative">
               <svg viewBox="0 0 128 128" className="w-full h-full -rotate-90" style={{ filter: 'drop-shadow(0 0 8px rgba(192,192,192,0.2))' }}>
@@ -325,10 +325,7 @@ const Dashboard = () => {
               return (
                 <div key={macro.label} className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-muted-foreground w-3">{macro.short}</span>
-                      <span className="text-xs font-body text-muted-foreground uppercase tracking-wider">{macro.label}</span>
-                    </div>
+                    <span className={`text-xs font-body uppercase tracking-wider ${macro.color}`}>{macro.label}</span>
                     <span className="text-xs text-foreground font-mono">{macro.current}/{macro.goal}{macro.unit} <span className="text-muted-foreground ml-1">{Math.round(pct)}%</span></span>
                   </div>
                   <div className="h-1.5 bg-muted rounded-full overflow-hidden">
@@ -427,9 +424,9 @@ const Dashboard = () => {
           ) : (
             <div className="space-y-2">
               {workouts.map((workout) => (
-                <motion.div key={workout.id} variants={fadeUp}
+                <motion.button key={workout.id} variants={fadeUp} onClick={() => navigate("/workout")}
                   whileHover={{ y: -3, boxShadow: '0 8px 32px rgba(0,0,0,0.8), 0 0 0 1px rgba(192,192,192,0.12)' }}
-                  className="terminal-card !p-4 flex items-center justify-between">
+                  className="w-full terminal-card !p-4 flex items-center justify-between cursor-pointer">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-[4px] bg-accent border border-border flex items-center justify-center">
                       <Dumbbell className="w-5 h-5 text-foreground" />
@@ -442,14 +439,14 @@ const Dashboard = () => {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </motion.button>
               ))}
             </div>
           )}
         </motion.div>
 
         {/* Water */}
-        <motion.div variants={fadeUp} className="terminal-card !p-4">
+        <motion.div variants={fadeUp} className="terminal-card !p-4 cursor-pointer" onClick={() => navigate("/progress")}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-[4px] bg-accent border border-border flex items-center justify-center">
@@ -461,11 +458,11 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <motion.button whileTap={{ scale: 0.9 }} onClick={removeWater}
+              <motion.button whileTap={{ scale: 0.9 }} onClick={(e) => { e.stopPropagation(); removeWater(); }}
                 className="w-8 h-8 rounded-md border border-border flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
                 <Minus className="w-4 h-4" />
               </motion.button>
-              <motion.button whileTap={{ scale: 0.9 }} onClick={addWater}
+              <motion.button whileTap={{ scale: 0.9 }} onClick={(e) => { e.stopPropagation(); addWater(); }}
                 className="w-8 h-8 rounded-md bg-foreground text-background flex items-center justify-center">
                 <Plus className="w-4 h-4" />
               </motion.button>
