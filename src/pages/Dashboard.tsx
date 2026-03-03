@@ -5,6 +5,7 @@ import {
   Flame, Droplets, Plus, Minus, ChevronRight, Scan, Camera, Mic, Search, Dumbbell, Clock,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import TrialBanner from "@/components/TrialBanner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
@@ -258,6 +259,7 @@ const Dashboard = () => {
 
   return (
     <>
+      <TrialBanner trialEnd={profile?.trial_end || null} subscriptionStatus={profile?.subscription_status || null} />
       <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-lg mx-auto px-4 pt-12 pb-4 space-y-6">
         {/* Header */}
         <motion.div variants={fadeUp} className="flex items-center justify-between">

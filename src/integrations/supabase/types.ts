@@ -192,9 +192,12 @@ export type Database = {
           steps_goal: number | null
           stripe_customer_id: string | null
           subscription_end: string | null
+          subscription_status: string | null
           subscription_tier: string | null
           target_body_fat: number | null
           target_weight: number | null
+          trial_end: string | null
+          trial_started: boolean | null
           unit_system: string | null
           updated_at: string
           user_id: string
@@ -235,9 +238,12 @@ export type Database = {
           steps_goal?: number | null
           stripe_customer_id?: string | null
           subscription_end?: string | null
+          subscription_status?: string | null
           subscription_tier?: string | null
           target_body_fat?: number | null
           target_weight?: number | null
+          trial_end?: string | null
+          trial_started?: boolean | null
           unit_system?: string | null
           updated_at?: string
           user_id: string
@@ -278,9 +284,12 @@ export type Database = {
           steps_goal?: number | null
           stripe_customer_id?: string | null
           subscription_end?: string | null
+          subscription_status?: string | null
           subscription_tier?: string | null
           target_body_fat?: number | null
           target_weight?: number | null
+          trial_end?: string | null
+          trial_started?: boolean | null
           unit_system?: string | null
           updated_at?: string
           user_id?: string
