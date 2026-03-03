@@ -42,6 +42,9 @@ export interface Profile {
   monthly_workouts_goal: number;
   monthly_prs_goal: number;
   long_term_goal: string;
+  trial_started: boolean;
+  trial_end: string | null;
+  subscription_status: string;
 }
 
 export function useProfile() {
