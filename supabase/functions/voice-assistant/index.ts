@@ -30,7 +30,45 @@ serve(async (req) => {
       });
     }
 
+    // --- Server-side subscription check ---
+    const serviceClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+    const { data: profile } = await serviceClient
+      .from("profiles")
+      .select("subscription_tier, subscription_status, trial_end, is_lifetime")
+      .eq("user_id", user.id)
+      .single();
+
+    const hasValidSub = profile && (
+      profile.is_lifetime ||
+      profile.subscription_tier === "lifetime" ||
+      profile.subscription_status === "active" ||
+      (profile.trial_end && new Date(profile.trial_end) > new Date())
+    );
+
+    if (!hasValidSub) {
+      return new Response(JSON.stringify({ error: "Premium subscription required" }), {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { transcript, context } = await req.json();
+
+    // --- Input validation ---
+    if (!transcript || typeof transcript !== "string") {
+      return new Response(JSON.stringify({ error: "transcript is required" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (transcript.length > 2000) {
+      return new Response(JSON.stringify({ error: "Transcript too long. Maximum 2000 characters." }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 

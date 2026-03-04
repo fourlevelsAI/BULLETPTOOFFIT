@@ -33,7 +33,66 @@ serve(async (req) => {
       });
     }
 
+    // --- Server-side subscription check ---
+    const serviceClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+    const { data: profile } = await serviceClient
+      .from("profiles")
+      .select("subscription_tier, subscription_status, trial_end, is_lifetime")
+      .eq("user_id", user.id)
+      .single();
+
+    const hasValidSub = profile && (
+      profile.is_lifetime ||
+      profile.subscription_tier === "lifetime" ||
+      profile.subscription_status === "active" ||
+      (profile.trial_end && new Date(profile.trial_end) > new Date())
+    );
+
+    if (!hasValidSub) {
+      return new Response(JSON.stringify({ error: "Premium subscription required" }), {
+        status: 403,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { type, image_base64, transcript } = await req.json();
+
+    // --- Input validation ---
+    if (!type || !["image", "voice"].includes(type)) {
+      return new Response(JSON.stringify({ error: "Invalid type. Use 'image' or 'voice'." }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (type === "image") {
+      if (!image_base64 || typeof image_base64 !== "string") {
+        return new Response(JSON.stringify({ error: "image_base64 is required for image type" }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      if (image_base64.length > 7_000_000) {
+        return new Response(JSON.stringify({ error: "Image too large. Maximum size is 5MB." }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    if (type === "voice") {
+      if (!transcript || typeof transcript !== "string") {
+        return new Response(JSON.stringify({ error: "transcript is required for voice type" }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      if (transcript.length > 1000) {
+        return new Response(JSON.stringify({ error: "Transcript too long. Maximum 1000 characters." }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
