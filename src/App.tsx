@@ -119,6 +119,7 @@ const AppRoutes = () => {
       <Route path="/onboarding" element={<Navigate to="/" replace />} />
       <Route path="/welcome" element={<Navigate to="/" replace />} />
       <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
