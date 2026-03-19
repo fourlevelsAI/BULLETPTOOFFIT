@@ -70,6 +70,7 @@ const AppRoutes = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
