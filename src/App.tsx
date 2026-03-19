@@ -19,6 +19,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import PricingPage from "./pages/PricingPage";
 import WelcomePage from "./pages/WelcomePage";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const AppRoutes = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
@@ -83,6 +85,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/auth" element={<Navigate to="/welcome" replace />} />
         <Route path="*" element={<Navigate to="/welcome" replace />} />
       </Routes>
@@ -95,6 +98,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="*" element={<Navigate to="/onboarding" replace />} />
       </Routes>
     );
@@ -115,6 +119,7 @@ const AppRoutes = () => {
       <Route path="/onboarding" element={<Navigate to="/" replace />} />
       <Route path="/welcome" element={<Navigate to="/" replace />} />
       <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
