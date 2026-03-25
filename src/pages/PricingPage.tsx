@@ -17,61 +17,43 @@ const fadeUp = {
 
 const FREE_FEATURES = [
   "Manual food search + logging",
-  "Basic calorie & macro tracking",
-  "7-day meal history",
-  "1 progress photo/month",
+  "Calorie & macro tracking",
+  "Barcode scanning",
   "Basic workout logging",
   "Water tracking",
   "Daily streak counter",
-  "3 barcode scans/day",
+  "Exercise guide with form cues",
 ];
 
 const PRO_FEATURES = [
   "Everything in Free",
-  "Unlimited barcode scanning",
   "Photo AI food recognition",
-  "Voice Commander",
-  "Smart meal & workout suggestions",
-  "Unlimited progress photos",
-  "Before/After comparison slider",
-  "AI Nutrition Coach (chat)",
-  "Advanced analytics (30/90/365 days)",
-  "AI-generated weekly meal plans",
+  "Voice Commander (ARIA)",
+  "AI-generated weekly meal & workout plans",
+  "AI recipe generation",
   "Full nutrition breakdown",
-  "Predictive goal timeline",
-  "Data export (CSV + PDF)",
-  "Priority AI response speed",
+  "Weight trend analytics",
+  "30-day activity streak calendar",
 ];
 
 const ELITE_FEATURES = [
   "Everything in Pro",
-  "Coach Dashboard (up to 20 clients)",
-  "Shareable progress link",
-  "Custom macro formula builder",
-  "Branded PDF progress reports",
-  "Blood sugar impact score",
-  "Supplement stack tracker",
   "Early access to new features",
-  "Priority support (24h response)",
-  "White-label profile link",
 ];
 
 const COMPARISON_ROWS = [
   { feature: "Food logging", free: "✓", pro: "✓", elite: "✓" },
   { feature: "Calorie & macro tracking", free: "✓", pro: "✓", elite: "✓" },
-  { feature: "Meal history", free: "7 days", pro: "Unlimited", elite: "Unlimited" },
-  { feature: "Barcode scanning", free: "3/day", pro: "Unlimited", elite: "Unlimited" },
+  { feature: "Barcode scanning", free: "✓", pro: "✓", elite: "✓" },
+  { feature: "Workout logging", free: "✓", pro: "✓", elite: "✓" },
+  { feature: "Water tracking", free: "✓", pro: "✓", elite: "✓" },
+  { feature: "Exercise guide", free: "✓", pro: "✓", elite: "✓" },
   { feature: "Photo AI recognition", free: "—", pro: "✓", elite: "✓" },
   { feature: "Voice Commander", free: "—", pro: "✓", elite: "✓" },
-  { feature: "Progress photos", free: "1/month", pro: "Unlimited", elite: "Unlimited" },
-  { feature: "Analytics", free: "Basic", pro: "Advanced", elite: "Advanced" },
-  { feature: "AI Nutrition Coach", free: "—", pro: "✓", elite: "✓" },
-  { feature: "Meal plans", free: "—", pro: "AI-generated", elite: "AI-generated" },
-  { feature: "Data export", free: "—", pro: "CSV + PDF", elite: "CSV + PDF" },
-  { feature: "Coach Dashboard", free: "—", pro: "—", elite: "20 clients" },
-  { feature: "Custom macro formulas", free: "—", pro: "—", elite: "✓" },
-  { feature: "Branded reports", free: "—", pro: "—", elite: "✓" },
-  { feature: "Priority support", free: "—", pro: "—", elite: "24h" },
+  { feature: "AI weekly plans", free: "—", pro: "✓", elite: "✓" },
+  { feature: "AI recipe generation", free: "—", pro: "✓", elite: "✓" },
+  { feature: "Weight trend analytics", free: "—", pro: "✓", elite: "✓" },
+  { feature: "Early access", free: "—", pro: "—", elite: "✓" },
 ];
 
 const FAQ_ITEMS = [
@@ -79,7 +61,6 @@ const FAQ_ITEMS = [
   { q: "What happens to my data if I downgrade?", a: "Your data is kept for 30 days, then archived. You can always re-upgrade to restore full access." },
   { q: "Is the free trial really free?", a: "No card. No catch. Full Pro features for 14 days. If you don't upgrade, you keep the Free plan forever." },
   { q: "Does lifetime include future features?", a: "All Pro features, forever, including every new feature we ship. You'll never pay again." },
-  { q: "Can I import my MyFitnessPal data?", a: "Yes, free for all plans. Export your MFP data as CSV, upload it in our app, and we'll import everything." },
 ];
 
 const PricingPage = () => {
