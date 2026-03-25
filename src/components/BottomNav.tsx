@@ -20,7 +20,7 @@ const BottomNav = () => {
       className="fixed bottom-0 left-0 right-0 z-50 bg-[#000000] border-t border-[rgba(192,192,192,0.1)]"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="flex items-center justify-around h-[60px] max-w-lg mx-auto px-2">
+      <div className="flex items-center justify-around h-[60px] max-w-lg mx-auto px-1 overflow-x-auto scrollbar-hide">
         {navItems.map(({ to, icon: Icon, label }) => {
           const isActive = location.pathname === to;
           return (
