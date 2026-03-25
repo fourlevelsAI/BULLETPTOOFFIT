@@ -80,7 +80,7 @@ const LandingPage = () => {
               <p className="mb-4 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#808080' }}>SYS:00 — INIT SEQUENCE</p>
             </motion.div>
             <motion.h1 variants={fadeUp}
-              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-display leading-[0.88] tracking-[-0.02em]"
+              className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-display leading-[0.88] tracking-[-0.02em]"
               style={{ textShadow: '0 0 40px rgba(255,255,255,0.1)' }}>
               <span className="text-white font-black" style={{ opacity: 1 }}>NUTRITION</span>
               <br />
