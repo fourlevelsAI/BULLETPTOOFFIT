@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Smartphone } from "lucide-react";
+import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Apple, Smartphone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ULogo from "@/components/ULogo";
 // ThemeToggle removed from landing nav
@@ -97,10 +97,6 @@ const LandingPage = () => {
                 className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
                 START TODAY <ArrowRight className="w-4 h-4" />
               </motion.button>
-              <div className="flex items-center gap-2">
-                <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#C0C0C0] text-[#C0C0C0]" />)}</div>
-                <span className="text-xs font-body font-semibold text-[#A0A0A0]">4.8 Rating</span>
-              </div>
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex items-center gap-3 mt-8">
@@ -329,9 +325,6 @@ const LandingPage = () => {
       <section className="py-20 px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
-            <motion.div variants={fadeUp} className="flex justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-[#C0C0C0] text-[#C0C0C0]" />)}
-            </motion.div>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               REAL RESULTS
             </motion.h2>
