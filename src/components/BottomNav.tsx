@@ -24,7 +24,7 @@ const BottomNav = () => {
         {navItems.map(({ to, icon: Icon, label }) => {
           const isActive = location.pathname === to;
           return (
-            <NavLink key={to} to={to} className="relative flex flex-col items-center justify-center gap-0.5 min-w-[48px] w-12 h-full">
+            <NavLink key={to} to={to} className="relative flex flex-col items-center justify-center gap-0.5 min-w-[40px] flex-1 h-full">
               {/* Active chrome line above */}
               {isActive && (
                 <motion.div
