@@ -61,7 +61,6 @@ const FAQ_ITEMS = [
   { q: "What happens to my data if I downgrade?", a: "Your data is kept for 30 days, then archived. You can always re-upgrade to restore full access." },
   { q: "Is the free trial really free?", a: "No card. No catch. Full Pro features for 14 days. If you don't upgrade, you keep the Free plan forever." },
   { q: "Does lifetime include future features?", a: "All Pro features, forever, including every new feature we ship. You'll never pay again." },
-  { q: "Can I import my MyFitnessPal data?", a: "Yes, free for all plans. Export your MFP data as CSV, upload it in our app, and we'll import everything." },
 ];
 
 const PricingPage = () => {
