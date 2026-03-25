@@ -99,19 +99,19 @@ const LandingPage = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="flex items-center gap-3 mt-8">
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-                <Apple className="w-5 h-5" />
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 sm:gap-3 mt-8">
+              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+                <Apple className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="text-left">
-                  <p className="text-[10px] font-body leading-none opacity-50">Download on the</p>
-                  <p className="text-sm font-semibold font-body leading-tight">App Store</p>
+                  <p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Download on the</p>
+                  <p className="text-xs sm:text-sm font-semibold font-body leading-tight">App Store</p>
                 </div>
               </motion.a>
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-                <Smartphone className="w-5 h-5" />
+              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+                <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="text-left">
-                  <p className="text-[10px] font-body leading-none opacity-50">Get it on</p>
-                  <p className="text-sm font-semibold font-body leading-tight">Google Play</p>
+                  <p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Get it on</p>
+                  <p className="text-xs sm:text-sm font-semibold font-body leading-tight">Google Play</p>
                 </div>
               </motion.a>
             </motion.div>
