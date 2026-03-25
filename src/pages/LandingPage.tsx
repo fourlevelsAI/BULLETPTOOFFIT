@@ -325,9 +325,6 @@ const LandingPage = () => {
       <section className="py-20 px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
-            <motion.div variants={fadeUp} className="flex justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-[#C0C0C0] text-[#C0C0C0]" />)}
-            </motion.div>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               REAL RESULTS
             </motion.h2>
