@@ -97,10 +97,6 @@ const LandingPage = () => {
                 className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
                 START TODAY <ArrowRight className="w-4 h-4" />
               </motion.button>
-              <div className="flex items-center gap-2">
-                <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#C0C0C0] text-[#C0C0C0]" />)}</div>
-                <span className="text-xs font-body font-semibold text-[#A0A0A0]">4.8 Rating</span>
-              </div>
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex items-center gap-3 mt-8">
