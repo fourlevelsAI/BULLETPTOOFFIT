@@ -346,13 +346,13 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 5: CTA — #080808 ═══ */}
-      <section className="py-20 px-6 bg-[#080808]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#080808]">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="max-w-2xl mx-auto text-center space-y-6">
           <motion.div variants={fadeUp}>
             <ULogo size={64} className="mx-auto text-white" />
           </motion.div>
           <motion.p variants={fadeUp} className="code-label text-[#606060] tracking-[0.3em]">BULLETPROOFFIT</motion.p>
-          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
             START TODAY
           </motion.h2>
           <motion.p variants={fadeUp} className="text-[#808080] font-body">
