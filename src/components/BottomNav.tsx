@@ -20,11 +20,11 @@ const BottomNav = () => {
       className="fixed bottom-0 left-0 right-0 z-50 bg-[#000000] border-t border-[rgba(192,192,192,0.1)]"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="flex items-center justify-around h-[60px] max-w-lg mx-auto px-1 overflow-x-auto scrollbar-hide">
+      <div className="flex items-center justify-around h-[60px] max-w-lg mx-auto px-0 overflow-x-auto scrollbar-hide">
         {navItems.map(({ to, icon: Icon, label }) => {
           const isActive = location.pathname === to;
           return (
-            <NavLink key={to} to={to} className="relative flex flex-col items-center justify-center gap-0.5 min-w-[48px] w-12 h-full">
+            <NavLink key={to} to={to} className="relative flex flex-col items-center justify-center gap-0.5 min-w-[40px] flex-1 h-full">
               {/* Active chrome line above */}
               {isActive && (
                 <motion.div
@@ -35,7 +35,7 @@ const BottomNav = () => {
                 />
               )}
               <motion.div whileTap={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-                <Icon className={`w-4.5 h-4.5 transition-colors relative z-10 ${isActive ? "text-white" : "text-[#606060]"}`} />
+                <Icon className={`w-[18px] h-[18px] transition-colors relative z-10 ${isActive ? "text-white" : "text-[#606060]"}`} />
               </motion.div>
               {isActive && (
                 <motion.span

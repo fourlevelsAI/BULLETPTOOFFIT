@@ -67,7 +67,7 @@ const LandingPage = () => {
       </nav>
 
       {/* ═══ HERO — #080808 with scanlines ═══ */}
-      <section className="pt-32 pb-24 px-6 relative overflow-hidden scanlines">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 relative overflow-hidden scanlines">
         {/* Grid overlay */}
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: `linear-gradient(to right, rgba(192,192,192,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(192,192,192,0.03) 1px, transparent 1px)`,
@@ -80,7 +80,7 @@ const LandingPage = () => {
               <p className="mb-4 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '0.2em', color: '#808080' }}>SYS:00 — INIT SEQUENCE</p>
             </motion.div>
             <motion.h1 variants={fadeUp}
-              className="text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-display leading-[0.88] tracking-[-0.02em]"
+              className="text-4xl sm:text-5xl md:text-[5rem] lg:text-[5.5rem] font-black font-display leading-[0.88] tracking-[-0.02em]"
               style={{ textShadow: '0 0 40px rgba(255,255,255,0.1)' }}>
               <span className="text-white font-black" style={{ opacity: 1 }}>NUTRITION</span>
               <br />
@@ -99,19 +99,19 @@ const LandingPage = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="flex items-center gap-3 mt-8">
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-                <Apple className="w-5 h-5" />
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 sm:gap-3 mt-8">
+              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+                <Apple className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="text-left">
-                  <p className="text-[10px] font-body leading-none opacity-50">Download on the</p>
-                  <p className="text-sm font-semibold font-body leading-tight">App Store</p>
+                  <p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Download on the</p>
+                  <p className="text-xs sm:text-sm font-semibold font-body leading-tight">App Store</p>
                 </div>
               </motion.a>
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-                <Smartphone className="w-5 h-5" />
+              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+                <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="text-left">
-                  <p className="text-[10px] font-body leading-none opacity-50">Get it on</p>
-                  <p className="text-sm font-semibold font-body leading-tight">Google Play</p>
+                  <p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Get it on</p>
+                  <p className="text-xs sm:text-sm font-semibold font-body leading-tight">Google Play</p>
                 </div>
               </motion.a>
             </motion.div>
@@ -260,11 +260,11 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 2: How It Works — #0F0F0F elevated ═══ */}
-      <section className="py-20 px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-16">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-10 sm:mb-16">
             <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:01 — PROTOCOL</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               HIT YOUR GOALS
             </motion.h2>
           </motion.div>
@@ -291,11 +291,11 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 3: Logging Tools — #080808 ═══ */}
-      <section className="py-20 px-6 bg-[#080808]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#080808]">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-10 sm:mb-12">
             <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:02 — TOOLS</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               LOG FASTER
             </motion.h2>
             <motion.p variants={fadeUp} className="font-body mt-4 max-w-md mx-auto text-[#808080]">
@@ -322,10 +322,10 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 4: Testimonials — #0F0F0F ═══ */}
-      <section className="py-20 px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-10 sm:mb-12">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               REAL RESULTS
             </motion.h2>
           </motion.div>
@@ -346,13 +346,13 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 5: CTA — #080808 ═══ */}
-      <section className="py-20 px-6 bg-[#080808]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#080808]">
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="max-w-2xl mx-auto text-center space-y-6">
           <motion.div variants={fadeUp}>
             <ULogo size={64} className="mx-auto text-white" />
           </motion.div>
           <motion.p variants={fadeUp} className="code-label text-[#606060] tracking-[0.3em]">BULLETPROOFFIT</motion.p>
-          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
             START TODAY
           </motion.h2>
           <motion.p variants={fadeUp} className="text-[#808080] font-body">
@@ -364,19 +364,19 @@ const LandingPage = () => {
               CREATE FREE ACCOUNT <ArrowRight className="w-4 h-4" />
             </motion.button>
           </motion.div>
-          <motion.div variants={fadeUp} className="flex justify-center items-center gap-3 pt-4">
-            <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-              <Apple className="w-5 h-5" /><div className="text-left"><p className="text-[10px] font-body leading-none opacity-50">Download on the</p><p className="text-sm font-semibold font-body leading-tight">App Store</p></div>
+          <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 pt-4">
+            <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+              <Apple className="w-4 h-4 sm:w-5 sm:h-5" /><div className="text-left"><p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Download on the</p><p className="text-xs sm:text-sm font-semibold font-body leading-tight">App Store</p></div>
             </a>
-            <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-              <Smartphone className="w-5 h-5" /><div className="text-left"><p className="text-[10px] font-body leading-none opacity-50">Get it on</p><p className="text-sm font-semibold font-body leading-tight">Google Play</p></div>
+            <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+              <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" /><div className="text-left"><p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Get it on</p><p className="text-xs sm:text-sm font-semibold font-body leading-tight">Google Play</p></div>
             </a>
           </motion.div>
         </motion.div>
       </section>
 
       {/* ═══ Footer — #000 ═══ */}
-      <footer className="py-8 px-6 bg-black border-t border-[rgba(192,192,192,0.06)]">
+      <footer className="py-8 px-4 sm:px-6 bg-black border-t border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <ULogo size={24} className="text-[#606060]" />
