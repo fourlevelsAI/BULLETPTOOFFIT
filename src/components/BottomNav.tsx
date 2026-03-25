@@ -35,7 +35,7 @@ const BottomNav = () => {
                 />
               )}
               <motion.div whileTap={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-                <Icon className={`w-5 h-5 transition-colors relative z-10 ${isActive ? "text-white" : "text-[#606060]"}`} />
+                <Icon className={`w-4.5 h-4.5 transition-colors relative z-10 ${isActive ? "text-white" : "text-[#606060]"}`} />
               </motion.div>
               {isActive && (
                 <motion.span
