@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 const navItems = [
   { to: "/", icon: Home, label: "Home" },
   { to: "/meals", icon: Utensils, label: "Meals" },
+  { to: "/recipes", icon: ChefHat, label: "Recipes" },
   { to: "/workout", icon: Dumbbell, label: "Workout" },
+  { to: "/exercises", icon: BookOpen, label: "Guide" },
   { to: "/progress", icon: TrendingUp, label: "Progress" },
   { to: "/profile", icon: User, label: "Profile" },
 ];
