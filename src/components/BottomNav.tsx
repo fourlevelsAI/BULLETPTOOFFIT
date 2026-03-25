@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, Utensils, Dumbbell, TrendingUp, User } from "lucide-react";
+import { Home, Utensils, Dumbbell, TrendingUp, User, ChefHat, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navItems = [
