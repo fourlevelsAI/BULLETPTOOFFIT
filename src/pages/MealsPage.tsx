@@ -361,17 +361,15 @@ const MealsPage = () => {
                         {food.category}
                       </span>
                     )}
-                    <div className="flex items-start justify-between pr-16">
+                    <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
                         <span className="text-[15px] font-semibold text-foreground font-body block truncate">{food.name}</span>
                         {food.brand && <span className="text-[10px] text-muted-foreground font-body">{food.brand}</span>}
-                        <div className="flex items-center gap-2 mt-1.5">
-                          <span className="text-xs text-muted-foreground font-body">{food.serving}</span>
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(120,30%,12%)] text-[hsl(120,100%,65%)]">Protein: {Math.round(food.protein * mult)}g</span>
-                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(50,30%,12%)] text-[hsl(50,100%,65%)]">Carbs: {Math.round(food.carbs * mult)}g</span>
-                            <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[hsl(0,30%,12%)] text-[hsl(0,100%,65%)]">Fat: {Math.round(food.fat * mult)}g</span>
-                          </div>
+                        <span className="text-xs text-muted-foreground font-body block mt-1">{food.serving}</span>
+                        <div className="flex flex-wrap items-center gap-1 mt-1.5">
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[hsl(120,30%,12%)] text-[hsl(120,100%,65%)]">P: {Math.round(food.protein * mult)}g</span>
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[hsl(50,30%,12%)] text-[hsl(50,100%,65%)]">C: {Math.round(food.carbs * mult)}g</span>
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[hsl(0,30%,12%)] text-[hsl(0,100%,65%)]">F: {Math.round(food.fat * mult)}g</span>
                         </div>
                       </div>
                       <span className="text-lg font-bold text-foreground font-mono ml-2 shrink-0">{Math.round(food.calories * mult)}</span>

@@ -376,7 +376,7 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ Footer — #000 ═══ */}
-      <footer className="py-8 px-6 bg-black border-t border-[rgba(192,192,192,0.06)]">
+      <footer className="py-8 px-4 sm:px-6 bg-black border-t border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <ULogo size={24} className="text-[#606060]" />
