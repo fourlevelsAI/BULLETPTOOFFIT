@@ -12,6 +12,8 @@ import WorkoutPage from "./pages/WorkoutPage";
 import ProgressPage from "./pages/ProgressPage";
 import GoalsPage from "./pages/GoalsPage";
 import ProfilePage from "./pages/ProfilePage";
+import RecipesPage from "./pages/RecipesPage";
+import ExerciseGuidePage from "./pages/ExerciseGuidePage";
 import OnboardingPage from "./pages/OnboardingPage";
 import AuthPage from "./pages/AuthPage";
 import LandingPage from "./pages/LandingPage";
