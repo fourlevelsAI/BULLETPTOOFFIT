@@ -12,6 +12,8 @@ import WorkoutPage from "./pages/WorkoutPage";
 import ProgressPage from "./pages/ProgressPage";
 import GoalsPage from "./pages/GoalsPage";
 import ProfilePage from "./pages/ProfilePage";
+import RecipesPage from "./pages/RecipesPage";
+import ExerciseGuidePage from "./pages/ExerciseGuidePage";
 import OnboardingPage from "./pages/OnboardingPage";
 import AuthPage from "./pages/AuthPage";
 import LandingPage from "./pages/LandingPage";
@@ -111,6 +113,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/meals" element={<MealsPage />} />
         <Route path="/workout" element={<WorkoutPage />} />
+        <Route path="/recipes" element={<RecipesPage />} />
+        <Route path="/exercises" element={<ExerciseGuidePage />} />
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/goals" element={<GoalsPage />} />
