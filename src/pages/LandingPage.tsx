@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Smartphone } from "lucide-react";
+import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Apple, Smartphone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ULogo from "@/components/ULogo";
 // ThemeToggle removed from landing nav
