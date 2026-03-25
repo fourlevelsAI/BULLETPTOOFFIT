@@ -322,10 +322,10 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 4: Testimonials — #0F0F0F ═══ */}
-      <section className="py-20 px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-10 sm:mb-12">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               REAL RESULTS
             </motion.h2>
           </motion.div>
