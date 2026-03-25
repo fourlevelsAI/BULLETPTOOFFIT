@@ -291,11 +291,11 @@ const LandingPage = () => {
       </section>
 
       {/* ═══ SECTION 3: Logging Tools — #080808 ═══ */}
-      <section className="py-20 px-6 bg-[#080808]">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#080808]">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-10 sm:mb-12">
             <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:02 — TOOLS</motion.p>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
               LOG FASTER
             </motion.h2>
             <motion.p variants={fadeUp} className="font-body mt-4 max-w-md mx-auto text-[#808080]">
