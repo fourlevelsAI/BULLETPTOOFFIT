@@ -67,7 +67,7 @@ const LandingPage = () => {
       </nav>
 
       {/* ═══ HERO — #080808 with scanlines ═══ */}
-      <section className="pt-32 pb-24 px-6 relative overflow-hidden scanlines">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 relative overflow-hidden scanlines">
         {/* Grid overlay */}
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: `linear-gradient(to right, rgba(192,192,192,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(192,192,192,0.03) 1px, transparent 1px)`,
