@@ -10,6 +10,7 @@ interface ULogoProps {
 const ULogo = forwardRef<HTMLDivElement, ULogoProps>(({ size = 32, animated: _animated = false, className = "" }, ref) => {
   return (
     <div
+      ref={ref}
       className={`rounded-full bg-white flex items-center justify-center shrink-0 ${className}`}
       style={{
         width: size,
@@ -26,6 +27,8 @@ const ULogo = forwardRef<HTMLDivElement, ULogoProps>(({ size = 32, animated: _an
       />
     </div>
   );
-};
+});
+
+ULogo.displayName = "ULogo";
 
 export default ULogo;
