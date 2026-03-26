@@ -39,6 +39,10 @@ const testimonials = [
   { name: "Brooke N.", text: "I'm feeling confident and empowered with who I am." },
 ];
 
+// Replace these with your actual App Store / Play Store URLs once listed
+const APP_STORE_URL = "https://apps.apple.com/app/bulletprooffit/id000000000";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.bulletprooffit.app";
+
 const LandingPage = () => {
   const navigate = useNavigate();
 
