@@ -39,6 +39,10 @@ const testimonials = [
   { name: "Brooke N.", text: "I'm feeling confident and empowered with who I am." },
 ];
 
+// Replace these with your actual App Store / Play Store URLs once listed
+const APP_STORE_URL = "https://apps.apple.com/app/bulletprooffit/id000000000";
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.bulletprooffit.app";
+
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -93,21 +97,21 @@ const LandingPage = () => {
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+              <motion.a whileTap={{ scale: 0.97 }} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer"
                 className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-                START TODAY <ArrowRight className="w-4 h-4" />
-              </motion.button>
+                DOWNLOAD THE APP <ArrowRight className="w-4 h-4" />
+              </motion.a>
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 sm:gap-3 mt-8">
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+              <motion.a whileTap={{ scale: 0.97 }} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
                 <Apple className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="text-left">
                   <p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Download on the</p>
                   <p className="text-xs sm:text-sm font-semibold font-body leading-tight">App Store</p>
                 </div>
               </motion.a>
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+              <motion.a whileTap={{ scale: 0.97 }} href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
                 <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="text-left">
                   <p className="text-[9px] sm:text-[10px] font-body leading-none opacity-50">Get it on</p>
@@ -359,10 +363,10 @@ const LandingPage = () => {
             Join thousands tracking their nutrition and building healthier habits — for free.
           </motion.p>
           <motion.div variants={fadeUp}>
-            <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+          <motion.a whileTap={{ scale: 0.97 }} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer"
               className="bg-[#E8E8E8] text-[#080808] px-10 py-4 rounded-[4px] text-sm font-bold font-body inline-flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-              CREATE FREE ACCOUNT <ArrowRight className="w-4 h-4" />
-            </motion.button>
+              DOWNLOAD THE APP <ArrowRight className="w-4 h-4" />
+            </motion.a>
           </motion.div>
           <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 pt-4">
             <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
