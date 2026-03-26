@@ -97,10 +97,10 @@ const LandingPage = () => {
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+              <motion.a whileTap={{ scale: 0.97 }} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer"
                 className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-                START TODAY <ArrowRight className="w-4 h-4" />
-              </motion.button>
+                DOWNLOAD THE APP <ArrowRight className="w-4 h-4" />
+              </motion.a>
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 sm:gap-3 mt-8">
