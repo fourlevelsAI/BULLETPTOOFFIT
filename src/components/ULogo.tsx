@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import logoImg from "@/assets/u-logo.png";
 
 interface ULogoProps {
@@ -6,9 +7,10 @@ interface ULogoProps {
   className?: string;
 }
 
-const ULogo = ({ size = 32, animated: _animated = false, className = "" }: ULogoProps) => {
+const ULogo = forwardRef<HTMLDivElement, ULogoProps>(({ size = 32, animated: _animated = false, className = "" }, ref) => {
   return (
     <div
+      ref={ref}
       className={`rounded-full bg-white flex items-center justify-center shrink-0 ${className}`}
       style={{
         width: size,
@@ -25,6 +27,8 @@ const ULogo = ({ size = 32, animated: _animated = false, className = "" }: ULogo
       />
     </div>
   );
-};
+});
+
+ULogo.displayName = "ULogo";
 
 export default ULogo;
