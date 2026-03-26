@@ -53,7 +53,7 @@ function hasAccess(profile: any): boolean {
   return false;
 }
 
-const isNative = Capacitor.isNativePlatform();
+const isNative = !!(window as any).Capacitor?.isNativePlatform?.() || !!(window as any).Capacitor?.isNative;
 
 const AppRoutes = () => {
   const { user, loading: authLoading } = useAuth();
