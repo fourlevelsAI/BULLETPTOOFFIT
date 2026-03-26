@@ -17,9 +17,7 @@ import RecipesPage from "./pages/RecipesPage";
 import ExerciseGuidePage from "./pages/ExerciseGuidePage";
 import OnboardingPage from "./pages/OnboardingPage";
 import AuthPage from "./pages/AuthPage";
-import LandingPage from "./pages/LandingPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import PricingPage from "./pages/PricingPage";
 import WelcomePage from "./pages/WelcomePage";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
@@ -29,31 +27,20 @@ const queryClient = new QueryClient();
 /** Check if user has active trial or subscription */
 function hasAccess(profile: any): boolean {
   if (!profile) return false;
-
-  // Lifetime = always access
   if (profile.is_lifetime || profile.subscription_tier === "lifetime") return true;
-
-  // Active subscription
   if (profile.subscription_status === "active") return true;
-
-  // Active trial
   if (profile.trial_started && profile.trial_end) {
     const trialEnd = new Date(profile.trial_end);
     if (trialEnd > new Date()) return true;
   }
-
-  // Fallback: check subscription_end for Stripe-managed subs
   if (profile.subscription_end) {
     const subEnd = new Date(profile.subscription_end);
     if (subEnd > new Date() && (profile.subscription_tier === "pro" || profile.subscription_tier === "elite")) {
       return true;
     }
   }
-
   return false;
 }
-
-const isNative = !!(window as any).Capacitor?.isNativePlatform?.() || !!(window as any).Capacitor?.isNative;
 
 const AppRoutes = () => {
   const { user, loading: authLoading } = useAuth();
@@ -68,28 +55,25 @@ const AppRoutes = () => {
     );
   }
 
-  // Not logged in — public routes only
+  // Not logged in — auth only
   if (!user) {
     return (
       <Routes>
-        {!isNative && <Route path="/" element={<LandingPage />} />}
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="*" element={<Navigate to={isNative ? "/auth" : "/"} replace />} />
+        <Route path="*" element={<Navigate to="/auth" replace />} />
       </Routes>
     );
   }
 
   const access = hasAccess(profile);
 
-  // Logged in but NO access (no trial, no sub) → gate to /welcome
+  // Logged in but NO access → gate to /welcome
   if (!access) {
     return (
       <Routes>
         <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/auth" element={<Navigate to="/welcome" replace />} />
         <Route path="*" element={<Navigate to="/welcome" replace />} />
@@ -102,7 +86,6 @@ const AppRoutes = () => {
     return (
       <Routes>
         <Route path="/onboarding" element={<OnboardingPage />} />
-        <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="*" element={<Navigate to="/onboarding" replace />} />
       </Routes>
@@ -125,7 +108,6 @@ const AppRoutes = () => {
       <Route path="/auth" element={<Navigate to="/" replace />} />
       <Route path="/onboarding" element={<Navigate to="/" replace />} />
       <Route path="/welcome" element={<Navigate to="/" replace />} />
-      <Route path="/pricing" element={<PricingPage />} />
       <Route path="/privacy" element={<PrivacyPolicyPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="*" element={<NotFound />} />

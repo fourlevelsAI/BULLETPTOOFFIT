@@ -6,7 +6,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { useSubscription } from "@/hooks/useSubscription";
 import { toast } from "sonner";
-// ThemeToggle removed — app routes forced dark
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -104,7 +103,7 @@ const ProfilePage = () => {
         </motion.button>
       )}
 
-      {/* Stats — clickable */}
+      {/* Stats */}
       <motion.div variants={fadeUp} className="grid grid-cols-3 gap-3">
         {[
           { label: "Goal", value: profile?.calorie_goal || 2000, unit: "cal", icon: Target, route: "/profile/goals" },
@@ -136,13 +135,13 @@ const ProfilePage = () => {
         </motion.button>
       ) : (
         <motion.div variants={fadeUp} whileHover={{ y: -2 }}
-          onClick={() => navigate("/pricing")}
+          onClick={handleUpgrade}
           className="bracket-card border-foreground/20 cursor-pointer">
           <h3 className="text-sm font-bold text-foreground font-body">Upgrade to Pro</h3>
           <p className="text-xs text-muted-foreground mt-1 font-body">
             Unlock AI nutrition coaching, smart meal plans, and advanced analytics
           </p>
-          <span className="text-xs font-semibold text-foreground mt-2 inline-block font-body">$9.99/month →</span>
+          <span className="text-xs font-semibold text-foreground mt-2 inline-block font-body">$9.99/month</span>
         </motion.div>
       )}
 
