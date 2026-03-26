@@ -38,6 +38,20 @@ const ProfilePage = () => {
   };
 
   const handleLogout = async () => { await signOut(); };
+
+  const handleUpgrade = async () => {
+    try {
+      const session = await supabase.auth.getSession();
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: { priceId: "price_1T5nAvANI7dNLF2nfrTQrCCe", mode: "subscription" },
+        headers: { Authorization: `Bearer ${session.data.session?.access_token}` },
+      });
+      if (error) throw error;
+      if (data?.url) openExternal(data.url);
+    } catch {
+      toast.error("Could not open checkout.");
+    }
+  };
   const goalLabel = profile?.goal?.replace(/_/g, " ") || "Not set";
 
   return (
