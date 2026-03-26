@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import { Capacitor } from "@capacitor/core";
 import { useProfile } from "@/hooks/useProfile";
 import AppLayout from "./components/AppLayout";
 import Dashboard from "./pages/Dashboard";
@@ -52,6 +53,8 @@ function hasAccess(profile: any): boolean {
   return false;
 }
 
+const isNative = Capacitor.isNativePlatform();
+
 const AppRoutes = () => {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading } = useProfile();
@@ -69,12 +72,12 @@ const AppRoutes = () => {
   if (!user) {
     return (
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        {!isNative && <Route path="/" element={<LandingPage />} />}
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to={isNative ? "/auth" : "/"} replace />} />
       </Routes>
     );
   }
