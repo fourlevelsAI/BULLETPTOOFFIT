@@ -72,12 +72,12 @@ const AppRoutes = () => {
   if (!user) {
     return (
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        {!isNative && <Route path="/" element={<LandingPage />} />}
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to={isNative ? "/auth" : "/"} replace />} />
       </Routes>
     );
   }
