@@ -32,3 +32,4 @@ const ULogo = forwardRef<HTMLDivElement, ULogoProps>(({ size = 32, animated: _an
 ULogo.displayName = "ULogo";
 
 export default ULogo;
+
