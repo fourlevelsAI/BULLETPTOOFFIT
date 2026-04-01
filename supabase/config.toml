@@ -17,3 +17,9 @@ verify_jwt = false
 
 [functions.voice-assistant]
 verify_jwt = false
+
+[functions.start-trial]
+verify_jwt = false
+
+[functions.generate-recipe]
+verify_jwt = false
