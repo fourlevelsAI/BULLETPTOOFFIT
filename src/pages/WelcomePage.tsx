@@ -29,24 +29,20 @@ const WelcomePage = () => {
     if (!user) return;
     setStarting(true);
     try {
-      const trialEnd = new Date();
-      trialEnd.setDate(trialEnd.getDate() + 14);
-
-      const { error } = await supabase.from("profiles").update({
-        subscription_tier: "pro",
-        trial_started: true,
-        trial_end: trialEnd.toISOString(),
-        subscription_status: "trialing",
-        is_pro: true,
-      } as any).eq("user_id", user.id);
+      const session = await supabase.auth.getSession();
+      const { data, error } = await supabase.functions.invoke("start-trial", {
+        headers: { Authorization: `Bearer ${session.data.session?.access_token}` },
+      });
 
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+
       toast.success("Free trial activated! 14 days of Pro access.");
       await refetch();
       window.location.href = profile?.onboarding_completed ? "/" : "/onboarding";
     } catch (e: any) {
       console.error(e);
-      toast.error("Failed to start trial. Please try again.");
+      toast.error(e?.message === "Trial already used" ? "You've already used your free trial." : "Failed to start trial. Please try again.");
     } finally {
       setStarting(false);
     }
