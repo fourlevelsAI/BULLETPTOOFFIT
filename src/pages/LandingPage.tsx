@@ -53,8 +53,6 @@ const LandingPage = () => {
           </div>
         </div>
       </nav>
-        </div>
-      </nav>
 
       {/* ═══ HERO — #080808 with scanlines ═══ */}
       <section className="pt-32 pb-24 px-6 relative overflow-hidden scanlines">
