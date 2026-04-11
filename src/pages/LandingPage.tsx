@@ -51,12 +51,6 @@ const LandingPage = () => {
             <ULogo size={32} className="text-white" />
             <span className="font-display text-xs sm:text-sm font-bold tracking-wider text-white truncate">BULLETPROOFFIT</span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
-              className="bg-[#E8E8E8] text-[#080808] px-4 sm:px-5 py-2 rounded-[4px] text-xs sm:text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-              Start Free
-            </motion.button>
-          </div>
         </div>
       </nav>
 
