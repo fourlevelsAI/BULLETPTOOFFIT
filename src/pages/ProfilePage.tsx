@@ -6,8 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { useSubscription } from "@/hooks/useSubscription";
 import { toast } from "sonner";
-import { openExternal } from "@/lib/openExternal";
-import { supabase } from "@/integrations/supabase/client";
+// ThemeToggle removed — app routes forced dark
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -38,20 +37,6 @@ const ProfilePage = () => {
   };
 
   const handleLogout = async () => { await signOut(); };
-
-  const handleUpgrade = async () => {
-    try {
-      const session = await supabase.auth.getSession();
-      const { data, error } = await supabase.functions.invoke("create-checkout", {
-        body: { priceId: "price_1T5nAvANI7dNLF2nfrTQrCCe", mode: "subscription" },
-        headers: { Authorization: `Bearer ${session.data.session?.access_token}` },
-      });
-      if (error) throw error;
-      if (data?.url) openExternal(data.url);
-    } catch {
-      toast.error("Could not open checkout.");
-    }
-  };
   const goalLabel = profile?.goal?.replace(/_/g, " ") || "Not set";
 
   return (
@@ -122,18 +107,17 @@ const ProfilePage = () => {
       {/* Stats */}
       <motion.div variants={fadeUp} className="grid grid-cols-3 gap-3">
         {[
-          { label: "Goal", value: profile?.calorie_goal || 2000, unit: "cal", icon: Target, route: "/profile/goals" },
-          { label: "Protein", value: profile?.protein_goal || 150, unit: "g", icon: Flame, route: "/profile/goals" },
-          { label: "Weight", value: profile?.weight || "—", unit: "kg", icon: TrendingUp, route: "/progress" },
+          { label: "Goal", value: profile?.calorie_goal || 2000, unit: "cal", icon: Target },
+          { label: "Protein", value: profile?.protein_goal || 150, unit: "g", icon: Flame },
+          { label: "Weight", value: profile?.weight || "—", unit: "kg", icon: TrendingUp },
         ].map((stat) => {
           const Icon = stat.icon;
           return (
-            <motion.button key={stat.label} whileTap={{ scale: 0.97 }} onClick={() => navigate(stat.route)}
-              className="bracket-card text-center cursor-pointer hover:bg-accent transition-colors">
+            <div key={stat.label} className="bracket-card text-center">
               <Icon className="w-4 h-4 text-foreground mx-auto mb-1" />
               <span className="text-lg font-bold text-foreground font-mono block">{stat.value}</span>
               <span className="text-[10px] text-muted-foreground font-body">{stat.label} ({stat.unit})</span>
-            </motion.button>
+            </div>
           );
         })}
       </motion.div>
@@ -151,25 +135,25 @@ const ProfilePage = () => {
         </motion.button>
       ) : (
         <motion.div variants={fadeUp} whileHover={{ y: -2 }}
-          onClick={handleUpgrade}
+          onClick={() => navigate("/pricing")}
           className="bracket-card border-foreground/20 cursor-pointer">
           <h3 className="text-sm font-bold text-foreground font-body">Upgrade to Pro</h3>
           <p className="text-xs text-muted-foreground mt-1 font-body">
             Unlock AI nutrition coaching, smart meal plans, and advanced analytics
           </p>
-          <span className="text-xs font-semibold text-foreground mt-2 inline-block font-body">$9.99/month</span>
+          <span className="text-xs font-semibold text-foreground mt-2 inline-block font-body">$9.99/month →</span>
         </motion.div>
       )}
 
       {/* Menu */}
       <motion.div variants={fadeUp} className="bracket-card !p-0 overflow-hidden divide-y divide-border">
         {[
-          { icon: Target, label: "Goals & Targets", action: () => navigate("/profile/goals") },
-          { icon: Bell, label: "Notifications", action: () => toast.info("Notifications settings coming soon") },
-          { icon: Shield, label: "Privacy & Data", action: () => toast.info("Privacy settings coming soon") },
-          { icon: HelpCircle, label: "Help & Support", action: () => toast.info("Help & support coming soon") },
-        ].map(({ icon: Icon, label, action }) => (
-          <button key={label} onClick={action} className="w-full flex items-center gap-3 p-4 hover:bg-accent transition-colors">
+          { icon: Target, label: "Goals & Targets" },
+          { icon: Bell, label: "Notifications" },
+          { icon: Shield, label: "Privacy & Data" },
+          { icon: HelpCircle, label: "Help & Support" },
+        ].map(({ icon: Icon, label }) => (
+          <button key={label} className="w-full flex items-center gap-3 p-4 hover:bg-accent transition-colors">
             <Icon className="w-5 h-5 text-muted-foreground" />
             <span className="text-sm font-medium text-foreground font-body flex-1 text-left">{label}</span>
             <ChevronRight className="w-4 h-4 text-muted-foreground" />

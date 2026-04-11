@@ -66,9 +66,9 @@ const FoodConfirmation = ({ foods: initialFoods, mealType, onConfirm, onCancel }
                     <p className="text-sm font-medium text-foreground font-body">{food.name}</p>
                     <p className="text-xs text-muted-foreground font-body mt-0.5">{food.serving_size}</p>
                     <div className="flex gap-3 mt-1 text-xs font-mono text-muted-foreground">
-                      <span>Protein: {Math.round(food.protein_g * q)}g</span>
-                      <span>Carbs: {Math.round(food.carbs_g * q)}g</span>
-                      <span>Fat: {Math.round(food.fat_g * q)}g</span>
+                      <span>P:{Math.round(food.protein_g * q)}g</span>
+                      <span>C:{Math.round(food.carbs_g * q)}g</span>
+                      <span>F:{Math.round(food.fat_g * q)}g</span>
                     </div>
                   </div>
                   <div className="text-right">

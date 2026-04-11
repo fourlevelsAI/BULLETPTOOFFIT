@@ -30,21 +30,6 @@ export interface Profile {
   free_months_earned: number;
   is_founding_member: boolean;
   is_lifetime: boolean;
-  water_goal: number;
-  steps_goal: number;
-  active_minutes_goal: number;
-  weekly_workouts_goal: number;
-  weekly_cardio_goal: number;
-  weekly_calorie_deficit: number;
-  weekly_weight_change: number;
-  target_weight: number | null;
-  target_body_fat: number | null;
-  monthly_workouts_goal: number;
-  monthly_prs_goal: number;
-  long_term_goal: string;
-  trial_started: boolean;
-  trial_end: string | null;
-  subscription_status: string;
 }
 
 export function useProfile() {

@@ -163,7 +163,6 @@ export type Database = {
       }
       profiles: {
         Row: {
-          active_minutes_goal: number | null
           activity_level: string | null
           age: number | null
           avatar_url: string | null
@@ -180,36 +179,21 @@ export type Database = {
           is_founding_member: boolean | null
           is_lifetime: boolean | null
           is_pro: boolean | null
-          long_term_goal: string | null
-          monthly_prs_goal: number | null
-          monthly_workouts_goal: number | null
           onboarding_completed: boolean | null
           protein_goal: number | null
           referral_code: string | null
           referral_count: number | null
           referred_by: string | null
           sex: string | null
-          steps_goal: number | null
           stripe_customer_id: string | null
           subscription_end: string | null
-          subscription_status: string | null
           subscription_tier: string | null
-          target_body_fat: number | null
-          target_weight: number | null
-          trial_end: string | null
-          trial_started: boolean | null
           unit_system: string | null
           updated_at: string
           user_id: string
-          water_goal: number | null
-          weekly_calorie_deficit: number | null
-          weekly_cardio_goal: number | null
-          weekly_weight_change: number | null
-          weekly_workouts_goal: number | null
           weight: number | null
         }
         Insert: {
-          active_minutes_goal?: number | null
           activity_level?: string | null
           age?: number | null
           avatar_url?: string | null
@@ -226,36 +210,21 @@ export type Database = {
           is_founding_member?: boolean | null
           is_lifetime?: boolean | null
           is_pro?: boolean | null
-          long_term_goal?: string | null
-          monthly_prs_goal?: number | null
-          monthly_workouts_goal?: number | null
           onboarding_completed?: boolean | null
           protein_goal?: number | null
           referral_code?: string | null
           referral_count?: number | null
           referred_by?: string | null
           sex?: string | null
-          steps_goal?: number | null
           stripe_customer_id?: string | null
           subscription_end?: string | null
-          subscription_status?: string | null
           subscription_tier?: string | null
-          target_body_fat?: number | null
-          target_weight?: number | null
-          trial_end?: string | null
-          trial_started?: boolean | null
           unit_system?: string | null
           updated_at?: string
           user_id: string
-          water_goal?: number | null
-          weekly_calorie_deficit?: number | null
-          weekly_cardio_goal?: number | null
-          weekly_weight_change?: number | null
-          weekly_workouts_goal?: number | null
           weight?: number | null
         }
         Update: {
-          active_minutes_goal?: number | null
           activity_level?: string | null
           age?: number | null
           avatar_url?: string | null
@@ -272,32 +241,18 @@ export type Database = {
           is_founding_member?: boolean | null
           is_lifetime?: boolean | null
           is_pro?: boolean | null
-          long_term_goal?: string | null
-          monthly_prs_goal?: number | null
-          monthly_workouts_goal?: number | null
           onboarding_completed?: boolean | null
           protein_goal?: number | null
           referral_code?: string | null
           referral_count?: number | null
           referred_by?: string | null
           sex?: string | null
-          steps_goal?: number | null
           stripe_customer_id?: string | null
           subscription_end?: string | null
-          subscription_status?: string | null
           subscription_tier?: string | null
-          target_body_fat?: number | null
-          target_weight?: number | null
-          trial_end?: string | null
-          trial_started?: boolean | null
           unit_system?: string | null
           updated_at?: string
           user_id?: string
-          water_goal?: number | null
-          weekly_calorie_deficit?: number | null
-          weekly_cardio_goal?: number | null
-          weekly_weight_change?: number | null
-          weekly_workouts_goal?: number | null
           weight?: number | null
         }
         Relationships: []
@@ -323,33 +278,6 @@ export type Database = {
           id?: string
           logged_at?: string
           user_id?: string
-        }
-        Relationships: []
-      }
-      weekly_plans: {
-        Row: {
-          created_at: string
-          id: string
-          plan_data: Json
-          updated_at: string
-          user_id: string
-          week_start: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          plan_data?: Json
-          updated_at?: string
-          user_id: string
-          week_start: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          plan_data?: Json
-          updated_at?: string
-          user_id?: string
-          week_start?: string
         }
         Relationships: []
       }

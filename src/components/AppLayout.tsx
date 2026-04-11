@@ -19,7 +19,7 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <div className="min-h-screen pb-[calc(60px+env(safe-area-inset-bottom))]" style={{ backgroundColor: '#080808' }}>
+    <div className="min-h-screen pb-20" style={{ backgroundColor: '#080808' }}>
       <Outlet />
       <BottomNav />
     </div>
