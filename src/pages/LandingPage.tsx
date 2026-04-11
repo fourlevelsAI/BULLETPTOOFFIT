@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Smartphone } from "lucide-react";
+import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ULogo from "@/components/ULogo";
 // ThemeToggle removed from landing nav
@@ -52,16 +52,10 @@ const LandingPage = () => {
             <span className="font-display text-xs sm:text-sm font-bold tracking-wider text-white truncate">BULLETPROOFFIT</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <button onClick={() => navigate("/pricing")} className="text-xs sm:text-sm text-[#C0C0C0] hover:text-white transition-colors font-body hidden sm:block">
-              Pricing
-            </button>
-            <button onClick={() => navigate("/auth")} className="text-xs sm:text-sm text-[#C0C0C0] hover:text-white transition-colors font-body hidden sm:block">
-              Log In
-            </button>
-            <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
-              className="bg-[#E8E8E8] text-[#080808] px-4 sm:px-5 py-2 rounded-[4px] text-xs sm:text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-              Start Free
-            </motion.button>
+            <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
+              className="bg-[#E8E8E8] text-[#080808] px-4 sm:px-5 py-2 rounded-[4px] text-xs sm:text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all inline-flex items-center gap-2">
+              <Apple className="w-4 h-4" /> Download on App Store
+            </motion.a>
           </div>
         </div>
       </nav>
@@ -93,10 +87,10 @@ const LandingPage = () => {
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+              <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
                 className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-                START TODAY <ArrowRight className="w-4 h-4" />
-              </motion.button>
+                <Apple className="w-5 h-5" /> Download on App Store
+              </motion.a>
               <div className="flex items-center gap-2">
                 <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#C0C0C0] text-[#C0C0C0]" />)}</div>
                 <span className="text-xs font-body font-semibold text-[#A0A0A0]">4.8 Rating</span>
@@ -104,18 +98,11 @@ const LandingPage = () => {
             </motion.div>
 
             <motion.div variants={fadeUp} className="flex items-center gap-3 mt-8">
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
+              <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
                 <Apple className="w-5 h-5" />
                 <div className="text-left">
                   <p className="text-[10px] font-body leading-none opacity-50">Download on the</p>
                   <p className="text-sm font-semibold font-body leading-tight">App Store</p>
-                </div>
-              </motion.a>
-              <motion.a whileTap={{ scale: 0.97 }} href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-                <Smartphone className="w-5 h-5" />
-                <div className="text-left">
-                  <p className="text-[10px] font-body leading-none opacity-50">Get it on</p>
-                  <p className="text-sm font-semibold font-body leading-tight">Google Play</p>
                 </div>
               </motion.a>
             </motion.div>
@@ -366,18 +353,10 @@ const LandingPage = () => {
             Join thousands tracking their nutrition and building healthier habits — for free.
           </motion.p>
           <motion.div variants={fadeUp}>
-            <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+            <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
               className="bg-[#E8E8E8] text-[#080808] px-10 py-4 rounded-[4px] text-sm font-bold font-body inline-flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-              CREATE FREE ACCOUNT <ArrowRight className="w-4 h-4" />
-            </motion.button>
-          </motion.div>
-          <motion.div variants={fadeUp} className="flex justify-center items-center gap-3 pt-4">
-            <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-              <Apple className="w-5 h-5" /><div className="text-left"><p className="text-[10px] font-body leading-none opacity-50">Download on the</p><p className="text-sm font-semibold font-body leading-tight">App Store</p></div>
-            </a>
-            <a href="#" className="flex items-center gap-2 border border-[rgba(192,192,192,0.2)] rounded-[4px] px-4 py-2.5 hover:bg-[#E8E8E8] hover:text-[#080808] transition-all">
-              <Smartphone className="w-5 h-5" /><div className="text-left"><p className="text-[10px] font-body leading-none opacity-50">Get it on</p><p className="text-sm font-semibold font-body leading-tight">Google Play</p></div>
-            </a>
+              <Apple className="w-5 h-5" /> DOWNLOAD ON APP STORE
+            </motion.a>
           </motion.div>
         </motion.div>
       </section>
