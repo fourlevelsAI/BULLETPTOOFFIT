@@ -52,10 +52,10 @@ const LandingPage = () => {
             <span className="font-display text-xs sm:text-sm font-bold tracking-wider text-white truncate">BULLETPROOFFIT</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
-              className="bg-[#E8E8E8] text-[#080808] px-4 sm:px-5 py-2 rounded-[4px] text-xs sm:text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all inline-flex items-center gap-2">
-              <Apple className="w-4 h-4" /> Download on App Store
-            </motion.a>
+            <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+              className="bg-[#E8E8E8] text-[#080808] px-4 sm:px-5 py-2 rounded-[4px] text-xs sm:text-sm font-semibold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
+              Start Free
+            </motion.button>
           </div>
         </div>
       </nav>
@@ -87,10 +87,10 @@ const LandingPage = () => {
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
-              <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
-                className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body flex items-center gap-2 hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-                <Apple className="w-5 h-5" /> Download on App Store
-              </motion.a>
+              <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
+                className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
+                START FREE
+              </motion.button>
               <div className="flex items-center gap-2">
                 <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#C0C0C0] text-[#C0C0C0]" />)}</div>
                 <span className="text-xs font-body font-semibold text-[#A0A0A0]">4.8 Rating</span>
