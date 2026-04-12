@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+
 import ULogo from "@/components/ULogo";
 // ThemeToggle removed from landing nav
 
@@ -40,7 +40,6 @@ const testimonials = [
 ];
 
 const LandingPage = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#080808] text-[#E8E8E8] overflow-x-hidden">
@@ -81,10 +80,10 @@ const LandingPage = () => {
               Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
-              <motion.button whileTap={{ scale: 0.97 }} onClick={() => navigate("/auth")}
-                className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all">
-                START FREE
-              </motion.button>
+              <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
+                className="bg-[#E8E8E8] text-[#080808] px-8 py-4 rounded-[4px] text-sm font-bold font-body hover:bg-transparent hover:text-[#E8E8E8] hover:ring-1 hover:ring-[#808080] transition-all flex items-center gap-2">
+                <Apple className="w-5 h-5" /> Download on App Store
+              </motion.a>
               <div className="flex items-center gap-2">
                 <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#C0C0C0] text-[#C0C0C0]" />)}</div>
                 <span className="text-xs font-body font-semibold text-[#A0A0A0]">4.8 Rating</span>
