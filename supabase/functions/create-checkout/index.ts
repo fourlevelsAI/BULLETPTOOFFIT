@@ -11,6 +11,14 @@ const logStep = (step: string, details?: any) => {
   console.log(`[CREATE-CHECKOUT] ${step}${details ? ` - ${JSON.stringify(details)}` : ''}`);
 };
 
+const ALLOWED_PRICE_IDS = new Set([
+  "price_1T5nAvANI7dNLF2nfrTQrCCe",
+  "price_1T5nBAANI7dNLF2nttrQWzW3",
+  "price_1T5nBQANI7dNLF2n59juyI42",
+  "price_1T5nBjANI7dNLF2nuyfboACR",
+  "price_1T5nC0ANI7dNLF2n6LjhLudm",
+]);
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -23,15 +31,33 @@ serve(async (req) => {
 
   try {
     logStep("Function started");
-    const authHeader = req.headers.get("Authorization")!;
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response(JSON.stringify({ error: "Not authenticated" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     const token = authHeader.replace("Bearer ", "");
     const { data } = await supabaseClient.auth.getUser(token);
     const user = data.user;
-    if (!user?.email) throw new Error("User not authenticated");
+    if (!user?.email) {
+      return new Response(JSON.stringify({ error: "Not authenticated" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     logStep("User authenticated", { email: user.email });
 
     const { priceId, mode } = await req.json();
-    if (!priceId) throw new Error("priceId is required");
+    if (!priceId || typeof priceId !== "string" || !ALLOWED_PRICE_IDS.has(priceId)) {
+      return new Response(JSON.stringify({ error: "Invalid price" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (mode !== undefined && mode !== "subscription" && mode !== "payment") {
+      return new Response(JSON.stringify({ error: "Invalid mode" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     logStep("Checkout request", { priceId, mode });
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", { apiVersion: "2025-08-27.basil" });
@@ -71,8 +97,8 @@ serve(async (req) => {
     });
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    logStep("ERROR", { message: msg });
-    return new Response(JSON.stringify({ error: msg }), {
+    console.error("[CREATE-CHECKOUT] ERROR", msg);
+    return new Response(JSON.stringify({ error: "An internal error occurred" }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });
