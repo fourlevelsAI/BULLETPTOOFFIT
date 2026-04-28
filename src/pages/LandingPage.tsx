@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple } from "lucide-react";
+import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Bot, Languages, ShoppingCart, Bell, CalendarCheck, Sparkles } from "lucide-react";
 
 import ULogo from "@/components/ULogo";
 // ThemeToggle removed from landing nav
@@ -23,6 +23,14 @@ const features = [
   { step: "01", title: "Track calories, macros & more", desc: "Log faster with barcode scan, photo AI, and voice logging.", icon: Scan },
   { step: "02", title: "Follow your progress", desc: "Build habits with visual charts, streaks, and weekly insights.", icon: BarChart3 },
   { step: "03", title: "Train smarter", desc: "Log workouts, track sets & reps, and sync calories burned.", icon: Dumbbell },
+];
+
+const advancedFeatures = [
+  { title: "ARIA AI Voice Coach", desc: "Talk to your coach in English or Spanish, she responds with a human-like voice powered by OpenAI.", icon: Bot },
+  { title: "Full Spanish Language Support", desc: "Switch the entire app to Spanish instantly from your profile.", icon: Languages },
+  { title: "Shopping List", desc: "Scan foods, save them and log directly to any meal.", icon: ShoppingCart },
+  { title: "Smart Notifications", desc: "Meal reminders, workout motivation and water intake reminders.", icon: Bell },
+  { title: "Progress From Day One", desc: "Days Strong counter tracks your journey from the very first day.", icon: CalendarCheck },
 ];
 
 const tools = [
@@ -77,7 +85,7 @@ const LandingPage = () => {
               <span style={{ background: 'linear-gradient(135deg, #FFFFFF, #A0A0A0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>LIFE</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="font-body mt-6 max-w-md" style={{ color: '#C0C0C0', fontSize: '1.1rem', lineHeight: 1.7 }}>
-              Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
+              The world's most advanced FREE AI fitness app. Voice log meals, scan food, talk to ARIA your AI coach — in English or Spanish.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
               <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
