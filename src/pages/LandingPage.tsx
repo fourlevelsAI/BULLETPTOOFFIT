@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple } from "lucide-react";
+import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Bot, Languages, ShoppingCart, Bell, CalendarCheck, Sparkles } from "lucide-react";
 
 import ULogo from "@/components/ULogo";
 // ThemeToggle removed from landing nav
@@ -23,6 +23,14 @@ const features = [
   { step: "01", title: "Track calories, macros & more", desc: "Log faster with barcode scan, photo AI, and voice logging.", icon: Scan },
   { step: "02", title: "Follow your progress", desc: "Build habits with visual charts, streaks, and weekly insights.", icon: BarChart3 },
   { step: "03", title: "Train smarter", desc: "Log workouts, track sets & reps, and sync calories burned.", icon: Dumbbell },
+];
+
+const advancedFeatures = [
+  { title: "ARIA AI Voice Coach", desc: "Talk to your coach in English or Spanish, she responds with a human-like voice powered by OpenAI.", icon: Bot },
+  { title: "Full Spanish Language Support", desc: "Switch the entire app to Spanish instantly from your profile.", icon: Languages },
+  { title: "Shopping List", desc: "Scan foods, save them and log directly to any meal.", icon: ShoppingCart },
+  { title: "Smart Notifications", desc: "Meal reminders, workout motivation and water intake reminders.", icon: Bell },
+  { title: "Progress From Day One", desc: "Days Strong counter tracks your journey from the very first day.", icon: CalendarCheck },
 ];
 
 const tools = [
@@ -77,7 +85,7 @@ const LandingPage = () => {
               <span style={{ background: 'linear-gradient(135deg, #FFFFFF, #A0A0A0)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>LIFE</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="font-body mt-6 max-w-md" style={{ color: '#C0C0C0', fontSize: '1.1rem', lineHeight: 1.7 }}>
-              Make progress with the all-in-one food, exercise, and calorie tracker. Better than counting — understanding.
+              The world's most advanced FREE AI fitness app. Voice log meals, scan food, talk to ARIA your AI coach — in English or Spanish.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-8">
               <motion.a whileTap={{ scale: 0.97 }} href="https://apps.apple.com/app/id6760779717" target="_blank" rel="noopener noreferrer"
@@ -283,7 +291,7 @@ const LandingPage = () => {
               LOG FASTER
             </motion.h2>
             <motion.p variants={fadeUp} className="font-body mt-4 max-w-md mx-auto text-[#808080]">
-              Barcode scan, AI photo recognition, voice logging, and smart search — all built in.
+              BULLETPROOFFIT combines AI coaching, nutrition tracking, workout logging and progress analytics in one free app. Powered by GPT-4o — the same AI behind ChatGPT.
             </motion.p>
           </motion.div>
 
@@ -301,6 +309,58 @@ const LandingPage = () => {
                 <span className="text-sm font-bold font-body text-[#111111]">{t.label}</span>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ SECTION 3.5: Advanced Features ═══ */}
+      <section className="py-20 px-6 bg-[#0F0F0F] border-y border-[rgba(192,192,192,0.06)]">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-12">
+            <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:03 — ADVANCED</motion.p>
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+              MORE FEATURES
+            </motion.h2>
+          </motion.div>
+
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {advancedFeatures.map((f) => (
+              <motion.div key={f.title} variants={fadeUp}
+                whileHover={{ y: -6, scale: 1.02, boxShadow: '0 20px 60px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.15)' }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="bg-[#E8E8E8] text-[#080808] rounded-[4px] p-6 space-y-3 cursor-pointer">
+                <div className="w-10 h-10 rounded-[4px] bg-[#080808] flex items-center justify-center">
+                  <f.icon className="w-5 h-5 text-[#E8E8E8]" />
+                </div>
+                <h3 className="text-base font-bold font-heading text-[#111111]">{f.title}</h3>
+                <p className="text-sm text-[#555555] font-body">{f.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ SECTION 3.6: What's New ═══ */}
+      <section className="py-20 px-6 bg-[#080808]">
+        <div className="max-w-3xl mx-auto">
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="text-center mb-10">
+            <motion.p variants={fadeUp} className="code-label text-[#606060] mb-3">SYS:04 — CHANGELOG</motion.p>
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black font-display text-white" style={{ textShadow: '0 0 30px rgba(255,255,255,0.15)' }}>
+              WHAT'S NEW
+            </motion.h2>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+            className="bg-[#0F0F0F] border border-[rgba(192,192,192,0.12)] rounded-[4px] p-6 flex items-start gap-4">
+            <div className="w-10 h-10 shrink-0 rounded-[4px] bg-[#E8E8E8] flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-[#080808]" />
+            </div>
+            <div>
+              <p className="code-label text-[#A0A0A0] mb-2">VERSION 1.2</p>
+              <p className="font-body text-[#C0C0C0] leading-relaxed">
+                Full Spanish support, ARIA human-like voice, Shopping List, Smart Notifications and progress tracking from day one.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
