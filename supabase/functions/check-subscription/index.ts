@@ -134,8 +134,8 @@ serve(async (req) => {
     });
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    logStep("ERROR", { message: msg });
-    return new Response(JSON.stringify({ error: msg }), {
+    console.error("[CHECK-SUBSCRIPTION] ERROR", msg);
+    return new Response(JSON.stringify({ error: "An internal error occurred" }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });
