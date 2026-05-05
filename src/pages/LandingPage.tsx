@@ -95,7 +95,7 @@ const LandingPage = () => {
               </motion.a>
               <div className="flex items-center gap-2">
                 <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#C0C0C0] text-[#C0C0C0]" />)}</div>
-                <span className="text-xs font-body font-semibold text-[#A0A0A0]">4.8 Rating</span>
+                <span className="text-xs font-body font-semibold text-[#A0A0A0]">5.0 Rating</span>
               </div>
             </motion.div>
 
