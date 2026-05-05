@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Flame, BarChart3, Dumbbell, Camera, Mic, Scan, Star, Apple, Bot, Languages, ShoppingCart, Bell, CalendarCheck, Sparkles, ChefHat } from "lucide-react";
 
 import ULogo from "@/components/ULogo";
+import appScreenshot from "@/assets/app-screenshot.png";
 // ThemeToggle removed from landing nav
 
 const stagger = {
@@ -139,106 +140,7 @@ const LandingPage = () => {
                   top: '10px', left: '10px', right: '10px', bottom: '10px',
                   borderRadius: '44px', background: '#000',
                 }}>
-                  <div className="w-full h-full relative overflow-hidden" style={{ backgroundColor: '#111111' }}>
-                    {/* Dynamic Island */}
-                    <div className="absolute left-1/2 -translate-x-1/2 z-20" style={{
-                      top: '12px', width: '120px', height: '34px', background: '#000', borderRadius: '20px',
-                    }} />
-                    {/* Status bar */}
-                    <div className="absolute top-0 left-0 right-0 h-[54px] z-10 flex items-start px-6 pt-[16px]">
-                      <span className="text-[15px] font-semibold text-[#E8E8E8] font-body leading-none">9:41</span>
-                      <div className="flex-1" />
-                      <div className="flex items-center gap-1.5">
-                        <div className="flex gap-[2px] items-end">
-                          {[4, 6, 8, 11].map((h, i) => <div key={i} className="w-[3px] rounded-sm bg-[#E8E8E8]" style={{ height: `${h}px` }} />)}
-                        </div>
-                        <div className="w-[22px] h-[10px] rounded-[2px] border border-[#E8E8E8]/50 relative overflow-hidden">
-                          <div className="absolute inset-[1.5px] right-[4px] bg-[#E8E8E8] rounded-[1px]" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* App content */}
-                    <div className="p-4 pt-[54px] space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-[9px] text-[#606060] font-mono tracking-wider">SYS:01 DASHBOARD</p>
-                          <p className="text-sm font-bold font-display text-[#E8E8E8] tracking-wide">HEY, ATHLETE</p>
-                        </div>
-                        <div className="flex items-center gap-1 text-[10px] border border-[rgba(192,192,192,0.12)] rounded px-1.5 py-0.5 text-[#A0A0A0]">
-                          <Flame className="w-2.5 h-2.5" /> 7
-                        </div>
-                      </div>
-
-                      {/* Calorie ring */}
-                      <div className="rounded-[4px] bg-[#0A0A0A] border border-[rgba(192,192,192,0.12)] p-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-[60px] h-[60px] rounded-full flex items-center justify-center relative shrink-0">
-                            <svg viewBox="0 0 60 60" className="w-full h-full -rotate-90">
-                              <defs>
-                                <linearGradient id="silverGrad" x1="0" y1="0" x2="1" y2="1">
-                                  <stop offset="0%" stopColor="#404040" />
-                                  <stop offset="50%" stopColor="#C0C0C0" />
-                                  <stop offset="100%" stopColor="#E8E8E8" />
-                                </linearGradient>
-                              </defs>
-                              <circle cx="30" cy="30" r="26" fill="none" stroke="#1A1A1A" strokeWidth="3" />
-                              <circle cx="30" cy="30" r="26" fill="none" stroke="url(#silverGrad)" strokeWidth="3"
-                                strokeDasharray={`${0.62 * 163.36} ${163.36}`} strokeLinecap="round" />
-                            </svg>
-                            <div className="absolute inset-0 flex flex-col items-center justify-center">
-                              <p className="text-[12px] font-bold font-mono leading-tight text-[#E8E8E8]">1,247</p>
-                              <p className="text-[8px] text-[#606060]">left</p>
-                            </div>
-                          </div>
-                          <div className="flex-1 space-y-1.5 min-w-0">
-                            <div className="flex justify-between text-[10px] font-body">
-                              <span className="text-[#808080]">Eaten</span>
-                              <span className="font-mono font-medium text-[#E8E8E8]">753 cal</span>
-                            </div>
-                            <div className="flex justify-between text-[10px] font-body">
-                              <span className="text-[#808080]">Goal</span>
-                              <span className="font-mono font-medium text-[#E8E8E8]">2,000 cal</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-2 mt-2">
-                          {["P", "C", "F"].map((m, i) => (
-                            <div key={m}>
-                              <div className="flex justify-between text-[9px] text-[#808080] font-body">
-                                <span>{m}</span>
-                                <span className="font-mono text-[#A0A0A0]">{[42, 85, 22][i]}g</span>
-                              </div>
-                              <div className="h-1 bg-[#1A1A1A] rounded-full mt-0.5">
-                                <motion.div initial={{ width: 0 }} animate={{ width: `${[28, 34, 33][i]}%` }}
-                                  transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
-                                  className="h-full chrome-bar rounded-full" />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Meals */}
-                      <div>
-                        <p className="text-[9px] text-[#606060] font-body tracking-widest uppercase mb-1.5">Today's Meals</p>
-                        {["Breakfast", "Lunch"].map((meal) => (
-                          <div key={meal} className="rounded-[4px] bg-[#0A0A0A] border border-[rgba(192,192,192,0.1)] mb-1.5 flex items-center justify-between p-2.5">
-                            <div className="min-w-0">
-                              <p className="text-[10px] font-medium font-body text-[#D0D0D0]">{meal}</p>
-                              <p className="text-[8px] text-[#606060] font-body truncate">Oatmeal, eggs…</p>
-                            </div>
-                            <p className="text-[10px] font-semibold font-mono shrink-0 ml-2 text-[#E8E8E8]">430 cal</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Home indicator */}
-                    <div className="absolute bottom-[6px] left-1/2 -translate-x-1/2">
-                      <div className="w-[100px] h-[4px] rounded-full bg-[#E8E8E8]/20" />
-                    </div>
-                  </div>
+                  <img src={appScreenshot} alt="BULLETPROOFFIT app dashboard" className="w-full h-full object-cover object-top" />
 
                   {/* Screen glare */}
                   <div className="absolute inset-0 pointer-events-none z-10" style={{
