@@ -59,7 +59,7 @@ const PrivacyPolicy = () => {
               <strong className="text-white">User ID</strong> — an internal account identifier from our authentication provider.
             </li>
             <li>
-              <strong className="text-white">Purchase history</strong> — subscription and purchase status, used to unlock paid features and manage your subscription.
+              BULLETPROOFFIT is free forever — there are no subscriptions, paid tiers, or in-app purchases, so no purchase or billing data is collected.
             </li>
           </ul>
           <p className="text-[#C0C0C0] font-body leading-relaxed mt-4">
@@ -72,7 +72,7 @@ const PrivacyPolicy = () => {
             2. How We Use Your Information
           </h2>
           <p className="text-[#C0C0C0] font-body leading-relaxed">
-            To provide core app functionality (meal logging, workout tracking, AI food recognition, AI coaching), manage your account and sync across devices, process subscription purchases, maintain security, and communicate with you about your account. We do not use your data for third-party advertising and we do not sell your personal data.
+            To provide core app functionality (meal logging, workout tracking, AI food recognition, AI coaching), manage your account and sync across devices, maintain security, and communicate with you about your account. We do not use your data for third-party advertising and we do not sell your personal data.
           </p>
         </section>
 
@@ -97,7 +97,7 @@ const PrivacyPolicy = () => {
               <strong className="text-white">OpenAI</strong> (processes food photos, voice transcripts, and coach messages to generate AI responses)
             </li>
             <li>
-              <strong className="text-white">RevenueCat</strong> (manages subscription status/entitlements)
+              <strong className="text-white">Apple</strong> (Apple Health sync and Face ID run entirely on-device)
             </li>
             <li>
               <strong className="text-white">Apple</strong> (processes In-App Purchases; Apple Health sync and Face ID run entirely on-device)

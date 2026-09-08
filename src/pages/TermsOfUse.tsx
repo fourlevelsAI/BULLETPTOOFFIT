@@ -54,9 +54,9 @@ const TermsOfUse = () => {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-xl font-bold font-heading text-white mb-3">Subscriptions</h2>
+          <h2 className="text-xl font-bold font-heading text-white mb-3">Free forever</h2>
           <p className="text-[#C0C0C0] font-body leading-relaxed">
-            Paid tiers, where offered, renew automatically until cancelled. You can manage or cancel a subscription anytime from your device's App Store account settings.
+            BULLETPROOFFIT is completely free. There is no paywall, no subscription, no trial and no credit card required — every feature is included at no cost.
           </p>
         </section>
 
