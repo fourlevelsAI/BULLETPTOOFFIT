@@ -1,10 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- BULLETPROOFFIT — cinematic editorial site (scroll-editorial build) -->
 <title>BULLETPROOFFIT — Your Whole Day, One Screen</title>
-<link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAAAIACKAAAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAFFJREFUeJxjFBER+89AAWCiRPMQMODgwf0Mhw4dwGsACz5Jbm5uBkZGRvIN+PfvH0EDKA4DvC74/59wEsFrACsrG2VhcPnyZYIGMI4mZcoNAAAUPQ/Vanj99wAAAABJRU5ErkJggg==" sizes="any">
-<link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAUUlEQVR4nGMUERH7z0ABYKJE8xAw4ODB/QyHDh3AawALPklubm4GRkZG8g349+8fQQMoDgO8Lvj/n3ASwWsAKysbZWFw+fJlggYwjiZlyg0AABQ9D9VqeP33AAAAAElFTkSuQmCC">
-<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAArklEQVR4nO3WMQrDMAwF0C8Rr82SOOdMOjSXK2ncIwSvvohjq0u3QgfTOgQkEEaD0EODMHWdFRwYfORwBShAAecFLMsd3m+Y5xu83+DcoxjQlDQNw4C+79G2F1hr0TSmGFC0gRgjRAT7nt5vrAsgoo+sCvhlKEAB5wSIyNf67wBjDHLOAICcc/1LGEIAM4OIwMwIIdQFTNMV6+qQUoJzT4zjWAwg/ZYrQAEKOBrwAnNcOPUTjy+QAAAAAElFTkSuQmCC">
-<link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABKUlEQVR4nO3ZsWqDUBSA4f9IMYJTSugsuPhA6Zyme/Muhj5DyRukkDX2SdLRTi7XqLdLaKGkU64chPNPeod7/FAXlcXiwTPhIu0LuDUDaGcA7QygnQG0M4B2kwfchd5wt3sjyzLO546yLNlsXojjmNPpk+XyMfS48IA8z8myDID5/J6iKBARZrMk9ChghEfIuRbvPW3b0vcdzrnLuQs9ChgBICKICCA/x79r4Zv8S2wA7QygnQG0M4B2BtDOAH/z/vq34v/Wby04IIrk6sVG0Tg3O/iudV0jIgxDj4jQdd1l/Sv0KGAEwHb7yjAMJEkCCGma4r2nLMvQo4ARAIfDgdXqieOxomkaquqD9fqZ/f499CgAxP7QKGcA7QygnQG0M4B2BtDOANp9A5TiUVI3RArAAAAAAElFTkSuQmCC">
-<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAEw0lEQVR4nO3YMW8URxyG8Xdm1yKu4sLHN6ChcReIQmta/AVISUqUIpTGtJiWSKSO3JJNRQiRcT4AWDIFdiTi4hzZEkflC77T7UwqX0SCwVkvcnjv+UluzrOj8fm5v8YOs7NnswAT8bQPALSJoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGFoGGlPO0DfIw6nY4uXPhMOecj1+ScFWNUv9/X2tqvSinp0qUvNDMzo5SSQgjvfG59fV3d7s6H+hFshdnZs0f/VvBW8/PzWln5/lhru90dXbz4uQaDgdbWVnX+/PljPXf9+tdaWVk5yTEnEhO6gZSScs7KOR85aVNKijFqOByMXxsOh8o5j7/3rufqevRBzu6OoBs6DPmooEMI46+3vfZfnsPx8UchrBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBD0/1TO+bSP8FEi6Ab6/b4kKYTw3rUhhPG6GN//dh+u7ff/PMEJJxdBN/Dy5Uu9fv1aUvuTNISglJL29nZb3XdSEHQD3W5Xe3t7ktoN+nCvV69e6cWL31vbd5IQdAMHBwd68uSpcs5KKbW2b0pJOWdtbDxTr9drbd9JQtANVVX1xv24LSEEVVXV6p6ThKAbCCHo0aNf9Pz5poqiaGVKp5QUY9TOzh+qqh9b/6BMCoJuIMao4XCoxcVFSX9fFZrKOauua4UQdPPmkvb394/1HxH8G+9aA3VdK8ao1dXHun17WWVZKqXUaFKnlFTXtaampnTv3neqqkpFUaiu6w9wcn/laR/gY5VzVlEUWl6+I0m6ceMbSdJoNHrvdeFwIuecVZalYoy6e/dbLS3dau0KM6mY0A0dRhlj1PLyHV29+qW2tn5TWZYqikJFUUjSG3HmnMcfhKIoVJaltre3de3aV1pauqUY4zh0NMOEPqGUkoqi0IMHP2l19bEWFq5oYeGK5ubm1Ol0ND09PV575swnCiGo1+tpY+OZqqrS/fs/qN/vK8bIZG5BmJ09yzhowT/vvZ1OR+fOndPMzKd6+PBnjUYjXb48r8FgoM3NLe3u7h75LJojaFjhDg0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rfwECzTWOgkBvsQAAAABJRU5ErkJggg==">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#09090a">
 <meta name="description" content="BULLETPROOFFIT is the AI fitness and nutrition app that tracks your food, training, and progress in one screen — with a coach that actually knows your data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -687,6 +693,8 @@
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
   }
 </style>
+</head>
+<body>
 
 <div class="grain" aria-hidden="true">
   <svg><filter id="grainFilter"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grainFilter)"/></svg>
@@ -1146,3 +1154,5 @@
  }
 })();
 </script>
+</body>
+</html>
