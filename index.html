@@ -684,9 +684,6 @@
     .feature-panel .wrap-inner{grid-template-columns:1fr;gap:30px;}
     .feature-rail{display:none;}
     .mock{margin:0 auto;max-width:260px;}
-    .feature-pin-outer{height:auto;}
-    .feature-pin-inner{position:relative;height:auto;padding:60px 0;}
-    .feature-panel{position:relative;opacity:1 !important;padding-top:40px;}
   }
   @media (max-width: 620px){
     .hero-sub-row{flex-direction:column;align-items:flex-start;}
@@ -991,8 +988,8 @@
         <div class="footer-col">
           <h5>Company</h5>
           <a href="https://apps.apple.com/us/developer/mohamed-ibrahim/id1886207823" target="_blank" rel="noopener">Developer</a>
-          <a href="https://smart-fit-log.lovable.app/privacy" target="_blank" rel="noopener">Privacy Policy</a>
-          <a href="https://smart-fit-log.lovable.app/terms" target="_blank" rel="noopener">Terms of Service</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-use.html">Terms of Service</a>
           <a href="mailto:mohamed.ibrahim1213@gmail.com">Contact</a>
         </div>
         <div class="footer-col">
@@ -1116,8 +1113,8 @@
     });
   });
 
-  /* ---------- pinned feature sequence ---------- */
-  if(!isTouch){
+  /* ---------- pinned feature sequence (desktop + mobile) ---------- */
+  if(!reduced){
     var panels = gsap.utils.toArray('.feature-panel');
     var dots = gsap.utils.toArray('#featureRail .dot');
     var pinTl = gsap.timeline({
